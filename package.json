@@ -1,0 +1,38 @@
+{
+  "name": "belen-ibanez",
+  "version": "1.0.0",
+  "description": "Facebook Wizard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node-sass sass/ -o css/ --watch --recursive",
+    "sass": "node-sass sass/ -o css/ --recursive"
+  },
+  "author": "Belen Ibanez",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "microtime": "^3.0.0",
+    "node-gyp": "^3.8.0",
+    "node-sass": "^4.11.0",
+    "popper.js": "^1.14.7",
+    "tar": "^4.4.2"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beluiba/belen-ibanez.git"
+  },
+  "keywords": [
+    "beluiba"
+  ],
+  "bugs": {
+    "url": "https://github.com/beluiba/belen-ibanez/issues"
+  },
+  "homepage": "https://github.com/beluiba/belen-ibanez#readme"
+}

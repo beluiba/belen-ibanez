@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.0" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32.74 49.49"
+	 enable-background="new 0 0 32.74 49.49" xml:space="preserve">
+<switch>
+	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
+		<i:pgfRef  xlink:href="#adobe_illustrator_pgf">
+		</i:pgfRef>
+	</foreignObject>
+	<g i:extraneous="self">
+		<g>
+			<g>
+				
+					<path fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M15.77,0.48C9.05,7.48,5.5,16.4,5.12,25.4c-3,2.93-4.87,7.02-4.87,11.54c0,0.93,0.08,1.83,0.22,2.71
+					c0.12,0.73,1.11,0.85,1.44,0.19c0.96-1.95,2.31-3.68,3.95-5.08c0.31,1.52,0.71,3.01,1.21,4.49c0.1,0.31,0.4,0.52,0.73,0.52
+					h17.06c0.33,0,0.63-0.21,0.73-0.52c0.5-1.48,0.89-2.98,1.21-4.5c1.68,1.43,3.06,3.19,4.05,5.18c0.33,0.66,1.32,0.52,1.43-0.2
+					c0.15-0.91,0.21-1.84,0.21-2.78c0-4.57-1.9-8.7-4.97-11.64c-0.4-8.97-3.94-17.85-10.64-24.83C16.59,0.17,16.07,0.17,15.77,0.48z
+					"/>
+				
+					<path fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M5.12,25.4c0,5.98,0.74,9.35,0.74,9.35"/>
+				
+					<path fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M26.79,34.75c0,0,0.73-3.45,0.73-9.44"/>
+				
+					<path fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M9.42,9.32h13.81"/>
+				
+					<circle fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="16.33" cy="18.08" r="4"/>
+			</g>
+			
+				<circle fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="11.8" cy="33.73" r="1.49"/>
+			
+				<circle fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="16.37" cy="33.73" r="1.49"/>
+			
+				<circle fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="20.94" cy="33.73" r="1.49"/>
+			
+				<path fill="none" stroke="#193651" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M11.44,39.77c0.58,2.68,3.07,7.08,4.28,9.1c0.3,0.5,1.01,0.5,1.31,0c1.2-2.02,3.7-6.43,4.28-9.1H11.44z"/>
+		</g>
+	</g>
+</switch></svg>
