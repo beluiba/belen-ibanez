@@ -1,20 +1,4 @@
-p {
-  margin: 25px 0;
-  padding: 0;
-  font-size: 15px;
-  color: #999999;
-  line-height: 28px;
-}
 
-::-moz-selection {
-  background: #b8a07e;
-  color: #fff;
-}
-
-::selection {
-  background: #b8a07e;
-  color: #fff;
-}
 
 .btn {
   background: #333;
@@ -66,15 +50,6 @@ p {
   outline: 0 none;
 }
 
-.paddsection {
-  padding-top: 90px;
-  padding-bottom: 90px;
-}
-
-.paddsections {
-  padding-top: 90px;
-  padding-bottom: 90px !important;
-}
 
 .hvr-shutter-in-horizontal::before {
   background: #333;
@@ -94,19 +69,6 @@ p {
 
 
 
-nav ul li a {
-  padding: 2px 0 0 0;
-  position: relative;
-  display: block;
-  font-size: 14px;
-  color: #999999;
-  font-family: 'Asap', helvetica;
-  font-weight: 500;
-  line-height: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  text-transform: capitalize;
-}
 
 h2,h3{
   font-family: 'Asap', helvetica;
@@ -124,57 +86,6 @@ h2,h3{
   color: #afafaf;
 }
 
-/*----------------------------------------------------------------------------------*/
-/*  Header
-/*-----------------------------------------------------------------------------------*/
-
-#header {
-  background: url("../images/home-bg.jpg") repeat scroll center center / cover;
-  height: 100vh;
-  width: 100%;
-}
-
-
-#header .header-content {
-  height: 100vh;
-  text-align: left;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-
-.header-content p {
-  font-size: 13px;
-  letter-spacing: 5px;
-  margin-top: 0;
-  margin-bottom: 30px;
-  text-transform: capitalize;
-  color: #fff;
-  font-weight: 500;
-}
-
-.header-content .list-social li {
-  float: left;
-  margin-right: 20px;
-}
-
-.header-content .list-social li i {
-  color: #fff;
-  font-size: 15px;
-}
-
-/*-----------------------------------------------------------------------------------*/
-/*  Aout-us
-/*-----------------------------------------------------------------------------------*/
-
-#about {
-  width: 100%;
-  height: auto;
-  background: #f7f7f7;
-  padding-top: 190px;
-}
 
 #about .div-img-bg {
   padding-bottom: 30px;
@@ -190,11 +101,6 @@ h2,h3{
   object-fit: cover;
 }
 
-#about .about-descr .p-heading {
-  font-family: 'Bree Serif', serif;
-  font-size: 28px;
-  text-align: left;
-}
 
 #about .about-descr .separator {
   max-width: 80%;
@@ -294,7 +200,7 @@ h2,h3{
   color: #999999;
   line-height: 16px;
   cursor: pointer;
-  font-family: 'Asap, helvetica;
+  font-family: 'Asap', helvetica;
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: capitalize;
