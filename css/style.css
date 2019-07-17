@@ -30,20 +30,7 @@
   text-transform: uppercase;
 }
 
-.form-control {
-  background-color: transparent;
-  border: 1px solid #999;
-  border-radius: 0;
-  color: #999999;
-  font-size: 12px;
-  font-weight: 500;
-  height: 50px;
-  letter-spacing: 0.1em;
-  padding-left: 10px;
-  margin: 0 0 25px 0;
-  line-height: 14px;
-  text-transform: uppercase;
-}
+
 
 .form-control:focus {
   box-shadow: none;
@@ -179,62 +166,7 @@ h2,h3{
 /*  Portfolio
 /*-----------------------------------------------------------------------------------*/
 
-#portfolio {
-  position: relative;
-  padding-bottom: 50px;
-}
 
-#portfolio .portfolio-list {
-  margin-bottom: 50px;
-}
-
-#portfolio .portfolio-list .nav {
-  display: inline-block;
-  margin: 0;
-}
-
-#portfolio .portfolio-list .nav li {
-  margin: 0 40px 0 0;
-  float: left;
-  font-size: 14px;
-  color: #999999;
-  line-height: 16px;
-  cursor: pointer;
-  font-family: 'Asap', helvetica;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: capitalize;
-  -moz-transition: all 0.5s ease-in-out 0s;
-  -ms-transition: all 0.5s ease-in-out 0s;
-  -o-transition: all 0.5s ease-in-out 0s;
-  -webkit-transition: all 0.5s ease-in-out 0s;
-  transition: all 0.5s ease-in-out 0s;
-}
-
-#portfolio .portfolio-list .nav li:hover, #portfolio .portfolio-list .nav li.filter-active  {
-  color: #b8a07e;
-  -moz-transition: all 0.5s ease-in-out 0s;
-  -ms-transition: all 0.5s ease-in-out 0s;
-  -o-transition: all 0.5s ease-in-out 0s;
-  -webkit-transition: all 0.5s ease-in-out 0s;
-  transition: all 0.5s ease-in-out 0s;
-}
-
-#portfolio .portfolio-container {
-  display: inline-block;
-  margin-bottom: 50px;
-  width: 100%;
-}
-
-.portfolio-thumbnail {
-  margin-bottom: 30px;
-  overflow: hidden;
-  min-height: 260px;
-}
-
-.portfolio-thumbnail img {
-  max-width: 100%;
-}
 
 /*-----------------------------------------------------------------------------------*/
 /*  Journal
@@ -305,49 +237,9 @@ h2,h3{
 /*  Contact
 /*-----------------------------------------------------------------------------------*/
 
-#contact {
-  height: auto;
-  width: 100%;
-}
-
-.contact-details {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.contact-details li {
-  padding-bottom: 10px;
-}
-
-#contact input, #contact textarea {
-  width: 100%;
-}
 
 
-#contact  #sendmessage {
-  color: #18d26e;
-  border: 1px solid #18d26e;
-  display: none;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-  margin: 15px;
-}
 
-#contact  #errormessage {
-  color: red;
-  display: none;
-  border: 1px solid red;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-  margin: 15px;
-}
-
-#contact #sendmessage.show, #contact #errormessage.show, #contact .show {
-  display: block;
-}
 
 #contact .validation {
   color: red;
@@ -361,11 +253,6 @@ h2,h3{
 /*  Footer
 /*-----------------------------------------------------------------------------------*/
 
-#footer {
-  background: #f7f7f7;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
 
 #footer .socials-media {
   width: 100%;

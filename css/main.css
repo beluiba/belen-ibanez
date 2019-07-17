@@ -5,11 +5,11 @@
   font-weight: bold;
   font-style: normal; }
 
-.display, h1, h2, h3, h4, h5 {
+.display, h1, h2, h3, h4, h5, .contact .btn {
   font-family: 'Druk Wide'; }
 
 .text, body {
-  font-family: "Asap"; }
+  font-family: "Roboto"; }
 
 .regular, body {
   font-weight: 400; }
@@ -71,7 +71,7 @@
   background-position: 10000px 0; }
 
 .stars, .twinkling, .clouds {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -103,7 +103,8 @@
   animation: move-clouds-back 200s linear infinite; }
 
 body {
-  color: #000000; }
+  color: #000000;
+  background-color: #000000; }
 
 h1 {
   color: white; }
@@ -117,6 +118,10 @@ a {
 img {
   width: 100%; }
 
+.mfp-wrap {
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.7); }
+
 img.mfp-img {
   max-height: 6000px !important; }
 
@@ -127,20 +132,25 @@ img.mfp-img {
   display: none; }
 
 .paddsection {
-  padding-top: 8em;
-  padding-bottom: 5em; }
+  padding: 3em 0;
+  margin: 4em 0;
+  position: relative;
+  background: white;
+  z-index: 9999; }
 
 nav {
   position: fixed;
   background: #fff;
-  z-index: 1000;
+  z-index: 10000;
   width: 100%;
-  height: 100px;
-  padding: 20px;
+  height: 5em;
+  padding: 1em;
   display: none;
   -webkit-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
   -moz-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18);
   box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.18); }
+  nav .responsive {
+    font-size: 2em; }
   nav.main-nav {
     float: right;
     line-height: 32px;
@@ -153,13 +163,15 @@ nav {
     nav.main-nav .nav-menu {
       position: absolute;
       height: 100%;
-      width: 100%; }
+      width: 100%;
+      margin: 0; }
       nav.main-nav .nav-menu li {
         display: inline-block; }
       nav.main-nav .nav-menu li.section {
         float: right;
-        padding-left: 2em;
-        padding-top: 1.25em; }
+        padding-left: 1em;
+        padding-top: 0.5em;
+        background: white; }
         nav.main-nav .nav-menu li.section h4 {
           font-size: 1.2em; }
         nav.main-nav .nav-menu li.section a {
@@ -173,8 +185,9 @@ nav {
             background-color: #000000;
             color: #fff; }
       nav.main-nav .nav-menu .logo {
-        width: 4em;
-        display: inline-block; }
+        width: 3em;
+        display: inline-block;
+        padding: 0; }
       nav.main-nav .nav-menu a {
         text-align: center; }
     nav.main-nav .section img {
@@ -203,18 +216,131 @@ nav {
         color: #fff;
         font-size: 15px; }
 
-.about .me {
-  border-radius: 100%; }
-
 .about .what-i-do {
   margin: 4em 0 0; }
   .about .what-i-do img {
     height: 7em;
     margin: 1.5em 0; }
   .about .what-i-do h5 {
-    min-height: 3.5em; }
+    min-height: 3.5em;
+    font-size: 1em; }
+    @media (min-width: 600px) {
+      .about .what-i-do h5 {
+        font-size: 1.2em; } }
   .about .what-i-do p {
     margin-bottom: 0; }
   .about .what-i-do .last {
     background: #000000;
     color: #fff; }
+
+.portfolio {
+  position: relative;
+  padding-bottom: 3em; }
+  .portfolio .portfolio-list .nav {
+    display: inline-block;
+    margin: 0; }
+    .portfolio .portfolio-list .nav li {
+      margin: 1em 1em 2em;
+      float: left;
+      font-size: 1.1em;
+      line-height: 2em;
+      cursor: pointer;
+      text-transform: lowercase;
+      -moz-transition: all 0.5s ease-in-out 0s;
+      -ms-transition: all 0.5s ease-in-out 0s;
+      -o-transition: all 0.5s ease-in-out 0s;
+      -webkit-transition: all 0.5s ease-in-out 0s;
+      transition: all 0.5s ease-in-out 0s; }
+      .portfolio .portfolio-list .nav li h5 {
+        margin: 0; }
+      .portfolio .portfolio-list .nav li.filter-active {
+        border-bottom: solid 3px #000; }
+  .portfolio .portfolio-container {
+    display: inline-block;
+    width: 100%; }
+    .portfolio .portfolio-container .portfolio-thumbnail {
+      margin-bottom: 30px;
+      overflow: hidden;
+      min-height: 260px; }
+      .portfolio .portfolio-container .portfolio-thumbnail img {
+        max-width: 100%; }
+  .portfolio .all .popup-img {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; }
+    .portfolio .all .popup-img .hover-wrap {
+      display: none; }
+    .portfolio .all .popup-img:hover .hover-wrap {
+      display: block;
+      position: absolute;
+      top: 0;
+      z-index: 9999;
+      min-height: 25em;
+      background-color: black;
+      width: 100%; }
+      .portfolio .all .popup-img:hover .hover-wrap h4 {
+        color: white;
+        margin-top: 30%; }
+
+.contact {
+  background: transparent;
+  color: white; }
+  .contact .form-group {
+    position: relative;
+    margin: 1.5rem 0;
+    text-align: left; }
+    .contact .form-group textarea {
+      height: 6em; }
+  .contact .form-control {
+    border: solid 1px #a0a0a0;
+    background-color: transparent;
+    border-radius: 0;
+    height: 3.5em;
+    color: #a0a0a0; }
+    .contact .form-control:focus {
+      background-color: transparent;
+      color: white;
+      border-color: white; }
+  .contact .form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 1em;
+    transition: all 200ms;
+    opacity: 1;
+    color: white; }
+  .contact .form-control:focus + .form-control-placeholder,
+  .contact .form-control:valid + .form-control-placeholder {
+    font-size: 75%;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1; }
+  .contact .message {
+    display: none;
+    text-align: center;
+    padding: 1em;
+    margin: 0;
+    width: 100%; }
+    .contact .message.success {
+      color: #18d26e; }
+    .contact .message.error {
+      color: red; }
+    .contact .message.show {
+      display: block; }
+  .contact .btn {
+    border: none;
+    background: transparent;
+    text-transform: none;
+    background: black;
+    font-size: 1.2em; }
+    .contact .btn:hover {
+      background: white;
+      color: black;
+      transition: all 0.5s ease-in-out 0s; }
+  .contact .social {
+    margin-top: 3em;
+    margin-bottom: 0; }
+    .contact .social li {
+      display: inline-block;
+      padding: 1em; }
+    .contact .social a {
+      font-size: 2em;
+      color: white; }
