@@ -149,14 +149,30 @@ $secondary-dark: #8fadb5
 @mixin for-tablet-portrait-up
     @media (min-width: 600px)
         @content
+@mixin for-break
+    @media (max-width: 991px)
+        @content
+
+@mixin for-gap
+    @media (min-width: 991px) and (max-width: 1200)
+        @content
 @mixin for-tablet-landscape-up
     @media (min-width: 900px)
         @content
 @mixin for-desktop-up
     @media (min-width: 1200px)
         @content
+@mixin for-desktop-down
+    @media (max-width: 1200px)
+        @content
+@mixin for-mid-desktop-up
+    @media (min-width: 1400px)
+        @content
 @mixin for-big-desktop-up
     @media (min-width: 1800px)
+        @content
+@mixin for-another-1024
+    @media (max-width: 1024px)
         @content
 
 //general rules
@@ -201,8 +217,8 @@ img.mfp-img
     display: none
 
 .paddsection
-    padding: 3em 0
-    margin: 4em 0
+    padding: 5em 0
+    margin: 2em 0
     position: relative
     background: white
     z-index: 9999
@@ -298,6 +314,8 @@ nav
             text-transform: uppercase
             font-size: 4em 
             z-index: 10
+            @include for-phone-only
+                font-size: 2em
         
         .list-social
             li
@@ -308,10 +326,29 @@ nav
                     color: #fff
                     font-size: 15px
 
+.me
+    h4
+        font-size: 1.25em
+        line-height: 1.35em
 
+        @include for-phone-only
+            padding-top: 1em
+
+    .container
+        @include for-another-1024
+            max-width: 100%
 .about
+    &.odd
+        background: transparent
+        color: white
     .what-i-do
         margin: 4em 0 0
+        @include for-phone-only
+            margin-top: 0
+        div
+            @include for-phone-only
+                padding: 1em
+
         img
             height: 7em
             margin: 1.5em 0
@@ -319,7 +356,10 @@ nav
             min-height: 3.5em
             font-size: 1em
             @include for-tablet-portrait-up
-                font-size: 1.2em
+                font-size: 1em
+
+            @include for-phone-only
+                min-height: 2.5em
         p
             margin-bottom: 0
         .last
@@ -334,6 +374,8 @@ nav
         .nav
             display: inline-block
             margin: 0
+            @include for-phone-only
+                margin-bottom: 1em
             li
                 margin: 1em 1em 2em
                 float: left
@@ -346,9 +388,12 @@ nav
                 -o-transition: all 0.5s ease-in-out 0s
                 -webkit-transition: all 0.5s ease-in-out 0s
                 transition: all 0.5s ease-in-out 0s
-
+                @include for-phone-only
+                    margin: 0.35em !important
                 h5
-                    margin: 0
+                    margin: 0 
+                    @include for-phone-only
+                    font-size: 1em
 
                 &.filter-active
                     border-bottom: solid 3px #000
@@ -357,11 +402,18 @@ nav
     .portfolio-container
         display: inline-block
         width: 100%
+        min-height: auto !important
         
         .portfolio-thumbnail
             margin-bottom: 30px
             overflow: hidden
-            min-height: 260px
+            @include for-mid-desktop-up
+                min-height: 400px
+            @include for-desktop-down
+                min-height: 300px
+            @include for-gap
+                min-height: 220px
+
             img
                 max-width: 100%
 
@@ -374,6 +426,8 @@ nav
             overflow: hidden
             .hover-wrap
                 display: none
+                h4
+                    padding: 1em
             &:hover
                 .hover-wrap
                     display: block
@@ -386,6 +440,10 @@ nav
                     h4
                         color: white
                         margin-top: 30%
+                        @include for-desktop-down
+                            margin-top: 20%
+                        @include for-break
+                            margin-top: 30%
 
 
 
@@ -451,18 +509,6 @@ nav
         &.show
             display: block
 
-    .btn
-        border: none
-        background: transparent
-        text-transform: none
-        @extend .display
-        background: black
-        font-size: 1.2em
-
-        &:hover
-            background: white
-            color: black
-            transition: all 0.5s ease-in-out 0s
 
     .social
         margin-top: 3em
@@ -473,3 +519,21 @@ nav
         a
             font-size: 2em
             color: white
+
+.btn-form
+    border: none
+    background: transparent
+    text-transform: none
+    @extend .display
+    font-size: 1.2em
+    width: auto
+    display: inline-block
+
+    &:hover
+        background: white
+        color: black
+        transition: all 0.5s ease-in-out 0s
+
+.header.error
+    .btn
+        z-index: 9999999
