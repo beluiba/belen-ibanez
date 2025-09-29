@@ -1,103 +1,221 @@
-import Image from "next/image";
+import ProjectCard from "./components/ProjectCard";
+import Callout from "./components/Callout";
+import React from "react";
+import Link from "next/link";
+import type { Metadata } from "next";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Belén Ibáñez — Notion-style Portfolio",
+  description:
+    "Product & UX/UI Designer with 15+ years creating human-centered products. Bridging design, engineering, and business across cybersecurity, finance, AI, and SaaS.",
+  openGraph: {
+    title: "Belén Ibáñez — Notion-style Portfolio",
+    description:
+      "Product & UX/UI Designer with 15+ years creating human-centered products.",
+  },
+};
+
+export default function Page() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="landing-container" id="main-content">
+      {/* HERO */}
+      <section className="landing-hero" aria-label="Hero">
+        <h1 className="landing-hero-h1">
+          Product & UX/UI Designer with 15+ years creating human-centered
+          products.
+        </h1>
+        <p className="landing-hero-sub">
+          Bridging design, engineering, and business across cybersecurity,
+          finance, AI, and SaaS.
+        </p>
+        <div className="landing-hero-btns">
+          <Link
+            href="/case-studies"
+            className="landing-btn"
+            aria-label="View Case Studies"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            View Case Studies
+          </Link>
+          <a href="/cv.pdf" className="landing-btn" aria-label="Download CV">
+            Download CV
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+
+      <hr className="landing-divider" />
+
+      {/* FEATURED USE CASES */}
+      <section className="landing-featured" aria-label="Featured Use Cases">
+        <h2 className="sr-only">Featured Use Cases</h2>
+        <div className="landing-cards">
+          <div className="landing-card">
+            <div className="landing-card-title">
+              Bank of America — Risk & Controls
+            </div>
+            <div className="landing-card-summary">
+              Designing tools for risk management and controls in a global
+              financial institution. Empowering teams to make informed decisions
+              and reduce operational risk.
+            </div>
+            <Link
+              href="/case-studies/bank-of-america"
+              className="landing-card-link"
+              aria-label="View Bank of America case study"
+            >
+              View case study
+            </Link>
+          </div>
+          <div className="landing-card">
+            <div className="landing-card-title">
+              Adarma — Cybersecurity SOC Tools
+            </div>
+            <div className="landing-card-summary">
+              Building intuitive SOC tools for cybersecurity analysts.
+              Streamlining workflows and surfacing actionable insights in
+              high-pressure environments.
+            </div>
+            <Link
+              href="/case-studies/adarma"
+              className="landing-card-link"
+              aria-label="View Adarma case study"
+            >
+              View case study
+            </Link>
+          </div>
+          <div className="landing-card">
+            <div className="landing-card-title">
+              Silico — Decision Intelligence SaaS
+            </div>
+            <div className="landing-card-summary">
+              Crafting a SaaS platform for decision intelligence. Enabling
+              organizations to simulate, analyze, and optimize business outcomes
+              with AI-driven insights.
+            </div>
+            <Link
+              href="/case-studies/silico"
+              className="landing-card-link"
+              aria-label="View Silico case study"
+            >
+              View case study
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <hr className="landing-divider" />
+
+      {/* OTHER WORKS */}
+      <section className="landing-other" aria-label="Other Works">
+        <h2 className="sr-only">Other Works</h2>
+        <p>
+          Beyond case studies, I have helped teams launch, scale, and improve
+          products in:
+        </p>
+        <ul className="landing-other-list">
+          <li>🔍 Data visualization for AI/ML</li>
+          <li>🛠️ Internal tools for SaaS ops</li>
+          <li>🚀 Growth experiments for fintech</li>
+          <li>🤝 Collaboration platforms</li>
+          <li>📱 Mobile-first dashboards</li>
+        </ul>
+        <Link
+          href="/other-works"
+          className="landing-btn landing-other-btn"
+          aria-label="See all other works"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          See all other works
+        </Link>
+      </section>
+
+      <hr className="landing-divider" />
+
+      {/* PROCESS */}
+      <section className="landing-process" aria-label="Process">
+        <h2 className="sr-only">Process</h2>
+        <div className="landing-timeline" role="list">
+          <div className="landing-step" role="listitem">
+            🔍 <span>Research: Understand users, context, and goals.</span>
+          </div>
+          <div className="landing-step" role="listitem">
+            🧭 <span>Define: Frame the problem and success criteria.</span>
+          </div>
+          <div className="landing-step" role="listitem">
+            🧪 <span>Prototype: Explore solutions and iterate quickly.</span>
+          </div>
+          <div className="landing-step" role="listitem">
+            ✅ <span>Validate: Test with users and stakeholders.</span>
+          </div>
+          <div className="landing-step" role="listitem">
+            🚀 <span>Deliver: Launch, measure, and refine.</span>
+          </div>
+        </div>
+      </section>
+
+      <hr className="landing-divider" />
+
+      {/* CONTACT */}
+      <section className="landing-contact" aria-label="Contact">
+        <div className="landing-contact-cta">
+          Let’s build something together.
+        </div>
+        <div className="landing-contact-btns">
+          <a
+            href="mailto:belen.ibanez@gmail.com"
+            className="landing-btn"
+            aria-label="Email"
+          >
+            Email
+          </a>
+          <a
+            href="https://linkedin.com/in/belenibanez"
+            className="landing-btn"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/belenibanez"
+            className="landing-btn"
+            aria-label="GitHub"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+          </a>
+          <a href="/cv.pdf" className="landing-btn" aria-label="Download CV">
+            Download CV
+          </a>
+        </div>
+      </section>
+
+      <hr className="landing-divider" />
+
+      {/* PROJECTS */}
+      <section className="landing-projects" aria-label="Projects">
+        <ProjectCard
+          href="/work/silico"
+          title="Silico"
+          summary="Designing simulation tools for better business decisions."
+          tags={["Product Design", "B2B", "Simulation"]}
+          image="/silico-cover.jpg"
+        />
+        <ProjectCard
+          href="/work/adarma"
+          title="Adarma"
+          summary="Brand and platform for a leading cybersecurity consultancy."
+          tags={["Brand", "Platform", "Cybersecurity"]}
+          image="/adarma-cover.jpg"
+        />
+      </section>
+
+      <Callout icon="💬">
+        Currently available for select design leadership and product strategy
+        engagements.
+      </Callout>
+
+      <footer className="landing-footer"></footer>
+    </main>
   );
 }

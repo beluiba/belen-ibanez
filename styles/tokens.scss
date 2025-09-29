@@ -1,0 +1,117 @@
+// styles/tokens.scss
+
+// Font
+$font-primary: 'Inter', system-ui, sans-serif;
+$line-height-base: 1.7;
+$line-height-heading: 1.2;
+
+// Spacing (8pt scale)
+$space-0: 0;
+$space-1: 0.5rem; // 8px
+$space-2: 1rem;   // 16px
+$space-3: 1.5rem; // 24px
+$space-4: 2rem;   // 32px
+$space-5: 2.5rem; // 40px
+
+// Border radius & shadow
+$radius-card: 14px;
+$shadow-card: 0 2px 12px rgba(16, 18, 27, 0.06);
+$focus-ring: 0 0 0 2px #6366f1;
+
+// Palette (neutral grays & primary)
+$gray-50:  #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+$purple-50:  #f5f3ff;
+$purple-100: #ede9fe;
+$purple-200: #ddd6fe;
+$purple-300: #c4b5fd;
+$purple-400: #a78bfa;
+$purple-500: #8b5cf6;
+$purple-600: #7c3aed;
+$purple-700: #6d28d9;
+$purple-800: #5b21b6;
+$purple-900: #4c1d95;
+
+// Fluid type
+@mixin fluid-type($min, $max, $min-vw: 320, $max-vw: 1280) {
+  font-size: clamp(#{$min}, calc(#{$min} + (#{$max} - #{$min}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw}))), #{$max});
+}
+
+// CSS Variables for light/dark
+:root {
+  --font-primary: #{$font-primary};
+  --line-height-base: #{$line-height-base};
+  --line-height-heading: #{$line-height-heading};
+  --radius-card: #{$radius-card};
+  --shadow-card: #{$shadow-card};
+  --focus-ring: 0 0 0 2px #a78bfa;
+  --color-bg: #{$gray-50};
+  --color-bg-card: #fff;
+  --color-border: #{$gray-200};
+  --color-text: #{$gray-900};
+  --color-text-muted: #{$gray-500};
+  --color-primary: #{$purple-400};
+  --color-primary-dark: #{$purple-600};
+  --color-primary-bg: #{$purple-50};
+}
+.dark {
+  --color-bg: #{$gray-900};
+  --color-bg-card: #{$gray-800};
+  --color-border: #{$gray-700};
+  --color-text: #{$gray-50};
+  --color-text-muted: #{$gray-400};
+  --color-primary: #{$purple-300};
+  --color-primary-dark: #{$purple-500};
+  --color-primary-bg: #{$purple-900};
+}
+
+// Utilities
+.text-primary { color: var(--color-primary); }
+.text-muted { color: var(--color-text-muted); }
+.bg-card { background: var(--color-bg-card); }
+.border-card { border: 1px solid var(--color-border); }
+.shadow-card { box-shadow: var(--shadow-card); }
+.radius-card { border-radius: var(--radius-card); }
+.focus-ring:focus { box-shadow: var(--focus-ring); outline: none; }
+
+
+// Example usage
+.card {
+  @extend .bg-card, .border-card, .shadow-card, .radius-card;
+  padding: $space-3;
+  margin-bottom: $space-3;
+}
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7em 1.5em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--color-primary-dark);
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-base);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--line-height-heading);
+}
