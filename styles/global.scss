@@ -1,6 +1,15 @@
 // styles/global.scss
 @use "./tokens.scss" as *;
 
+:root {
+  --color-bg: #fff;
+  --color-border: #e5e5e5;
+  --color-text: #222;
+  --color-primary: #1976d2;
+  --color-primary-bg: #f5f7fa;
+  --color-primary-dark: #174ea6;
+}
+
 html {
   font-family: var(--font-primary, 'Inter', system-ui, sans-serif);
   font-size: 16px;
@@ -58,7 +67,9 @@ hr {
   border-top: 1px solid #e5e7eb;
   margin: 2.5rem 0;
 }
-
+.notion-main {
+  padding: 1.5rem;
+}
 .container {
   max-width: 1120px;
   margin: 0 auto;
@@ -100,4 +111,30 @@ hr {
   padding: 1em;
   overflow-x: auto;
   margin: 1.2em 0;
+}
+.form button[type="submit"] {
+  /* ... */
+}
+
+.form label {
+  /* ... */
+}
+
+.form input,
+.form textarea {
+  /* ... */
+}
+
+.form input:focus,
+.form textarea:focus {
+  /* ... */
+}
+.home-container {
+  .featured{
+    background: var(--color-bg-alt);
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 2.5rem 0;
+  padding: 0 1.5em;
+  }
 }
