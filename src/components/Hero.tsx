@@ -43,6 +43,7 @@ export default function Hero() {
         <h1>Belén Ibáñez </h1>
         <h2>Product UX/UI Design Engineer</h2>
         <h3>15+ years shipping interfaces that move KPIs.</h3>
+        <p>I define product requirements, design the system, and code accessible, data-driven interfaces. I turn ambiguity into decisions through evidence, clear data visualisation, and AI-aware workflows, then ship and iterate against measurable outcomes partnering tightly with engineering and product.</p>
       </div>
       <div className={styles.heroIcons}>
         {icons.map((icon) => (

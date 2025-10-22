@@ -1,24 +1,42 @@
 .header {
-  width: 100%;
-  position: sticky;
+  --header-height: 64px; /* adjust if your header is taller/shorter */
+  min-height: var(--header-height);
+  box-sizing: border-box;
+  padding: 1.25em 2rem 1.5rem; /* added padding */
+  position: fixed;
   top: 0;
-  background: var(--color-bg);
-  z-index: 100;
-  transition: border-bottom 0.18s ease, box-shadow 0.18s ease;
-  border-bottom: 0 solid transparent;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  width: 100%;
+  display: block;
+  background: var(--color-surface, #fff);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px var(--shadow-muted, rgba(0,0,0,0.06));
 }
 
+/* subtle elevation when scrolled (uses existing token) */
 .header.scrolled {
-  border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.08));
-  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  box-shadow: 0 6px 18px var(--shadow-muted, rgba(0, 0, 0, 0.1));
 }
 
+/* layout: site title left, links moved to the right */
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
+  justify-content: space-between; /* push .menu to the right */
+  gap: 1rem;
+}
+
+/* ensure menu stays right-aligned and centered vertically */
+.menu {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .siteTitle {
@@ -37,17 +55,6 @@
   border-bottom: 2px solid var(--color-text);
 }
 
-.menu {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.menu li {
-  display: flex;
-  align-items: center;
-}
 .menu a, .menu :global(a) {
   display: block;
   padding: 0.5rem 1rem;
@@ -64,7 +71,6 @@
   outline: none;
 }
 .menu a[aria-current="page"] {
-  border-bottom: 2px solid var(--color-text);
   font-weight: 600;
 }
 
@@ -73,9 +79,108 @@
   text-decoration: underline;
 }
 
+/* link base — do not change color here (uses currentColor by default) */
+.nav a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0.25rem 0;
+  position: relative;
+}
+
+/* visible active indicator for current route */
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--color-text, #0b69ff);
+}
+
+/* keyboard focus visible */
+.nav a:focus-visible {
+  outline: 3px solid rgba(0,0,0,0.08);
+  outline-offset: 4px;
+}
+
+/* mobile toggle button (hidden on wide screens) */
+.mobileToggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 0.25rem;
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+/* menu: desktop layout (kept) */
+.menu {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* responsive: under 1024px show hamburger and a stacked slide-down menu */
+@media (max-width: 1024px) {
+  .mobileToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* hide desktop menu by default */
+  .menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--header-height, 64px);
+    background: var(--color-surface, #fff);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.75rem 1rem;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 220ms ease, opacity 220ms ease;
+    box-shadow: 0 8px 24px var(--shadow-muted, rgba(0,0,0,0.08));
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index: 9998;
+  }
+
+  .menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu li {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .menu a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.25rem;
+    position: relative; /* make pseudo-element position relative to each link */
+  }
+
+ 
+}
+
 @media (max-width: 600px) {
-  .nav {
+  .header {
     padding: 1rem;
+  }
+  .nav {
+    gap: 0.5rem;
   }
   .menu {
     gap: 1.5rem;

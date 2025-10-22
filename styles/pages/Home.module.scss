@@ -70,7 +70,7 @@
 /* layout helpers */
 .featuredRow { display: flex; align-items: stretch; gap: 1rem; }
 .featuredRow > :first-child { flex: 1 1 auto; min-width: 0; }
-.viewMoreRow { display: flex; justify-content: flex-end; margin-top: 1rem; }
+.viewMoreRow { display: flex; justify-content: flex-end;}
 
 @media (max-width: 720px) {
   .featuredRow { flex-direction: column; gap: 0.75rem; }
