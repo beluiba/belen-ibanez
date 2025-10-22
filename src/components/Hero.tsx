@@ -22,7 +22,7 @@ const iconTooltips: Record<string, string[]> = {
     "- Identify user pain points",
     "- Define success metrics",
   ],
-  "Discovery Research": ["- User take", "- Competitive analysis"],
+  "Discovery Research": ["- User input", "- Competitive analysis"],
   "Opportunity Mapping": ["- Map opportunities", "- Prioritize features"],
   "Flows & Information Architecture": [
     "- Design user flows",

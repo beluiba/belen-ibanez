@@ -1,0 +1,47 @@
+.workgrid {
+  margin: 3em 0;
+}
+.use-cases {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* ensure direct children behave as blocks by default */
+.use-cases > * {
+  display: block;
+  width: auto;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+/* responsive: stack cards into full-width rows on small screens */
+@media (max-width: 983px) {
+  .use-cases {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+    display: grid;
+  }
+
+  /* Make sure any child (component root) becomes full width and visible */
+  .use-cases > * {
+    flex: 0 0 100%;
+    width: 100% ;
+    min-width: 0 ;
+    display: inline-block ;
+    height: 250px;
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: scale(1.01);
+  }
+}
+@media (max-width: 1366px) {
+
+  .work-container {
+    padding: 0 1.5rem !important;
+  }
+}

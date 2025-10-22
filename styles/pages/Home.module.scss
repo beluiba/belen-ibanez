@@ -1,0 +1,78 @@
+.featuredRow {
+  display: flex;
+  align-items: stretch; /* was flex-start — stretch lets WorkGrid fill the row */
+  gap: 1rem;
+}
+
+/* keep WorkGrid flexible so it fills available width */
+.featuredRow > :first-child {
+  flex: 1 1 auto;
+  min-width: 0; /* important to prevent child content from forcing overflow/collapse */
+}
+
+/* new row below the grid to host the View more link */
+.viewMoreRow {
+  display: flex;
+  justify-content: flex-end; /* push link to the right */
+  margin-bottom: 3em;
+}
+
+/* view more base (no color changes) */
+.viewMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: transform 200ms ease;
+}
+
+/* ensure ArrowIcon svg scales to the desired size and inherits color */
+.arrowLeft {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  width: 1rem;
+  height: 1rem;
+  will-change: transform;
+}
+
+.arrowLeft svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* stroke uses currentColor inside the SVG — no color overrides here */
+}
+
+/* ping-pong horizontal motion using the SVG */
+@keyframes arrow-hover-slide {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+/* trigger the back-and-forth motion on hover / focus (no color changes) */
+.viewMore:hover .arrowLeft,
+.viewMore:focus .arrowLeft {
+  animation: arrow-hover-slide 700ms ease-in-out infinite;
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .viewMore:hover .arrowLeft,
+  .viewMore:focus .arrowLeft {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* layout helpers */
+.featuredRow { display: flex; align-items: stretch; gap: 1rem; }
+.featuredRow > :first-child { flex: 1 1 auto; min-width: 0; }
+.viewMoreRow { display: flex; justify-content: flex-end; margin-top: 1rem; }
+
+@media (max-width: 720px) {
+  .featuredRow { flex-direction: column; gap: 0.75rem; }
+  .viewMoreRow { justify-content: flex-start; }
+}

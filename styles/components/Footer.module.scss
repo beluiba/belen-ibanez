@@ -1,0 +1,73 @@
+.footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.95rem;
+  color: var(--color-muted, #888);
+  background: var(--color-surface, transparent);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.logo{
+  opacity: 0.6;
+
+}
+
+/* social icons wrapper */
+.social {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+/* link around icon */
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: color 0.15s ease, transform 0.12s ease, background 0.12s ease;
+  text-decoration: none;
+  outline: none;
+}
+
+/* svg fills with currentColor */
+.iconLink svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+/* hover + focus behaviour using design tokens */
+.iconLink:hover,
+.iconLink:focus {
+  color: var(--color-primary, #0a66c2);
+  transform: translateY(-2px);
+  background: var(--color-surface-hover, rgba(10,102,194,0.04));
+}
+
+.iconLink:hover svg,
+.iconLink:focus svg {
+  transform: translateY(-2px) scale(1.02);
+  opacity: 0.98;
+}
+
+/* keyboard focus visible */
+.iconLink:focus-visible {
+  box-shadow: 0 0 0 4px rgba(10,102,194,0.12);
+}
+
+/* small screens: stack */
+@media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

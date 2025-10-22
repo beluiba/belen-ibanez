@@ -8,7 +8,7 @@ export const metadata = {
 export default function WorkPage() {
   return (
     <main className="work-container" id="main-content">
-      <h1>Work</h1>
+      <h2>Work</h2>
       <WorkGrid mode="full" />
     </main>
   );

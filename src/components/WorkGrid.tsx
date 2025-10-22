@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import CaseTile from "./CaseTile";
 import CaseModal from "./CaseModal";
+import OtherWorks from "./OtherWorks";
 import { featured, otherWorks } from "../data/cases";
 import styles from "@/styles/components/WorkGrid.module.scss";
 
@@ -13,6 +14,12 @@ type CaseTileCaseData = React.ComponentProps<typeof CaseTile>["caseData"];
 type CaseModalCaseData = React.ComponentProps<typeof CaseModal>["caseData"];
 
 const WorkGrid: React.FC<WorkGridProps> = ({ mode = "full" }) => {
+  // debug - log data at runtime
+  useEffect(() => {
+    console.log("[WorkGrid] featured:", Array.isArray(featured) ? featured.length : featured, featured);
+    console.log("[WorkGrid] otherWorks:", Array.isArray(otherWorks) ? otherWorks.length : otherWorks, otherWorks);
+  }, []);
+
   const [openCase, setOpenCase] = useState<CaseModalCaseData | null>(null);
   const lastActiveRef = useRef<HTMLElement | null>(null);
 
@@ -31,7 +38,7 @@ const WorkGrid: React.FC<WorkGridProps> = ({ mode = "full" }) => {
     };
   }, [openCase]);
 
-  const handleOpen = (caseData: CaseTileCaseData, origin: HTMLElement) => {
+  const handleOpen = (caseData: CaseTileCaseData, origin: HTMLElement | null) => {
     lastActiveRef.current = origin;
     setOpenCase(caseData as unknown as CaseModalCaseData);
   };
@@ -43,34 +50,59 @@ const WorkGrid: React.FC<WorkGridProps> = ({ mode = "full" }) => {
     }
   };
 
-  const normalizeCaseData = (c: unknown): CaseTileCaseData => {
-    return c as CaseTileCaseData;
+  const normalizeCaseData = (c: Partial<Record<string, unknown>>): CaseTileCaseData => {
+    if (!c || typeof c !== "object") return {} as CaseTileCaseData;
+    const {
+      restrictions,
+      company = "",
+      role = "",
+      context = "",
+      images = [],
+      logo = "",
+      id = "",
+      ...rest
+    } = c as Record<string, unknown>;
+    const normalizedRestrictions =
+      typeof restrictions === "boolean" ? restrictions : Boolean(restrictions);
+    return {
+      id: String(id ?? ""),
+      company: String(company ?? ""),
+      role: String(role ?? ""),
+      context: String(context ?? ""),
+      images: Array.isArray(images) ? images : [],
+      logo: String(logo ?? ""),
+      ...(rest as Record<string, unknown>),
+      restrictions: normalizedRestrictions,
+    } as CaseTileCaseData;
   };
 
+  const otherArray = Array.isArray(otherWorks) ? otherWorks.filter(Boolean) : [];
+
   return (
-    <div className={styles.workgrid} aria-label="Use Cases">
+    <div className={styles.workgrid}>
       <div className={styles["use-cases"]}>
-        <h2 className={styles["section-title"]}>Featured Work</h2>
-        {featured.map((item) => (
-          <CaseTile
-            key={item.id}
-            caseData={normalizeCaseData(item)}
-            onOpen={handleOpen}
-          />
-        ))}
+        {Array.isArray(featured) && featured.length > 0 ? (
+          featured.map((item, idx) => (
+            <CaseTile
+              key={String(item?.id ?? item?.company ?? idx)}
+              caseData={normalizeCaseData(item)}
+              onOpen={handleOpen}
+            />
+          ))
+        ) : (
+          <div className={styles.emptyMessage}>No featured work found.</div>
+        )}
       </div>
 
       {mode === "full" && (
-        <div className={styles["other-works"]}>
-          <h2 className={styles["section-title"]}>Other Works</h2>
-          {otherWorks.map((item) => (
-            <CaseTile
-              key={item.id}
-              caseData={normalizeCaseData(item)}
-              isOther
-              onOpen={handleOpen}
-            />
-          ))}
+        <div className={styles.otherWorks}>
+
+          {/* 4-column grid for other works */}
+          {otherArray.length === 0 ? (
+            <div className={styles.emptyMessage}>No other works available.</div>
+          ) : (
+            <OtherWorks items={otherArray.map(item => normalizeCaseData(item))} />
+          )}
         </div>
       )}
 
