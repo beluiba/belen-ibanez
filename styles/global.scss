@@ -141,23 +141,7 @@ hr {
   overflow-x: auto;
   margin: 1.2em 0;
 }
-.form button[type="submit"] {
-  /* ... */
-}
 
-.form label {
-  /* ... */
-}
-
-.form input,
-.form textarea {
-  /* ... */
-}
-
-.form input:focus,
-.form textarea:focus {
-  /* ... */
-}
 .home-container {
   .featured{
     background: var(--color-bg-alt);
@@ -190,9 +174,9 @@ hr {
   }
 
   .work-container {
-    padding: 0 1.5rem !important;
+    padding: 2em 1.5rem  0!important;
   }
 }
 .work-container{
-  padding: 0 6rem;
+  padding: 2em 6rem 0;
 }

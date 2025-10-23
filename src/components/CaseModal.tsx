@@ -21,6 +21,15 @@ interface CaseModalProps {
 const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // lock scroll while modal is open
+  useEffect(() => {
+    const prevOverflow = typeof document !== "undefined" ? document.body.style.overflow : "";
+    if (typeof document !== "undefined") document.body.style.overflow = "hidden";
+    return () => {
+      if (typeof document !== "undefined") document.body.style.overflow = prevOverflow;
+    };
+  }, []);
+
   // Focus trap and ESC to close
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -84,7 +93,9 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose }) => {
         ) : (
           <div className={styles.gallery}>
             {caseData.images.map((img: string, i: number) => (
-              <Image key={img} src={img} alt={`${caseData.company} placeholder ${i + 1}`} width={240} height={160} />
+              <div className={styles.galleryItem} key={img + String(i)}>
+                <Image src={img} alt={`${caseData.company} placeholder ${i + 1}`} width={240} height={160} />
+              </div>
             ))}
           </div>
         )}
