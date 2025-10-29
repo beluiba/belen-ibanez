@@ -13,12 +13,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <header>
           <Nav />
         </header>
 
-        {children}
+        {/* Modal root sits outside main so modals overlay header and any stacking contexts */}
+        <div id="modal-root" />
+        <main id="main-content">{children}</main>
 
         {/* ensure footer exists in layout (or page) */}
         {/* <Footer /> can live here or in app/page.tsx */}

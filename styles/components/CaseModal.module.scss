@@ -1,99 +1,77 @@
-/* Fullscreen backdrop */
+/* Force modal above header and any stacking contexts */
 .backdrop {
   position: fixed;
   inset: 0;
-  z-index: 2000;
+  z-index: var(--token-z-modal, 99999);
+  pointer-events: auto;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--token-backdrop, rgba(0, 0, 0, 0.6));
   -webkit-overflow-scrolling: touch;
 }
 
-/* Modal content fills available space but is scrollable */
+/* FULL-BLEED modal content: cover header and entire viewport */
 .modalContent {
-  position: relative;
-  width: min(1520px, 100%);
-  height: calc(100vh - 6rem);
-  background: var(--color-on-surface, #fff);
-  color: var(--color-text, #000);
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: calc(var(--token-z-modal, 99999) + 1);
+  max-width: none;
+  border-radius: 0;
   overflow: auto;
-  padding: 2.5rem 2.5rem;
+  padding: env(safe-area-inset-top) var(--space-6, 1.5rem) var(--space-8, 2rem) var(--space-6, 1.5rem);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 6rem;
+  background: var(--token-surface, #fff); /* explicit white background via tokens */
 }
 
-/* close button fixed in top-right of modal content */
+/* close button fixed in top-right of viewport/modal */
 .closeBtn {
-  position: absolute;
-  top: 12px;
+  z-index: calc(var(--token-z-modal, 99999) + 2);
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 12px);
   right: 12px;
   background: transparent;
   border: 0;
-  font-size: 2.5rem;
+  font-size: var(--font-size-xl, 2.5rem);
   line-height: 1;
   cursor: pointer;
-  color: var(--color-text, #000);
+  color: var(--token-text, var(--color-text, #000));
 }
 
-/* title + meta */
-.title {
-  margin: 0;
-  font-size: 1.25rem;
-}
-.meta {
+/* Keep header inside modalContent sticky at top */
+.modalHeader {
+  position: sticky;
+  top: 0;
+  z-index: 3;
   display: flex;
-  gap: 1rem;
   align-items: center;
-  color: var(--color-muted, rgba(0,0,0,0.7));
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* blocks (text content) */
-.blocks {
-  display: grid;
-  gap: 0.85rem;
+/* Body grows and scrolls independently */
+.modalBody {
+  flex: 1 1 auto;
+  padding: 24px;
+  overflow: auto;
 }
 
-/* gallery scroll area */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-.galleryItem {
-  background: var(--color-muted, rgba(0,0,0,0.04));
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-/* NDA banner */
-.ndaBanner {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-  justify-content: center;
-}
-
-/* responsive: full-bleed on small screens */
+/* responsive: keep full-bleed on small screens too */
 @media (max-width: 720px) {
   .backdrop {
     padding: 0;
   }
   .modalContent {
-    width: 100%;
-    height: 100vh;
-    border-radius: 0;
-    padding: 1rem;
+    padding: env(safe-area-inset-top) var(--space-4, 1rem) var(--space-6, 1.25rem);
   }
   .closeBtn {
-    top: 10px;
+    top: calc(env(safe-area-inset-top) + 8px);
     right: 10px;
   }
 }

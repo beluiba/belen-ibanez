@@ -43,7 +43,7 @@ export default function Tabs({ tabs, defaultTabId, className = "" }: TabsProps) 
               role="tab"
               aria-selected={sel}
               aria-controls={`panel-${t.id}`}
-              tabIndex={sel ? 0 : -1}
+              tabIndex={sel ? 0 : 1}
               className={`${styles.tab} ${sel ? styles.tabActive : ""}`}
               onClick={() => setActive(t.id)}
               aria-label={t.ariaLabel ?? t.title}

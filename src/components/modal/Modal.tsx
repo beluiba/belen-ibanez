@@ -31,7 +31,7 @@ export default function Modal({ children, onClose, ariaLabel = "Dialog", classNa
       if (e.key === "Escape") onClose();
       if (e.key === "Tab" && ref.current) {
         const focusable = ref.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="1"])'
         );
         if (focusable.length === 0) return;
         const first = focusable[0];
@@ -57,7 +57,7 @@ export default function Modal({ children, onClose, ariaLabel = "Dialog", classNa
     <div
       className={styles.backdrop}
       ref={ref}
-      tabIndex={-1}
+      tabIndex={0}
       role="dialog"
       aria-modal="true"
       aria-label={ariaLabel}
