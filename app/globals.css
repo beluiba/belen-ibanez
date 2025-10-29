@@ -1,0 +1,186 @@
+@import "../styles/tokens.scss";
+/* === Mobile Dropdown Nav === */
+.mobile-nav-dropdown {
+  display: flex !important;
+  flex-direction: column;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background: #fff;
+  padding: 1.2rem 0.5rem;
+  margin: 0.5rem 1rem 0 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* === Notion-style Layout === */
+
+/* Notion-inspired layout refinements */
+.notion-header {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+.notion-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: 0.2rem 0.7rem;
+  transition: background 0.2s;
+}
+.notion-title:hover {
+  background: #f6f6f4;
+}
+.notion-nav {
+  display: none;
+  gap: 1.2rem;
+  font-size: 1.05rem;
+}
+@media (min-width: 640px) {
+  .notion-nav {
+    display: flex;
+  }
+}
+.notion-nav-link {
+  color: #222;
+  background: transparent;
+  padding: 0.4rem 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.notion-nav-link:hover {
+  background: #f6f6f4;
+}
+.notion-main {
+  background: transparent;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  margin: 2.2rem auto 3.5rem auto;
+  min-height: calc(100vh - 160px);
+}
+.notion-footer {
+  background: #fff;
+  color: #888;
+  box-shadow: 0 -1px 8px rgba(0,0,0,0.04);
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.98rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 20;
+}
+
+
+/* === Typography === */
+.prose h1 {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1.2rem;
+  line-height: 1.1;
+}
+.prose h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  line-height: 1.15;
+}
+.prose h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 1.5rem 0 0.8rem;
+  line-height: 1.2;
+}
+.prose p {
+  font-size: 1.08rem;
+  margin: 1.1rem 0;
+  line-height: 1.7;
+}
+.prose ul,
+.prose ol {
+  margin: 1.2rem 0 1.2rem 1.5rem;
+  padding: 0;
+}
+.prose blockquote {
+  border-left: 3px solid var(--border);
+  background: #f6f6f4;
+  padding: 0.7em 1em;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+.prose code,
+.prose pre {
+  font-family: 'Geist Mono', 'Fira Mono', 'Menlo', monospace;
+  background: #f4f4f4;
+  border-radius: var(--radius);
+  padding: 0.2em 0.5em;
+  font-size: 0.98em;
+}
+.prose pre {
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1.2em 0;
+}
+
+/* === Layout === */
+.container-page {
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.container-section {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* === Utility Classes === */
+.card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  padding: 1.5rem;
+}
+.pill {
+  display: inline-block;
+  background: #f3f3f3;
+  color: #444;
+  padding: 0.3em 1em;
+  font-size: 0.95em;
+  font-weight: 500;
+}
+.callout {
+  background: #f9f6e7;
+  padding: 1em 1.2em;
+  margin: 1.2em 0;
+  color: #7a5d1a;
+}
+.img-frame {
+  background: #fff;
+  padding: 0.5em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  display: inline-block;
+}
+.breadcrumbs {
+  font-size: 0.98em;
+  color: #888;
+  margin-bottom: 1.5em;
+}
+@import "tailwindcss";

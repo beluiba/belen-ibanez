@@ -7,7 +7,6 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.6);
-  padding: 2rem; /* spacing from viewport edges on wide screens */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -15,13 +14,13 @@
 .modalContent {
   position: relative;
   width: min(1520px, 100%);
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 6rem);
   background: var(--color-on-surface, #fff);
   color: var(--color-text, #000);
   border-radius: 12px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   overflow: auto;
-  padding: 1.5rem 2rem;
+  padding: 2.5rem 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -35,7 +34,7 @@
   right: 12px;
   background: transparent;
   border: 0;
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   line-height: 1;
   cursor: pointer;
   color: var(--color-text, #000);
