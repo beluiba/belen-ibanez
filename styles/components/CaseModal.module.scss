@@ -1,3 +1,22 @@
+/* import token button styles (global .btnToken) */
+@import "@/styles/tokens/buttons.scss";
+
+/* remove local .btnContact definitions — modal will use .btnToken */
+:local(.tabButton) {
+  /* keep tab appearance but inactive state */
+  background: transparent;
+  color: var(--token-text, #222);
+  box-shadow: none;
+}
+:local(.tabButton)[aria-selected="true"],
+:local(.tabButton).tabActive {
+  /* when active, use token colors visually; actual button class will also include .btnToken */
+  background: var(--btn-accent, #0057ff);
+  color: var(--btn-on-accent, #fff);
+  box-shadow: var(--btn-shadow, 0 6px 18px rgba(0, 87, 255, 0.12));
+  border-radius: var(--btn-radius, 10px);
+}
+
 /* Force modal above header and any stacking contexts */
 .backdrop {
   position: fixed;
@@ -20,14 +39,59 @@
   z-index: calc(var(--token-z-modal, 99999) + 1);
   max-width: none;
   border-radius: 0;
-  overflow: auto;
-  padding: env(safe-area-inset-top) var(--space-6, 1.5rem) var(--space-8, 2rem) var(--space-6, 1.5rem);
+  overflow: hidden; /* body will scroll, not the whole content */
   display: flex;
   flex-direction: column;
   background: var(--token-surface, #fff); /* explicit white background via tokens */
+  color: var(--token-on-surface, var(--color-text, #000));
+
+  /* adjustable heights (tweak values to match your design tokens) */
+  --modal-header-height: 84px;
+  --modal-footer-height: 72px;
 }
 
-/* close button fixed in top-right of viewport/modal */
+/* Header: fixed to top of modalContent (sticky works within scroll container) */
+.modalHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--modal-header-height);
+  padding: 1.25rem 1.5rem;
+  background: var(--token-surface-variant, rgba(255, 255, 255, 0.96));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--token-border, rgba(0, 0, 0, 0.06));
+}
+
+/* Body: scrollable area between header and footer */
+.modalBody {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 1.5rem;
+  /* ensure content doesn't go under header/footer */
+  padding-top: calc(var(--modal-header-height) + 0px);
+  padding-bottom: calc(var(--modal-footer-height) + 0px);
+  background: transparent;
+}
+
+/* Footer pinned to bottom inside modalContent */
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  height: var(--modal-footer-height);
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--token-surface, transparent);
+  border-top: 1px solid var(--token-border, rgba(0, 0, 0, 0.06));
+  color: var(--token-on-surface, var(--color-text, #000));
+}
+
+/* close button fixed to viewport top-right above header/footer */
 .closeBtn {
   z-index: calc(var(--token-z-modal, 99999) + 2);
   position: fixed;
@@ -38,40 +102,131 @@
   font-size: var(--font-size-xl, 2.5rem);
   line-height: 1;
   cursor: pointer;
-  color: var(--token-text, var(--color-text, #000));
+  color: var(--token-on-surface, var(--color-text, #000));
 }
 
-/* Keep header inside modalContent sticky at top */
-.modalHeader {
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  display: flex;
+/* Contact-like button token defaults */
+:root {
+  --btn-accent: var(--token-accent, #0057ff);
+  --btn-on-accent: var(--token-on-accent, #ffffff);
+  --btn-radius: var(--token-radius-md, 10px);
+  --btn-padding-vertical: 10px;
+  --btn-padding-horizontal: 18px;
+  --btn-shadow: 0 6px 18px rgba(0, 87, 255, 0.12);
+  --btn-hover-fade: rgba(0,0,0,0.06);
+}
+
+/* Reusable contact-style button */
+.btnContact {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 24px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  justify-content: center;
+  gap: 8px;
+  padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
+  border-radius: var(--btn-radius);
+  background: linear-gradient(180deg, var(--btn-accent) 0%, color-mix(in srgb, var(--btn-accent) 88%, black 12%) 100%);
+  color: var(--btn-on-accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+  text-decoration: none;
 }
 
-/* Body grows and scrolls independently */
-.modalBody {
-  flex: 1 1 auto;
-  padding: 24px;
-  overflow: auto;
+/* Hover / active / focus */
+.btnContact:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 87, 255, 0.14);
+}
+.btnContact:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0, 87, 255, 0.12);
+}
+.btnContact:focus {
+  outline: 3px solid color-mix(in srgb, var(--btn-accent) 24%, transparent);
+  outline-offset: 3px;
+  border-radius: var(--btn-radius);
 }
 
-/* responsive: keep full-bleed on small screens too */
+/* Apply contact look to modal nav buttons */
+.prevBtn,
+.nextBtn {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+.prevBtn > .btnInner,
+.nextBtn > .btnInner {
+  display: inline-block;
+}
+
+/* If markup uses plain button, style directly */
+.prevBtn.btnContact,
+.nextBtn.btnContact,
+.prevBtn.btnContact:hover,
+.nextBtn.btnContact:hover {
+  /* use .btnContact rules (no duplication here) */
+}
+
+/* Ensure prev/next use contact style by default */
+.prevBtn {
+  background: transparent;
+}
+.nextBtn {
+  background: transparent;
+}
+
+/* Add a small wrapper inside prev/next to inherit contact style when rendered */
+.prevBtn::after,
+.nextBtn::after {
+  content: attr(data-label);
+  display: inline-block;
+  padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
+  border-radius: var(--btn-radius);
+  background: var(--btn-accent);
+  color: var(--btn-on-accent);
+  font-weight: 600;
+  box-shadow: var(--btn-shadow);
+  transform-origin: center;
+}
+
+/* Tabs: make primary-looking when active (use contact color) */
+.tabButton {
+  background: transparent;
+  color: var(--token-text, #222);
+  box-shadow: none;
+}
+.tabButton[aria-selected="true"],
+.tabButton.tabActive {
+  background: var(--btn-accent);
+  color: var(--btn-on-accent);
+  box-shadow: var(--btn-shadow);
+  border-radius: var(--btn-radius);
+}
+
+/* Close button: subtle reverse contact style */
+.closeBtn {
+  background: transparent;
+  color: var(--token-on-surface, #000);
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.closeBtn:hover {
+  background: var(--btn-hover-fade);
+}
+
+/* small screens: scale down paddings */
 @media (max-width: 720px) {
-  .backdrop {
-    padding: 0;
+  :root {
+    --btn-padding-vertical: 8px;
+    --btn-padding-horizontal: 14px;
+    --btn-radius: 8px;
   }
-  .modalContent {
-    padding: env(safe-area-inset-top) var(--space-4, 1rem) var(--space-6, 1.25rem);
-  }
-  .closeBtn {
-    top: calc(env(safe-area-inset-top) + 8px);
-    right: 10px;
+  .prevBtn::after,
+  .nextBtn::after {
+    padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
   }
 }

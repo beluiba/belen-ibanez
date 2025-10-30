@@ -54,17 +54,24 @@ $black: #000;// Fluid type
   --radius-card: #{$radius-card};
   --shadow-card: #{$shadow-card};
   --focus-ring: 0 0 0 2px #a78bfa;
+
+  /* Primary color (requested) */
+  --color-primary: #071E2E;
+  --color-primary-dark: #061823; /* slightly darker variant */
+  --color-primary-bg: #e9f2f6; /* subtle background tint if needed */
+
+  /* tokens for other systems that reference "token-*" vars */
+  --token-primary: #071E2E;
+  --token-on-primary: #ffffff;
+
   --color-bg: #fff;
   --color-bg-alt: #{$gray-100};
   --color-bg-card: #fff;
   --color-border: #{$gray-200};
   --color-text: #{$gray-900};
   --color-text-muted: #{$gray-500};
-  --color-primary: #{$purple-400};
-  --color-primary-dark: #{$purple-600};
-  --color-primary-bg: #{$purple-50};
-  --color-success: #22c55e; // green-500 from Tailwind (or pick your own)
-  --color-error: #b91c1c;   // red-700 from Tailwind (or pick your own)
+  --color-success: #22c55e;
+  --color-error: #b91c1c;
   --color-secondary: #{$black};
 }
 .dark {
@@ -73,11 +80,18 @@ $black: #000;// Fluid type
   --color-border: #{$gray-700};
   --color-text: #{$gray-50};
   --color-text-muted: #{$gray-400};
-  --color-primary: #{$purple-300};
-  --color-primary-dark: #{$purple-500};
+
+  /* keep a readable primary in dark mode */
+  --color-primary: #0b3040;
+  --color-primary-dark: #092833;
+
+  /* token equivalents for dark mode */
+  --token-primary: #0b3040;
+  --token-on-primary: #ffffff;
+
   --color-primary-bg: #{$purple-900};
-  --color-success: #4ade80; // green-400 for dark mode
-  --color-error: #f87171;   // red-400 for dark mode
+  --color-success: #4ade80;
+  --color-error: #f87171;
 }
 
 // Utilities

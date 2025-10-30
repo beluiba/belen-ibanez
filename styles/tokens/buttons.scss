@@ -1,0 +1,69 @@
+:root {
+  /* Button tokens (driven by global design tokens with sensible fallbacks) */
+  /* Use the primary color token as the primary source for button accent */
+  --btn-accent: var(--token-primary, var(--token-accent, #0057ff));
+  --btn-on-accent: var(--token-on-primary, var(--token-on-accent, #ffffff));
+  --btn-radius: var(--token-radius-md, 10px);
+  --btn-padding-vertical: var(--token-space-2, 10px);
+  --btn-padding-horizontal: var(--token-space-4, 18px);
+
+  /* shadow colors derived from primary */
+  --btn-shadow-color-fallback: rgba(7, 30, 46, 0.12); /* fallback based on #071E2E */
+  --btn-shadow-color: color-mix(in srgb, var(--btn-accent) 14%, black 86%);
+  --btn-shadow: 0 6px 18px var(--btn-shadow-color, var(--btn-shadow-color-fallback));
+
+  --btn-hover-shadow-color: color-mix(in srgb, var(--btn-accent) 16%, black 84%);
+  --btn-hover-shadow: 0 10px 24px var(--btn-hover-shadow-color, var(--btn-shadow-color-fallback));
+
+  --btn-active-shadow-color: color-mix(in srgb, var(--btn-accent) 12%, black 88%);
+  --btn-active-shadow: 0 6px 14px var(--btn-active-shadow-color, var(--btn-shadow-color-fallback));
+
+  --btn-hover-fade: var(--token-hover-fade, rgba(0, 0, 0, 0.06));
+  --btn-focus-ring: var(--token-focus-ring, color-mix(in srgb, var(--btn-accent) 24%, transparent));
+}
+
+/* Global reusable contact-like button class (use as "btnToken") */
+.btnToken {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
+  border-radius: var(--btn-radius);
+  background: linear-gradient(
+    180deg,
+    var(--btn-accent) 0%,
+    color-mix(in srgb, var(--btn-accent) 88%, black 12%) 100%
+  );
+  color: var(--btn-on-accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+  text-decoration: none;
+}
+
+.btnToken:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--btn-hover-shadow);
+}
+.btnToken:active {
+  transform: translateY(0);
+  box-shadow: var(--btn-active-shadow);
+}
+.btnToken:focus {
+  outline: 3px solid var(--btn-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--btn-radius);
+}
+
+/* small screens: scale down paddings */
+@media (max-width: 720px) {
+  :root {
+    --btn-padding-vertical: 8px;
+    --btn-padding-horizontal: 14px;
+    --btn-radius: 8px;
+  }
+}

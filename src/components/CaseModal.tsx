@@ -65,7 +65,7 @@ function ModalTemplate({
           {/* Card-front style header: company + role + dates */}
           <div className={styles.cardFront}>
             <div className={styles.cardTitleRow}>
-              <h2 className={styles.title}>{title}</h2>
+              <h3 className={styles.title}>{title}</h3>
               <div className={styles.roleAndDates}>
                 {role && <span className={styles.role}>{role}</span>}
                 {dates && <span className={styles.dates}>{dates}</span>}
@@ -111,7 +111,9 @@ function ModalTemplate({
             aria-label={prev ? `Previous: ${prev.label ?? "previous"}` : "Previous project"}
             data-test="prev-project-btn"
           >
-            ← {prev?.label ?? "Previous"}
+            <span className="btnToken" aria-hidden>
+              ← {prev?.label ?? "Previous"}
+            </span>
           </button>
 
           <div aria-hidden style={{ flex: 1 }} />
@@ -128,7 +130,9 @@ function ModalTemplate({
             aria-label={next ? `Next: ${next.label ?? "next"}` : "Next project"}
             data-test="next-project-btn"
           >
-            {next?.label ?? "Next"} →
+            <span className="btnToken" aria-hidden>
+              {next?.label ?? "Next"} →
+            </span>
           </button>
         </footer>
       </div>
@@ -257,10 +261,8 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList, c
           window.location.href = target.href;
           return;
         }
-        // eslint-disable-next-line no-console
         console.warn("[CaseModal] navigation target has no onNavigate or href", target);
       } catch (err) {
-        // eslint-disable-next-line no-console
         console.error("[CaseModal] navigation error", err);
       }
     }, 60);
@@ -405,7 +407,7 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList, c
                 aria-selected={activeTab === idx}
                 aria-controls={`panel-${idx}`}
                 tabIndex={activeTab === idx ? 0 : -1}
-                className={`${styles.tabButton} ${activeTab === idx ? styles.tabActive : ""}`}
+                className={`${styles.tabButton} ${activeTab === idx ? styles.tabActive : ""} ${activeTab === idx ? "btnToken" : ""}`}
                 onClick={() => setActiveTab(idx)}
               >
                 {t}

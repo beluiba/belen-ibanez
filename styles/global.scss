@@ -1,14 +1,7 @@
 // styles/global.scss
-@use "./tokens.scss" as *;
+@use "./tokens/tokens.scss" as *;
 
-:root {
-  --color-bg: #fff;
-  --color-border: #e5e5e5;
-  --color-text: #222;
-  --color-primary: #1976d2;
-  --color-primary-bg: #f5f7fa;
-  --color-primary-dark: #174ea6;
-}
+
 
 /* minimal base reset */
 * { box-sizing: border-box; }
