@@ -151,3 +151,23 @@
 .formActions button[type="submit"] {
   margin-left: auto;
 }
+
+
+
+  @media (max-width: 1366px) {
+  .contactSection {
+    .form {
+      padding: 0 1.5rem;;
+    }
+  }
+  }
+
+
+  @media (max-width: 1024px)  {
+    .fieldsRow{
+      display: block;
+      .field {
+        margin-bottom: 1rem;
+      }
+    }
+  }

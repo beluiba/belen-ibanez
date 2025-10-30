@@ -1,233 +1,270 @@
 /* import token button styles (global .btnToken) */
 @use "@/styles/tokens/buttons.scss";
 
-/* remove local .btnContact definitions — modal will use .btnToken */
-:local(.tabButton) {
-  /* keep tab appearance but inactive state */
-  background: transparent;
-  color: var(--token-text, #222);
-  box-shadow: none;
-}
-:local(.tabButton)[aria-selected="true"],
-:local(.tabButton).tabActive {
-  /* when active, use token colors visually; actual button class will also include .btnToken */
-  background: var(--btn-accent, #0057ff);
-  color: var(--btn-on-accent, #fff);
-  box-shadow: var(--btn-shadow, 0 6px 18px rgba(0, 87, 255, 0.12));
-  border-radius: var(--btn-radius, 10px);
+/* sizing tokens for modal layout */
+:root {
+  --modal-header-height: 92px;
+  --modal-footer-height: 76px;
 }
 
-/* Force modal above header and any stacking contexts */
+/* backdrop fills viewport */
 .backdrop {
   position: fixed;
   inset: 0;
   z-index: var(--token-z-modal, 99999);
-  pointer-events: auto;
   display: flex;
   align-items: stretch;
   justify-content: center;
-  background: var(--token-backdrop, rgba(0, 0, 0, 0.6));
+  background: white;
   -webkit-overflow-scrolling: touch;
 }
 
-/* FULL-BLEED modal content: cover header and entire viewport */
-.modalContent {
+/* header fixed at top of viewport */
+.header {
   position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: calc(var(--token-z-modal, 99999) + 1);
-  max-width: none;
-  border-radius: 0;
-  overflow: hidden; /* body will scroll, not the whole content */
-  display: flex;
-  flex-direction: column;
-  background: var(--token-surface, #fff); /* explicit white background via tokens */
-  color: var(--token-on-surface, var(--color-text, #000));
-
-  /* adjustable heights (tweak values to match your design tokens) */
-  --modal-header-height: 84px;
-  --modal-footer-height: 72px;
-}
-
-/* Header: fixed to top of modalContent (sticky works within scroll container) */
-.modalHeader {
-  position: sticky;
   top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  left: 0;
+  right: 0;
   height: var(--modal-header-height);
-  padding: 1.25rem 1.5rem;
-  background: var(--token-surface-variant, rgba(255, 255, 255, 0.96));
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--token-border, rgba(0, 0, 0, 0.06));
-}
-
-/* Body: scrollable area between header and footer */
-.modalBody {
-  flex: 1 1 auto;
-  overflow: auto;
-  padding: 1.5rem;
-  /* ensure content doesn't go under header/footer */
-  padding-top: calc(var(--modal-header-height) + 0px);
-  padding-bottom: calc(var(--modal-footer-height) + 0px);
-  background: transparent;
-}
-
-/* Footer pinned to bottom inside modalContent */
-.footer {
-  position: sticky;
-  bottom: 0;
-  z-index: 20;
-  height: var(--modal-footer-height);
-  padding: 2.5rem;
+  z-index: calc(var(--token-z-modal, 99999) + 5);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--token-surface, transparent);
-  border-top: 1px solid var(--token-border, rgba(0, 0, 0, 0.06));
-  color: var(--token-on-surface, var(--color-text, #000));
+  gap: 16px;
+  padding: 1.0rem 1.5rem;
+  background: var(--token-surface-variant, rgba(255,255,255,0.98));
+  border-bottom: 1px solid var(--token-border, rgba(0,0,0,0.06));
+  box-sizing: border-box;
 }
 
-/* close button fixed to viewport top-right above header/footer */
-.closeBtn {
-  z-index: calc(var(--token-z-modal, 99999) + 2);
-  position: fixed;
-  top: calc(env(safe-area-inset-top) + 12px);
-  right: 12px;
-  background: transparent;
-  border: 0;
-  font-size: var(--font-size-xl, 2.5rem);
-  line-height: 1;
-  cursor: pointer;
-  color: var(--token-on-surface, var(--color-text, #000));
+/* title block inside header */
+.titleBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 auto; /* take available space, leaving room for close button */
+  min-width: 0; /* allow children to truncate */
 }
 
-/* Contact-like button token defaults */
-:root {
-  --btn-accent: var(--token-accent, #0057ff);
-  --btn-on-accent: var(--token-on-accent, #ffffff);
-  --btn-radius: var(--token-radius-md, 10px);
-  --btn-padding-vertical: 10px;
-  --btn-padding-horizontal: 18px;
-  --btn-shadow: 0 6px 18px rgba(0, 87, 255, 0.12);
-  --btn-hover-fade: rgba(0,0,0,0.06);
+/* logo + info block on one line */
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
 }
 
-/* Reusable contact-style button */
-.btnContact {
+/* logo sizing */
+.logoWrapper {
+  flex: 0 0 60px;
+  width: 75px;
+  height: 75px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
-  border-radius: var(--btn-radius);
-  background: linear-gradient(180deg, var(--btn-accent) 0%, color-mix(in srgb, var(--btn-accent) 88%, black 12%) 100%);
-  color: var(--btn-on-accent);
+  overflow: hidden;
+  border-radius: 8px;
+  background: transparent;
+  margin-right: 1rem;
+}
+.logoImage {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  display: block;
+}
+
+/* info block stacked vertically: Company, Role, Duration */
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+/* Company (h3) */
+.company {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.1;
   font-weight: 600;
-  font-size: 0.95rem;
-  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0.25rem 0;
+}
+
+/* Role uses subtitle styling */
+.roleName {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--token-text-muted, #666);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Duration (dates worked) */
+.duration {
+  font-size: 0.85rem;
+  color: var(--token-text-muted, #666);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* close button */
+.closeButton {
+  background: transparent;
+  border: 0;
+  font-size: 3.6rem;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: var(--btn-shadow);
-  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
-  text-decoration: none;
+  color: var(--token-on-surface, #000);
+  flex: 0 0 auto;
 }
+.closeButton:hover { background: var(--btn-hover-fade, rgba(0,0,0,0.04)); }
 
-/* Hover / active / focus */
-.btnContact:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(0, 87, 255, 0.14);
-}
-.btnContact:active {
-  transform: translateY(0);
-  box-shadow: 0 6px 14px rgba(0, 87, 255, 0.12);
-}
-.btnContact:focus {
-  outline: 3px solid color-mix(in srgb, var(--btn-accent) 24%, transparent);
-  outline-offset: 3px;
-  border-radius: var(--btn-radius);
-}
-
-/* Apply contact look to modal nav buttons */
-.prevBtn,
-.nextBtn {
-  padding: 0;
-  background: transparent;
-  border: none;
-}
-.prevBtn > .btnInner,
-.nextBtn > .btnInner {
-  display: inline-block;
-}
-
-/* If markup uses plain button, style directly */
-.prevBtn.btnContact,
-.nextBtn.btnContact,
-.prevBtn.btnContact:hover,
-.nextBtn.btnContact:hover {
-    
-  /* use .btnContact rules (no duplication here) */
-}
-
-/* Ensure prev/next use contact style by default */
-.prevBtn {
-  background: transparent;
-}
-.nextBtn {
+/* main scrollable area between header and footer */
+.modalMain {
+  position: fixed;
+  top: var(--modal-header-height);
+  left: 0;
+  right: 0;
+  bottom: var(--modal-footer-height);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  z-index: calc(var(--token-z-modal, 99999) + 1);
   background: transparent;
 }
 
-/* Add a small wrapper inside prev/next to inherit contact style when rendered */
-.prevBtn::after,
-.nextBtn::after {
-  content: attr(data-label);
-  display: inline-block;
-  padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
-  border-radius: var(--btn-radius);
-  background: var(--btn-accent);
-  color: var(--btn-on-accent);
-  font-weight: 600;
-  box-shadow: var(--btn-shadow);
-  transform-origin: center;
+/* optional metric/milestones container at top of scroll area.
+   It scrolls away with the main content. */
+.modalContent {
+  margin-bottom: 1rem;
+  display: block;
 }
 
-/* Tabs: make primary-looking when active (use contact color) */
+/* metric chips layout */
+.metricChips {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.metricChip {
+  background: var(--token-surface-variant, rgba(0,0,0,0.02));
+  padding: 8px 12px;
+  border-radius: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.metricLabel { font-size: 0.85rem; color: var(--token-text-muted); }
+.metricValue { font-weight: 700; }
+
+/* milestones inline mini-timeline */
+.milestones {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+  color: var(--token-text-muted);
+  margin-bottom: 8px;
+}
+.milestone { display:flex; flex-direction:column; align-items:flex-start; }
+.milestoneName { font-weight:600; }
+.milestoneDate { font-size:0.85rem; color:var(--token-text-muted); }
+
+/* tabbed content area (inside scrollable region) */
+.modalBody {
+  background: transparent;
+  padding-top: 8px;
+}
+
+/* footer fixed at bottom */
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--modal-footer-height);
+  z-index: calc(var(--token-z-modal, 99999) + 5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--token-surface, rgba(255,255,255,0.98));
+  border-top: 1px solid var(--token-border, rgba(0,0,0,0.06));
+  box-sizing: border-box;
+}
+
+/* tab list + buttons */
+.tabsWrapper { margin-top: 8px; }
+.tabList { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
 .tabButton {
   background: transparent;
   color: var(--token-text, #222);
-  box-shadow: none;
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--btn-radius, 10px);
+  cursor:pointer;
 }
 .tabButton[aria-selected="true"],
 .tabButton.tabActive {
   background: var(--btn-accent);
   color: var(--btn-on-accent);
   box-shadow: var(--btn-shadow);
-  border-radius: var(--btn-radius);
 }
 
-/* Close button: subtle reverse contact style */
-.closeBtn {
-  background: transparent;
-  color: var(--token-on-surface, #000);
-  border: 1px solid rgba(0,0,0,0.06);
-  padding: 6px 10px;
-  border-radius: 8px;
-}
-.closeBtn:hover {
-  background: var(--btn-hover-fade);
+/* tab panel */
+.tabPanel { outline: none; }
+
+/* responsive: stack when very narrow */
+@media (max-width: 520px) {
+  .header {
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .titleBlock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .titleRow {
+    width: 100%;
+  }
+  .titleText {
+    flex-direction: row; /* keep title + dates on one line if space */
+    gap: 8px;
+  }
+  .subtitle,
+  .oneLiner,
+  .meta {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+  }
+  .logoWrapper {
+    flex: 0 0 75px;
+    width: 75px;
+    height: 75px;
+  }
 }
 
-/* small screens: scale down paddings */
+/* responsive */
 @media (max-width: 720px) {
   :root {
-    --btn-padding-vertical: 8px;
-    --btn-padding-horizontal: 14px;
-    --btn-radius: 8px;
+    --modal-header-height: 76px;
+    --modal-footer-height: 64px;
   }
-  .prevBtn::after,
-  .nextBtn::after {
-    padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
-  }
+  .titleBlock { max-width: 64%; }
+  .modalMain { padding: 1rem; }
+  .tabList { gap:6px; }
 }
