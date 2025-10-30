@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Nav from "@/src/components/Nav";
 import "@/styles/global.scss"; // ensure global tokens/styles are imported
-
-const inter = Inter({ subsets: ["latin"], weight: ["400", "700"], display: "swap" });
+import "@/styles/tokens/buttons.scss";
 
 export const metadata: Metadata = {
   title: "Belén Ibáñez",
@@ -14,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        {/* tokens/buttons.scss imported at top-level of this module */}
         <header>
           <Nav />
         </header>

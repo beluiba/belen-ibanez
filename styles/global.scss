@@ -2,7 +2,6 @@
 @use "./tokens/tokens.scss" as *;
 
 
-
 /* minimal base reset */
 * { box-sizing: border-box; }
 html,body,#root { height: 100%; }
@@ -176,4 +175,22 @@ hr {
 main{
   position: relative;
   z-index: 10;
+}
+
+/* load Inter via Google Fonts for global use */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+:root {
+  /* ...existing tokens / variables... */
+}
+
+/* global base */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* use Inter as the primary UI font */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
