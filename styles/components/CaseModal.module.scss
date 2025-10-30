@@ -1,5 +1,5 @@
 /* import token button styles (global .btnToken) */
-@import "@/styles/tokens/buttons.scss";
+@use "@/styles/tokens/buttons.scss";
 
 /* remove local .btnContact definitions — modal will use .btnToken */
 :local(.tabButton) {

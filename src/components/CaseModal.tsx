@@ -143,6 +143,7 @@ function ModalTemplate({
 /* --- CaseModal: selects project-specific content, uses ModalTemplate --- */
 const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList, currentIndex = 0 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const previouslyFocused = useRef<HTMLElement | null>(null);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
 
@@ -150,6 +151,42 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList, c
   useEffect(() => {
     setPortalRoot(document.getElementById("modal-root") ?? document.body);
   }, []);
+
+  // Accessibility: move focus into modal, make main inert/aria-hidden while modal open,
+  // and restore focus + remove inert when modal closes.
+  useEffect(() => {
+    const main = document.getElementById("main-content");
+    // save previously focused element
+    previouslyFocused.current = (document.activeElement as HTMLElement) ?? null;
+
+    // move focus into modal (prefer close button or first focusable)
+    const focusTarget =
+      modalRef.current?.querySelector<HTMLElement>('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])') ??
+      modalRef.current;
+    focusTarget?.focus();
+
+    // make main inert (preferred) and set aria-hidden as fallback
+    if (main) {
+      try {
+        (main as HTMLElement & { inert: boolean }).inert = true;
+      } catch {}
+      main.setAttribute("aria-hidden", "true");
+    }
+
+    return () => {
+      // restore main
+      if (main) {
+        try {
+          (main as HTMLElement & { inert: boolean }).inert = false;
+        } catch {}
+        main.removeAttribute("aria-hidden");
+      }
+      // restore previous focus
+      try {
+        previouslyFocused.current?.focus();
+      } catch {}
+    };
+  }, [/* run on mount/unmount of modal */]);
 
   // normalize incoming project list into NavItem[]
   const list: NavItem[] = useMemo(() => {
