@@ -15,27 +15,37 @@
 
   /* typography — force major text to white for contrast without global wildcard */
   .heroHeading {
-    padding: 0 5em;
+    padding: 0 5em; 
+    letter-spacing: -0.02rem;
 
     h1 {
       font-size: 3rem;
       font-weight: 700;
-      line-height: 1.1;
-      margin: 0 0 0.5rem 0;
+      line-height: 1;
+      margin: 0;
       text-align: left;
       color: var(--color-on-surface, #fff);
+
+    letter-spacing: -0.15rem;
     }
     h2 {
-      margin-top: 0.75rem;
+      margin-top: 0.3rem;
       color: var(--color-on-surface, #fff);
+    letter-spacing: -0.05rem;
+    font-size: 1.75rem;
+    font-weight: 400;
+    
     }
 
     h3 {
       font-size: 20px;
       font-weight: 400;
-      margin: 1rem 0 1rem 0;
       letter-spacing: 0.01em;
       color: rgba(255,255,255,0.9);
+      margin-top: 0em;
+        margin-bottom: 4em;
+        font-size: 1.1rem;
+    letter-spacing: -0.02rem;
     }
   }
 
@@ -54,6 +64,7 @@
       margin-bottom: 1.2rem;
       letter-spacing: 0.01em;
       color: var(--color-on-surface, #fff);
+
     }
   }
 
@@ -64,6 +75,7 @@
     gap: 1.5rem;
     margin-bottom: 2.5rem;
     flex-wrap: wrap;
+    letter-spacing: -0.02rem;
 
     h5 {
       font-weight: 600;
