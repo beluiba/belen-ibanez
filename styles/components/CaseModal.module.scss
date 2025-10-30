@@ -223,8 +223,43 @@
   box-shadow: var(--btn-shadow);
 }
 
-/* tab panel */
-.tabPanel { outline: none; }
+/* visual indicator for selected tab (works with navStyles.active or data-selected attr) */
+.tabList a[data-selected="true"],
+.tabList a.active {
+  font-weight: 700;
+  color: var(--btn-accent);
+  position: relative;
+}
+
+/* underline bar */
+.tabList a[data-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  height: 3px;
+  bottom: -2px;
+  background: var(--btn-accent);
+  border-radius: 2px;
+}
+
+/* small dot shown inline (also added in JSX) */
+.selectedDot {
+  display: none;
+  width: 8px;
+  height: 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+  background: var(--btn-accent);
+  border-radius: 999px;
+}
+
+/* ensure spacing so underline doesn't collide with footer on small screens */
+@media (max-width: 520px) {
+  .tabList a[data-selected="true"]::after {
+    bottom: -6px;
+  }
+}
 
 /* responsive: stack when very narrow */
 @media (max-width: 520px) {
@@ -267,4 +302,73 @@
   .titleBlock { max-width: 64%; }
   .modalMain { padding: 1rem; }
   .tabList { gap:6px; }
+}
+
+
+.accordion {
+  display: none; /* shown only on small screens via media query below */
+}
+.accordionItem {
+  border-top: 1px solid var(--token-border, rgba(0,0,0,0.06));
+}
+.accordionButton {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--token-text, #111);
+}
+.accordionButton:hover {
+  background: color-mix(in srgb, var(--btn-accent) 6%, transparent);
+}
+.accordionChevron {
+  margin-left: 12px;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.accordionPanel {
+  padding: 0.75rem 1rem 1rem 1rem;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+/* By default show tabs and hide accordion on desktop */
+.tabList {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* On small screens swap to accordion */
+@media (max-width: 1023px) {
+  .tabList {
+    display: none !important;
+  }
+  .tabPanel {
+    display: none !important;
+  }
+  .accordion {
+    display: block;
+  }
+}
+
+/* On large screens ensure accordion hidden */
+@media (min-width: 1024px) {
+  .accordion {
+    display: none;
+  }
+}
+
+/* make sure hidden panels are not focusable */
+.accordionPanel[hidden] {
+  display: none;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
 }

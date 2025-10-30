@@ -63,6 +63,53 @@
   border-radius: var(--btn-radius);
 }
 
+/* Secondary / outline variant: transparent background, primary-colour border & text */
+.btnToken--outline,
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
+  border-radius: var(--btn-radius);
+
+  background: transparent;
+  color: var(--btn-accent);
+  border: 1px solid var(--btn-accent);
+
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  /* keep subtle elevation on hover using the token shadows */
+  box-shadow: none;
+  transition: background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+/* Hover/active/focus states */
+.btnToken--outline:hover {
+  background: color-mix(in srgb, var(--btn-accent) 6%, transparent);
+  transform: translateY(-1px);
+  box-shadow: var(--btn-hover-shadow);
+}
+.btnToken--outline:active {
+  transform: translateY(0);
+  box-shadow: var(--btn-active-shadow);
+}
+.btnToken--outline:focus {
+  outline: 3px solid var(--btn-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--btn-radius);
+}
+
+/* Disabled state */
+.btnToken--outline:disabled,
+.btnToken--outline[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /* small screens: scale down paddings */
 @media (max-width: 720px) {
   :root {
