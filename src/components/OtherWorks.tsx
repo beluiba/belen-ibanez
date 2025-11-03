@@ -83,24 +83,19 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
               role="button"
               tabIndex={0}
               aria-label={`Open ${data.company}`}
-              onClick={() => {
-                // debug: verify click and index mapping
-                // eslint-disable-next-line no-console
-                console.log("OtherWorks.tile click", { idx, featuredOffset, globalIndex, company: data.company });
-                onOpen?.(globalIndex);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onOpen?.(globalIndex);
-                }
-              }}
-            >
-              <CaseTile caseData={caseData} />
-            </article>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
+              onClick={() => onOpen?.(globalIndex)}
+               onKeyDown={(e) => {
+                 if (e.key === "Enter" || e.key === " ") {
+                   e.preventDefault();
+                   onOpen?.(globalIndex);
+                 }
+               }}
+             >
+               <CaseTile caseData={caseData} />
+             </article>
+           );
+         })}
+       </div>
+     </section>
+   );
+ }
