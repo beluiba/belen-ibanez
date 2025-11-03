@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CaseTile from "./CaseTile";
 import CaseModal from "./CaseModal";
 import OtherWorks from "./OtherWorks";
@@ -10,110 +10,113 @@ interface WorkGridProps {
   mode?: "landing" | "full";
 }
 
-type CaseTileCaseData = React.ComponentProps<typeof CaseTile>["caseData"];
-type CaseModalCaseData = React.ComponentProps<typeof CaseModal>["caseData"];
+// derive the modal case type from CaseModal props
+type CaseModalProps = React.ComponentProps<typeof CaseModal>;
+type CaseData = CaseModalProps["caseData"];
 
-const WorkGrid: React.FC<WorkGridProps> = ({ mode = "full" }) => {
-  // debug - log data at runtime
-  useEffect(() => {
-    console.log("[WorkGrid] featured:", Array.isArray(featured) ? featured.length : featured, featured);
-    console.log("[WorkGrid] otherWorks:", Array.isArray(otherWorks) ? otherWorks.length : otherWorks, otherWorks);
-  }, []);
+export default function WorkGrid({ mode = "full" }: WorkGridProps) {
+  // normalize helper to ensure fields exist and types are safe
+  const normalize = (raw: unknown): CaseData => {
+    const r = (raw as Record<string, unknown>) || {};
+    const id =
+      typeof r.id === "string" || typeof r.id === "number" ? String(r.id) : "";
+    const company = typeof r.company === "string" ? r.company : "";
+    const role = typeof r.role === "string" ? r.role : "";
+    const images = Array.isArray(r.images) ? (r.images as string[]) : [];
+    const logo = typeof r.logo === "string" ? r.logo : "";
+    const rest = { ...(r as Record<string, unknown>) };
+    return {
+      id,
+      company,
+      role,
+      images,
+      logo,
+      ...rest,
+    } as CaseData;
+  };
 
-  const [openCase, setOpenCase] = useState<CaseModalCaseData | null>(null);
+  const featuredList = Array.isArray(featured) ? featured.map(normalize) : [];
+  const otherListRaw = Array.isArray(otherWorks) ? otherWorks : [];
+  const otherList = otherListRaw.map(normalize);
+
+  // modal state holds normalized CaseData compatible with CaseModal
+  const [activeCase, setActiveCase] = useState<CaseData | null>(null);
   const lastActiveRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const main = document.getElementById("main-content") || document.querySelector("main");
-    if (openCase) {
+    // accessibility: lock scroll when modal open
+    if (activeCase) {
       document.body.style.overflow = "hidden";
-      if (main) main.setAttribute("aria-hidden", "true");
     } else {
       document.body.style.overflow = "";
-      if (main) main.removeAttribute("aria-hidden");
     }
     return () => {
       document.body.style.overflow = "";
-      if (main) main.removeAttribute("aria-hidden");
     };
-  }, [openCase]);
+  }, [activeCase]);
 
-  const handleOpen = (caseData: CaseTileCaseData, origin: HTMLElement | null) => {
-    lastActiveRef.current = origin;
-    setOpenCase(caseData as unknown as CaseModalCaseData);
+  const openModalFor = (caseData: CaseData, origin?: HTMLElement | null) => {
+    if (origin) lastActiveRef.current = origin;
+    setActiveCase(caseData);
   };
 
-  const handleClose = () => {
-    setOpenCase(null);
-    if (lastActiveRef.current) {
-      lastActiveRef.current.focus();
+  const closeModal = () => {
+    setActiveCase(null);
+    try {
+      lastActiveRef.current?.focus();
+    } catch {
+      /* ignore */
     }
   };
-
-  const normalizeCaseData = (c: Partial<Record<string, unknown>>): CaseTileCaseData => {
-    if (!c || typeof c !== "object") return {} as CaseTileCaseData;
-    const {
-      restrictions,
-      company = "",
-      role = "",
-      context = "",
-      images = [],
-      logo = "",
-      id = "",
-      ...rest
-    } = c as Record<string, unknown>;
-    const normalizedRestrictions =
-      typeof restrictions === "boolean" ? restrictions : Boolean(restrictions);
-    return {
-      id: String(id ?? ""),
-      company: String(company ?? ""),
-      role: String(role ?? ""),
-      context: String(context ?? ""),
-      images: Array.isArray(images) ? images : [],
-      logo: String(logo ?? ""),
-      ...(rest as Record<string, unknown>),
-      restrictions: normalizedRestrictions,
-    } as CaseTileCaseData;
-  };
-
-  const otherArray = Array.isArray(otherWorks) ? otherWorks.filter(Boolean) : [];
 
   return (
     <div className={styles.workgrid}>
       <div className={styles["use-cases"]}>
-        {Array.isArray(featured) && featured.length > 0 ? (
-          featured.map((item, idx) => (
-            <CaseTile
-              key={String(item?.id ?? item?.company ?? idx)}
-              caseData={normalizeCaseData(item)}
-              onOpen={handleOpen}
-            />
+        {featuredList.length > 0 ? (
+          featuredList.map((c, i) => (
+            <div
+              key={`${c.company}-${i}`}
+              className={styles.caseWrapper}
+              role="button"
+              tabIndex={0}
+              onClick={(e) => openModalFor(c, e.currentTarget as HTMLElement)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openModalFor(c, e.currentTarget as HTMLElement);
+                }
+              }}
+              aria-label={`Open ${c.company}`}
+            >
+              <CaseTile caseData={c} />
+            </div>
           ))
         ) : (
-          <div className={styles.emptyMessage}>No featured work found.</div>
+          <div className={styles.emptyMessage}>No featured work</div>
         )}
       </div>
 
       {mode === "full" && (
         <div className={styles.otherWorks}>
-
-          {/* 4-column grid for other works */}
-          {otherArray.length === 0 ? (
-            <div className={styles.emptyMessage}>No other works available.</div>
+          {otherList.length === 0 ? (
+            <div className={styles.emptyMessage}>No other works</div>
           ) : (
-            <OtherWorks items={otherArray.map(item => normalizeCaseData(item))} />
+            <OtherWorks
+              items={otherList}
+              featuredOffset={featuredList.length}
+              onOpen={(globalIndex: number) => {
+                const localIndex = globalIndex - featuredList.length;
+                const item = otherList[localIndex];
+                if (item) openModalFor(item, null);
+              }}
+            />
           )}
         </div>
       )}
 
-      {openCase && (
-        <CaseModal
-          caseData={openCase}
-          onClose={handleClose}
-        />
+      {activeCase && (
+        <CaseModal caseData={activeCase} onClose={closeModal} />
       )}
     </div>
   );
-};
-
-export default WorkGrid;
+}

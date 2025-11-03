@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import CaseTile from "./CaseTile";
+import { secondary as secondaryCases } from "../data/cases";
 import styles from "@/styles/components/OtherWorks.module.scss";
 
 type WorkItem = {
@@ -14,22 +15,19 @@ type WorkItem = {
   imageAlt?: string;
   logo?: string;
   images?: string[]; // optional images array
+  [key: string]: unknown;
 };
 
-type CaseData = {
-  id: string;
-  company: string;
-  title: string;
-  subtitle: string;
-  role: string;
-  context: string;
-  logo: string;
-  images: string[];
-  href: string;
+type Props = {
+  items?: WorkItem[]; // optional override; defaults to secondary cases
+  featuredOffset?: number; // used to compute global index for modal
+  onOpen?: (globalIndex: number) => void;
 };
 
-export default function OtherWorks({ items }: { items: WorkItem[] }) {
-  if (!Array.isArray(items) || items.length === 0) {
+export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props) {
+  const source: WorkItem[] = Array.isArray(items) && items.length > 0 ? items : (Array.isArray(secondaryCases) ? secondaryCases.slice(0, 4) : []);
+
+  if (!Array.isArray(source) || source.length === 0) {
     return <div className={styles.emptyMessage}>No other works available.</div>;
   }
 
@@ -52,9 +50,9 @@ export default function OtherWorks({ items }: { items: WorkItem[] }) {
   return (
     <section className={styles.otherWorks} aria-label="Other works">
       <div className={styles.grid} role="list">
-        {items.map((raw, idx) => {
+        {source.map((raw, idx) => {
           const data = normalize(raw, idx);
-          const isLast = idx === items.length - 1;
+          const isLast = idx === source.length - 1;
 
           const imagesForTile: string[] = isLast
             ? (data.images.length >= 4
@@ -62,10 +60,9 @@ export default function OtherWorks({ items }: { items: WorkItem[] }) {
                 : (data.images.length > 0
                     ? Array.from({ length: 4 }, (_, i) => data.images[i % data.images.length])
                     : []))
-            : (data.images.length > 0
-                ? [data.images[0]]
-                : []);
-          const caseData: CaseData = {
+            : (data.images.length > 0 ? [data.images[0]] : []);
+
+          const caseData = {
             id: data.id,
             company: data.company,
             title: data.title,
@@ -77,14 +74,29 @@ export default function OtherWorks({ items }: { items: WorkItem[] }) {
             href: data.href,
           };
 
+          const globalIndex = featuredOffset + idx;
+
           return (
-            <article key={data.id} className={styles.tile} role="listitem">
-              <CaseTile
-                caseData={caseData}
-                onOpen={() => {}}
-                // pass a hint prop — CaseTile should read company/role/logo from caseData;
-                // if CaseTile supports an explicit prop to toggle display, it will receive it.
-              />
+            <article
+              key={data.id}
+              className={styles.tile}
+              role="button"
+              tabIndex={0}
+              aria-label={`Open ${data.company}`}
+              onClick={() => {
+                // debug: verify click and index mapping
+                // eslint-disable-next-line no-console
+                console.log("OtherWorks.tile click", { idx, featuredOffset, globalIndex, company: data.company });
+                onOpen?.(globalIndex);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onOpen?.(globalIndex);
+                }
+              }}
+            >
+              <CaseTile caseData={caseData} />
             </article>
           );
         })}

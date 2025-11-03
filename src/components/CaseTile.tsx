@@ -16,11 +16,11 @@ interface CaseData {
   logoSize?: number;
 }
 
-interface CaseTileProps {
+type CaseTileProps = {
   caseData: CaseData;
+  onOpen?: (index: number) => void;
   showLogoAndRole?: boolean;
-  onOpen: (caseData: CaseData, origin: HTMLElement | null) => void;
-}
+};
 
 export default function CaseTile({
   caseData,
@@ -33,7 +33,7 @@ export default function CaseTile({
 
   const handleOpen = (e?: React.SyntheticEvent) => {
     if (e) e.stopPropagation();
-    onOpen(caseData, btnRef.current);
+    onOpen?.(caseData.id as number);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {

@@ -113,3 +113,7 @@ export const otherWorks = [
     ]
   }
 ];
+
+// ensure `otherWorks` is defined above (the array you created)
+// add this alias so consumers can import `secondary`
+export const secondary = typeof otherWorks !== "undefined" ? otherWorks : [];
