@@ -93,6 +93,11 @@
   width: 100%;
 }
 
+.titleMeta{
+  .company{
+    margin-bottom: 0;
+  }
+}
 /* rounded small logo */
 .logoSmall {
   width: var(--logo-size);

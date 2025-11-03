@@ -193,3 +193,18 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+
+.featured{
+  padding: 0 5em 2em;
+  margin-top: 0;
+  background-color: var(--color-bg-alt);
+}
+
+@media (max-width: 1366px){
+.featured{
+  padding: 0 1.5em;
+}
+
+}

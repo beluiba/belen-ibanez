@@ -304,9 +304,9 @@ h4{
 }
 
 /* responsive adjustments */
-@media (max-width: 900px) {
+@media (max-width: 1366px) {
   .skillsSection {
-    padding: 1rem 1.25rem;
+    padding: 0;
 
     .skillsRowSingle {
       gap: 0.5rem;

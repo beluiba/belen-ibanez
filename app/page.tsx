@@ -10,6 +10,12 @@ import ArrowIcon from "@/src/components/ArrowIcon";
 import { featured, otherWorks } from "@/src/data/cases";
 import styles from "@/styles/pages/Home.module.scss";
 
+// widen WorkGrid props locally to include optional onOpen
+type WorkGridWithOpenProps = React.ComponentProps<typeof WorkGrid> & {
+  onOpen?: (index: number) => void;
+};
+const WorkGridWithOpen = WorkGrid as React.ComponentType<WorkGridWithOpenProps>;
+
 export default function HomePage() {
   const projectList = [
     ...(Array.isArray(featured) ? featured : []),
@@ -32,12 +38,12 @@ export default function HomePage() {
   }));
 
   return (
-    <main id="main-content" className="home-container">
+    <>
       <Hero />
 
       <section className="featured">
         <div className={styles.featuredRow}>
-          <WorkGrid mode="landing" onOpen={open} />
+          <WorkGridWithOpen mode="landing" onOpen={open} />
         </div>
 
         <div className={styles.viewMoreRow}>
@@ -62,6 +68,6 @@ export default function HomePage() {
       </section>
 
       <Footer />
-    </main>
+    </>
   );
 }
