@@ -67,11 +67,7 @@ export default function Hero() {
         <h2>Product UX/UI Design Engineer</h2>
         <h3>15+ years shipping interfaces that move KPIs.</h3>
         <p>
-          I define product requirements, design the system, and code accessible,
-          data-driven interfaces turning ambiguity into decisions through
-          evidence, clear data visualisation, and AI-aware workflows, then ship
-          and iterate against measurable outcomes partnering tightly with
-          engineering and product.
+          <b>End-to-end designer.</b> I clarify requirements, design systems, and build accessible, data-driven interfaces. <br />With evidence, clear data visualisation, and AI-aware workflows, I ship and iterate closely with product and engineering.
         </p>
       </div>
 

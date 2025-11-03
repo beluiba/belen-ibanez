@@ -59,7 +59,7 @@
 .media {
   position: relative;
   width: 100%;
-  padding-top: 62.5%; /* keep aspect ratio */
+  padding-top: 65.5%; /* keep aspect ratio */
 }
 
 .cover {
@@ -262,7 +262,7 @@
 }
 
 @media (max-width: 540px) {
-  .media { padding-top: 62.5%; }
+  .media { padding-top: 65.5%; }
   .overlay { padding: 0.45rem 0.6rem; }
   .company { font-size: 0.92rem; }
 }

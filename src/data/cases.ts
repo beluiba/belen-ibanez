@@ -2,7 +2,7 @@ export const featured = [
   {
     id: "bofa",
     company: "Bank of America",
-    role: "Senior UX Engineer",
+    role: "Senior UX Engineer - Contractor",
     date: "Sep 2024 - Present",
     context: "Led UX for mission-critical internal tools—trading operations. I mapped and simplified complex flows, defined IA, and delivered high-fidelity UI, partnering with engineering to ship accessible, reusable components that made data-dense screens faster, clearer, and more reliable.",
     challenge: "Complex domain, legacy constraints, strict compliance; visuals restricted.",
@@ -58,7 +58,7 @@ export const otherWorks = [
   {
     id: "psa",
     company: "PSA Peugeot",
-    role: "UX / Product Designer",
+    role: "Senior Product UX UI Developer - Contractor",
     date: "2020",
     context: "Placeholder context for PSA Peugeot — automotive experience and connected apps.",
     challenge: "Placeholder challenge: diverse device targets and complex configuration flows.",
@@ -72,7 +72,7 @@ export const otherWorks = [
   {
     id: "highland",
     company: "Highland Easy Life",
-    role: "Product & Interaction Designer",
+    role: "Senior Product UX UI Developer - Contractor",
     date: "2019",
     context: "Placeholder context for Highland Easy Life — insurance quoting and onboarding.",
     challenge: "Placeholder challenge: align B2B and B2C flows, simplify quoting.",
@@ -85,7 +85,7 @@ export const otherWorks = [
   {
     id: "emerios",
     company: "Emerios",
-    role: "Visual / Product Designer",
+    role: "Senior Product UX/UI Developer",
     date: "2017",
     context: "Placeholder context for Emerios — sales and backoffice platform.",
     challenge: "Placeholder challenge: legacy workflows, high data density.",
@@ -98,8 +98,8 @@ export const otherWorks = [
   {
     id: "misc",
     company: "More Works",
-    role: "Various",
-    date: "2015 — 2021",
+    role: "Various Projects",
+    date: "2010 - Present",
     context: "Collection of smaller projects and experiments — gallery-style entry.",
     challenge: "Various.",
     approach: "Placeholder approach: short case summaries and visual showcase.",
