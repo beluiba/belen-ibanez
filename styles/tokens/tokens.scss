@@ -57,12 +57,21 @@ $black: #000;// Fluid type
 
   /* Primary color (requested) */
   --color-primary: #071E2E;
-  --color-primary-dark: #061823; /* slightly darker variant */
+  --color-primary-dark: #061823;   /* existing darker variant */
+  --color-primary-darker: #041218; /* very dark for high-contrast UI elements */
+
+  /* lighter alternatives derived from the same hue */
+  --color-primary-light: #1C3140;  /* subtle lighter variant for borders / hover */
+  --color-primary-lighter: #314553;/* even lighter for backgrounds / accents */
+
   --color-primary-bg: #e9f2f6; /* subtle background tint if needed */
 
-  /* tokens for other systems that reference "token-*" vars */
-  --token-primary: #071E2E;
-  --token-on-primary: #ffffff;
+  /* token aliases (used elsewhere) */
+  --token-primary: var(--color-primary);
+  --token-primary-dark: var(--color-primary-dark);
+  --token-primary-darker: var(--color-primary-darker);
+  --token-primary-light: var(--color-primary-light);
+  --token-primary-lighter: var(--color-primary-lighter);
 
   --color-bg: #fff;
   --color-bg-alt: #{$gray-100};

@@ -14,8 +14,6 @@ const icons = [
   { src: "/images/icons/iteration.svg", label: "Validation & Iteration" },
 ];
 
-// iconTooltips maps each icon label to an array of tooltip strings describing the key activities or features for that step.
-// Structure: { [label: string]: string[] }
 const iconTooltips: Record<string, string[]> = {
   "Problem Framing": [
     "- Clarify business goals",
@@ -37,14 +35,50 @@ const iconTooltips: Record<string, string[]> = {
 export default function Hero() {
   const [flipped, setFlipped] = useState<string | null>(null);
 
+  // Skills data (three categories)
+  const specialtyBadges = [
+    "B2B SaaS",
+    "Data-heavy Products",
+    "Design Systems",
+    "Decision Dashboards",
+  ];
+  const focusAreas = [
+    "Enterprise UX",
+    "FinTech",
+    "Cybersecurity (SecOps)",
+    "Design Systems",
+    "Onboarding & Activation",
+    "Data Visualization",
+  ];
+  const coreStack = [
+    "Figma",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "SCSS",
+    "Storybook",
+    "Tailwind",
+  ];
+
   return (
     <section className={styles.hero}>
       <div className={styles.heroHeading}>
         <h1>Belén Ibáñez </h1>
         <h2>Product UX/UI Design Engineer</h2>
         <h3>15+ years shipping interfaces that move KPIs.</h3>
-        <p>I define product requirements, design the system, and code accessible, data-driven interfaces turning ambiguity into decisions through evidence, clear data visualisation, and AI-aware workflows, then ship and iterate against measurable outcomes partnering tightly with engineering and product.</p>
+        <p>
+          I define product requirements, design the system, and code accessible,
+          data-driven interfaces turning ambiguity into decisions through
+          evidence, clear data visualisation, and AI-aware workflows, then ship
+          and iterate against measurable outcomes partnering tightly with
+          engineering and product.
+        </p>
       </div>
+
+      <div className={styles.heroTitle}>
+        <h4>My process</h4>
+      </div>
+
       <div className={styles.heroIcons}>
         {icons.map((icon) => (
           <div
@@ -83,6 +117,44 @@ export default function Hero() {
           </div>
         ))}
       </div>
+
+      <div className={styles.heroTitle}>
+        <h4>My Skills</h4>
+      </div>
+
+      <section className={styles.skillsSection} aria-label="Skills">
+        <div className={styles.skillsRowSingle} role="list">
+          {specialtyBadges.map((b) => (
+            <span
+              key={`spec-${b}`}
+              role="listitem"
+              className={`${styles.skill} ${styles.specialty}`}
+            >
+              {b}
+            </span>
+          ))}
+
+          {focusAreas.map((f) => (
+            <span
+              key={`focus-${f}`}
+              role="listitem"
+              className={`${styles.skill} ${styles.focus}`}
+            >
+              {f}
+            </span>
+          ))}
+
+          {coreStack.map((s) => (
+            <span
+              key={`core-${s}`}
+              role="listitem"
+              className={`${styles.skill} ${styles.core}`}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </section>
     </section>
   );
 }
