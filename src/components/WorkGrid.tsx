@@ -6,62 +6,70 @@ import OtherWorks from "./OtherWorks";
 import { featured, otherWorks } from "../data/cases";
 import styles from "@/styles/components/WorkGrid.module.scss";
 
-interface WorkGridProps {
+type WorkGridProps = {
   mode?: "landing" | "full";
-}
+  onOpen?: (globalIndex: number, origin?: HTMLElement | null) => void;
+};
 
-// derive the modal case type from CaseModal props
+// derive CaseData from CaseModal props to keep types aligned
 type CaseModalProps = React.ComponentProps<typeof CaseModal>;
 type CaseData = CaseModalProps["caseData"];
+// locally extend CaseData with optional id for stable keys and normalization
+type CaseItem = CaseData & { id?: string | number };
 
-export default function WorkGrid({ mode = "full" }: WorkGridProps) {
-  // normalize helper to ensure fields exist and types are safe
-  const normalize = (raw: unknown): CaseData => {
+export default function WorkGrid({ mode = "full", onOpen }: WorkGridProps) {
+  const normalize = (raw: unknown): CaseItem => {
     const r = (raw as Record<string, unknown>) || {};
-    const id =
-      typeof r.id === "string" || typeof r.id === "number" ? String(r.id) : "";
+    const id = typeof r.id === "string" || typeof r.id === "number" ? r.id : undefined;
     const company = typeof r.company === "string" ? r.company : "";
     const role = typeof r.role === "string" ? r.role : "";
-    const images = Array.isArray(r.images) ? (r.images as string[]) : [];
     const logo = typeof r.logo === "string" ? r.logo : "";
-    const rest = { ...(r as Record<string, unknown>) };
+    const images = Array.isArray(r.images) ? (r.images as string[]) : [];
+    const overview = typeof r.overview === "string" ? r.overview : "";
     return {
       id,
       company,
       role,
-      images,
       logo,
-      ...rest,
-    } as CaseData;
+      images,
+      overview,
+      ...(r as Record<string, unknown>),
+    } as CaseItem;
   };
 
   const featuredList = Array.isArray(featured) ? featured.map(normalize) : [];
   const otherListRaw = Array.isArray(otherWorks) ? otherWorks : [];
   const otherList = otherListRaw.map(normalize);
 
-  // modal state holds normalized CaseData compatible with CaseModal
-  const [activeCase, setActiveCase] = useState<CaseData | null>(null);
+  // deterministic global ordering: featured then other
+  const combinedList = [...featuredList, ...otherList];
+
+  // internal modal state (used only when parent doesn't provide onOpen)
+  const [activeCase, setActiveCase] = useState<CaseItem | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const lastActiveRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    // accessibility: lock scroll when modal open
-    if (activeCase) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    // lock scroll while modal open
+    if (activeCase) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [activeCase]);
 
-  const openModalFor = (caseData: CaseData, origin?: HTMLElement | null) => {
+  const openModalAt = (globalIndex: number, origin?: HTMLElement | null) => {
+    const idx = Math.max(0, Math.min(globalIndex, combinedList.length - 1));
+    const item = combinedList[idx];
+    if (!item) return;
     if (origin) lastActiveRef.current = origin;
-    setActiveCase(caseData);
+    setActiveIndex(idx);
+    setActiveCase(item);
   };
 
   const closeModal = () => {
     setActiveCase(null);
+    setActiveIndex(null);
     try {
       lastActiveRef.current?.focus();
     } catch {
@@ -69,29 +77,52 @@ export default function WorkGrid({ mode = "full" }: WorkGridProps) {
     }
   };
 
+  // fallback handlers for internal CaseModal navigation
+  const projectListHandlers: { onClick?: () => void }[] = combinedList.map((_, i) => ({
+    onClick: () => {
+      const item = combinedList[i];
+      if (item) openModalAt(i, null);
+    },
+  }));
+
   return (
     <div className={styles.workgrid}>
       <h3>Featured Works</h3>
+
       <div className={styles["use-cases"]}>
         {featuredList.length > 0 ? (
-          featuredList.map((c, i) => (
-            <div
-              key={`${c.company}-${i}`}
-              className={styles.caseWrapper}
-              role="button"
-              tabIndex={0}
-              onClick={(e) => openModalFor(c, e.currentTarget as HTMLElement)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  openModalFor(c, e.currentTarget as HTMLElement);
-                }
-              }}
-              aria-label={`Open ${c.company}`}
-            >
-              <CaseTile caseData={c} />
-            </div>
-          ))
+          featuredList.map((c, i) => {
+            const globalIndex = i;
+            return (
+              <div
+                key={`${String(c.id ?? c.company ?? "featured")}-${i}`}
+                className={styles.caseWrapper}
+                role="button"
+                tabIndex={0}
+                aria-label={`Open ${c.company ?? ""}`}
+                data-global-index={globalIndex}
+                onClick={(e) => {
+                  if (typeof onOpen === "function") {
+                    onOpen(globalIndex, e.currentTarget as HTMLElement);
+                    return;
+                  }
+                  openModalAt(globalIndex, e.currentTarget as HTMLElement);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    if (typeof onOpen === "function") {
+                      onOpen(globalIndex, e.currentTarget as HTMLElement);
+                      return;
+                    }
+                    openModalAt(globalIndex, e.currentTarget as HTMLElement);
+                  }
+                }}
+              >
+                <CaseTile caseData={c} />
+              </div>
+            );
+          })
         ) : (
           <div className={styles.emptyMessage}>No featured work</div>
         )}
@@ -106,17 +137,24 @@ export default function WorkGrid({ mode = "full" }: WorkGridProps) {
               items={otherList}
               featuredOffset={featuredList.length}
               onOpen={(globalIndex: number) => {
-                const localIndex = globalIndex - featuredList.length;
-                const item = otherList[localIndex];
-                if (item) openModalFor(item, null);
+                if (typeof onOpen === "function") {
+                  onOpen(globalIndex, null);
+                  return;
+                }
+                openModalAt(globalIndex, null);
               }}
             />
           )}
         </div>
       )}
 
-      {activeCase && (
-        <CaseModal caseData={activeCase} onClose={closeModal} />
+      {typeof onOpen !== "function" && activeCase !== null && activeIndex !== null && (
+        <CaseModal
+          caseData={activeCase}
+          onClose={closeModal}
+          projectList={projectListHandlers}
+          currentIndex={activeIndex}
+        />
       )}
     </div>
   );

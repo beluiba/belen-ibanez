@@ -98,14 +98,31 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
   // render only on client when portalRoot is available
   if (!portalRoot) return null;
 
-  // defensive helpers for prev/next
-  const callPrev = () => {
-    const prev = projectList?.[Math.max(0, currentIndex - 1)];
-    if (prev?.onClick) prev.onClick();
+  // Navigation: circular using only projectList/currentIndex (no DOM)
+  const total = Array.isArray(projectList) ? projectList.length : 0;
+
+  const validCurrentIndex =
+    typeof currentIndex === "number" && Number.isFinite(currentIndex) && currentIndex >= 0 && currentIndex < total
+      ? Math.floor(currentIndex)
+      : (total > 0 ? 0 : -1);
+
+  const wrapIndex = (n: number) => {
+    if (total <= 0) return -1;
+    return ((n % total) + total) % total;
   };
+
+  const callPrev = () => {
+    if (total <= 0 || validCurrentIndex < 0) return;
+    const dest = wrapIndex(validCurrentIndex - 1);
+    const entry = projectList[dest];
+    if (entry?.onClick) entry.onClick();
+  };
+
   const callNext = () => {
-    const next = projectList?.[currentIndex + 1];
-    if (next?.onClick) next.onClick();
+    if (total <= 0 || validCurrentIndex < 0) return;
+    const dest = wrapIndex(validCurrentIndex + 1);
+    const entry = projectList[dest];
+    if (entry?.onClick) entry.onClick();
   };
 
   return createPortal(

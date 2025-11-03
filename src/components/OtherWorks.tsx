@@ -49,7 +49,6 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
 
   return (
     <section className={styles.otherWorks} aria-label="Other works">
-
       <h3>Other Works</h3>
       <div className={styles.grid} role="list">
         {source.map((raw, idx) => {
@@ -85,19 +84,21 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
               role="button"
               tabIndex={0}
               aria-label={`Open ${data.company}`}
-              onClick={() => onOpen?.(globalIndex)}
-               onKeyDown={(e) => {
-                 if (e.key === "Enter" || e.key === " ") {
-                   e.preventDefault();
-                   onOpen?.(globalIndex);
-                 }
-               }}
-             >
-               <CaseTile caseData={caseData} />
-             </article>
-           );
-         })}
-       </div>
-     </section>
-   );
- }
+              onClick={() => {
+                if (typeof onOpen === "function") onOpen(globalIndex);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  if (typeof onOpen === "function") onOpen(globalIndex);
+                }
+              }}
+            >
+              <CaseTile caseData={caseData} />
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
