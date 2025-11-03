@@ -372,3 +372,48 @@
   height: 0;
   overflow: hidden;
 }
+
+.tile {
+  cursor: pointer;
+  pointer-events: auto;         // ensure clicks reach the tile
+  opacity: 1;                   // make sure not visually dimmed
+  z-index: 1;                   // keep above background overlays
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+  border-radius: 8px;
+  outline: none;
+}
+
+.tile:focus,
+.tile:focus-visible,
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* if any tile is intentionally disabled use aria-disabled="true" */
+.tile[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+// ...existing code...
+.caseTileInner {
+  cursor: inherit;             // follow parent's pointer
+  display: block;
+  pointer-events: auto;        // allow content to be interactive but don't stop propagation
+}
+
+.caseTileInner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* ensure description text doesn't intercept pointer styles */
+.description {
+  margin: 8px 0 0 0;
+  color: var(--muted, #666);
+  pointer-events: none;        // clicks fall through to the parent .tile
+  user-select: none;
+}

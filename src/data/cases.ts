@@ -55,8 +55,61 @@ export const featured = [
 ];
 
 export const otherWorks = [
-  { id:"psa", title:"PSA", subtitle:"Car customization app" },
-  { id:"highland", title:"Highland Easy Life", subtitle:"Insurance quoting (B2B/B2C)" },
-  { id:"emerios", title:"Emerios", subtitle:"Sales & backoffice platform" },
-  { id:"misc", title:"More works", subtitle:"Various highlights" }
+  {
+    id: "psa",
+    company: "PSA Peugeot",
+    role: "UX / Product Designer",
+    date: "2020",
+    context: "Placeholder context for PSA Peugeot — automotive experience and connected apps.",
+    challenge: "Placeholder challenge: diverse device targets and complex configuration flows.",
+    approach: "Placeholder approach: user research, prototyping, component library.",
+    impact: "Placeholder impact summary.",
+    tools: ["Figma", "React"],
+    images: ["/images/cases/psa-1.jpg", "/images/cases/psa-2.jpg"],
+    logo: "/images/cases/psa-icon.svg",
+    restrictions: "Placeholder restrictions (if any)"
+  },
+  {
+    id: "highland",
+    company: "Highland Easy Life",
+    role: "Product & Interaction Designer",
+    date: "2019",
+    context: "Placeholder context for Highland Easy Life — insurance quoting and onboarding.",
+    challenge: "Placeholder challenge: align B2B and B2C flows, simplify quoting.",
+    approach: "Placeholder approach: journey mapping, iterative prototypes, usability testing.",
+    impact: "Placeholder impact summary.",
+    tools: ["Figma", "Sketch"],
+    images: ["/images/cases/highland-1.jpg", "/images/cases/highland-2.jpg"],
+    logo: "/images/cases/highland-icon.jpeg"
+  },
+  {
+    id: "emerios",
+    company: "Emerios",
+    role: "Visual / Product Designer",
+    date: "2017",
+    context: "Placeholder context for Emerios — sales and backoffice platform.",
+    challenge: "Placeholder challenge: legacy workflows, high data density.",
+    approach: "Placeholder approach: design system, performance-minded UI components.",
+    impact: "Placeholder impact summary.",
+    tools: ["Figma"],
+    images: ["/images/cases/emerios-1.jpg"],
+    logo: "/images/cases/emerios-icon.svg"
+  },
+  {
+    id: "misc",
+    company: "More Works",
+    role: "Various",
+    date: "2015 — 2021",
+    context: "Collection of smaller projects and experiments — gallery-style entry.",
+    challenge: "Various.",
+    approach: "Placeholder approach: short case summaries and visual showcase.",
+    impact: "Placeholder impact summary.",
+    tools: ["Figma"],
+    images: [
+      "/images/cases/more-1.jpg",
+      "/images/cases/more-2.jpg",
+      "/images/cases/more-3.jpg",
+      "/images/cases/more-4.jpg"
+    ]
+  }
 ];
