@@ -5,7 +5,7 @@
     linear-gradient(var(--token-hero-overlay-start, rgba(0,0,0,0.45)), var(--token-hero-overlay-end, rgba(0,0,0,0.25))),
     url('/images/hero.svg') no-repeat center / cover;
   color: var(--color-on-surface, #fff);
-  padding: 7.5rem 1.5rem 2.5rem;
+  padding: 7.5rem 0 2.5rem;
   min-height: 40vh;
   display: flex;
   flex-direction: column;
@@ -248,7 +248,7 @@ h4{
 /* mobile / layout tweaks for hero heading and icons */
 @media (max-width: 1366px) {
   .hero .heroHeading, .hero .heroIcons, .hero .heroTitle {
-    padding: 0;
+    padding: 0 1.5rem;
   }
 }
 
@@ -306,7 +306,7 @@ h4{
 /* responsive adjustments */
 @media (max-width: 1366px) {
   .skillsSection {
-    padding: 0;
+    padding: 0 1.5rem;
 
     .skillsRowSingle {
       gap: 0.5rem;

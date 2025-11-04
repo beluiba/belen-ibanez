@@ -49,7 +49,7 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
 
   return (
     <section className={styles.otherWorks} aria-label="Other works">
-      <h3>Other Works</h3>
+      <h4>Other Works</h4>
       <div className={styles.grid} role="list">
         {source.map((raw, idx) => {
           const data = normalize(raw, idx);

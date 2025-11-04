@@ -87,7 +87,7 @@ export default function WorkGrid({ mode = "full", onOpen }: WorkGridProps) {
 
   return (
     <div className={styles.workgrid}>
-      <h3>Featured Works</h3>
+      <h4>Featured Works</h4>
 
       <div className={styles["use-cases"]}>
         {featuredList.length > 0 ? (

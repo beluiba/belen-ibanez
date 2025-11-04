@@ -1,8 +1,17 @@
 .workgrid {
-  margin: 3em 0;
+  margin: 1.5rem 0;
 
-  h3{
+  h4{
     margin-bottom: 1rem;
+
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+    font-weight: 400;
+    padding: 0.25rem;
+    background-color: var(--color-primary);
+    display: inline-block;
+    color: #fff;
+
   }
 }
 .use-cases {
