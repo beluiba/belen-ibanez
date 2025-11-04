@@ -8,10 +8,11 @@ import Image from "next/image";
 type TimelineItem = { date?: string; label?: string };
 type Metric = { label: string; before: string; after: string };
 type CaseData = {
-  date?: string;       // <- add singular "date" (matches src/data/cases.ts)
+  date?: string;
   dates?: string;
   duration?: string;
   company?: string;
+  title?: string;
   role?: string;
   logo?: string;
   overview?: string;
@@ -127,6 +128,26 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
     if (entry?.onClick) entry.onClick();
   };
 
+  // determine special "More Works" / last-project layout:
+  const rawTitle = String(caseData.title ?? caseData.company ?? "").trim().toLowerCase();
+  const isExplicitMore =
+    rawTitle === "more works" || rawTitle === "more work" || rawTitle === "more";
+  const isLastProject = total > 0 && validCurrentIndex >= 0 && validCurrentIndex === total - 1;
+  const hasScreens = Array.isArray(caseData.images) && caseData.images.length > 0;
+  // Only treat as "More Works" if explicitly named, or when it's the last project in the passed projectList
+  // and it actually has screens to show.
+  const isMoreWorks = isExplicitMore || (isLastProject && hasScreens);
+
+  const images = Array.isArray(caseData.images) ? caseData.images : [];
+
+  // special-section component for stacked layout
+  const Section: React.FC<{ heading: string; children: React.ReactNode }> = ({ heading, children }) => (
+    <section className={styles.section}>
+      <h5 className={styles.sectionHeading}>{heading}</h5>
+      <div className={styles.sectionBody}>{children}</div>
+    </section>
+  );
+
   return createPortal(
     <div className={styles.backdrop} role="dialog" aria-modal="true" aria-label={`${caseData.company ?? "Case"} details`}>
       <div className={styles.modalContent} ref={modalRef}>
@@ -143,14 +164,39 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
               <div className={styles.duration}>
                 {caseData.date ?? caseData.dates ?? caseData.duration ?? ""}
               </div>
-            </div></div>
-            <button className={styles.closeButton} onClick={onClose} aria-label="Close">
-              ×
-            </button>
+            </div>
+          </div>
+          <button className={styles.closeButton} onClick={onClose} aria-label="Close">
+            ×
+          </button>
         </header>
 
         <main className={styles.modalMain}>
-          {isAccordion ? (
+          {isMoreWorks ? (
+            // special layout for More Works (no tabs / accordion)
+            <div className={styles.moreWorksLayout}>
+              <div className={styles.moreWorksImages}>
+                {images.length > 0 ? (
+                  images.map((src, i) => (
+                    // using Image would require layout sizes for each image; keep <img> for flexible thumbnails
+                    // keep alt text accessible
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img key={i} src={src} alt={`${caseData.company ?? "work"} screenshot ${i + 1}`} className={styles.screenImage} />
+                  ))
+                ) : (
+                  <div className={styles.emptyMessage}>No screens available</div>
+                )}
+              </div>
+
+              <aside className={styles.moreWorksAside}>
+                <h4 className={styles.moreWorksTitle}>{caseData.title ?? caseData.company ?? "More works"}</h4>
+                <p className={styles.moreWorksDescription}>{caseData.overview ?? caseData.process ?? "See more projects on the work page."}</p>
+                {caseData.title && caseData.title.toLowerCase().includes("more") && caseData.images && caseData.images.length > 0 ? (
+                  <div className={styles.moreWorksNote}>Showing additional screens for other works</div>
+                ) : null}
+              </aside>
+            </div>
+          ) : isAccordion ? (
             <div className={styles.accordion} role="presentation">
               {TAB_TITLES.map((title, idx) => {
                 const expanded = openIndex === idx;
@@ -224,13 +270,13 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
         </main>
 
         <footer className={styles.footer}>
-          <button type="button" className="btnToken--outline" onClick={callPrev} aria-label="Previous project">
+          <button type="button" className="btnToken--outline" onClick={callPrev} aria-label="Previous project" disabled={total <= 1}>
             ← Prev
           </button>
 
           <div style={{ flex: 1 }} />
 
-          <button type="button" className="btnToken--outline" onClick={callNext} aria-label="Next project">
+          <button type="button" className="btnToken--outline" onClick={callNext} aria-label="Next project" disabled={total <= 1}>
             Next →
           </button>
         </footer>
