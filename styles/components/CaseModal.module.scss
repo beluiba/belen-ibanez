@@ -328,17 +328,22 @@
   font-weight: 600;
   cursor: pointer;
   color: var(--token-text, #111);
+  h4{
+    margin: 0.5rem 0 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+.accordionChevron {
+  margin: 0 1.5rem 0 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
 }
 .accordionButton:hover {
   background: color-mix(in srgb, var(--btn-accent) 6%, transparent);
 }
-.accordionChevron {
-  margin-left: 12px;
-  font-size: 1.1rem;
-  line-height: 1;
-}
 .accordionPanel {
-  padding: 0.75rem 1rem 1rem 1rem;
+  padding: 0.75rem 2.5rem 1rem;
   background: transparent;
   border-bottom: 1px solid transparent;
 }
@@ -351,7 +356,7 @@
 }
 
 /* On small screens swap to accordion */
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   .tabList {
     display: none !important;
   }
@@ -360,6 +365,9 @@
   }
   .accordion {
     display: block;
+  }
+  .modalMain{
+    padding: 0;
   }
 }
 
