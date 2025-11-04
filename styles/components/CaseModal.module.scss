@@ -31,9 +31,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 1.0rem 1.5rem;
-  background: var(--token-surface-variant, rgba(255,255,255,0.98));
-  border-bottom: 1px solid var(--token-border, rgba(0,0,0,0.06));
+  padding: 1rem 1.5rem;
+  background: var(--token-surface-variant, rgba(255, 255, 255, 0.98));
+  border-bottom: 1px solid var(--token-border, rgba(0, 0, 0, 0.06));
   box-sizing: border-box;
 }
 
@@ -126,12 +126,13 @@
   color: var(--token-on-surface, #000);
   flex: 0 0 auto;
 }
-.closeButton:hover { background: var(--btn-hover-fade, rgba(0,0,0,0.04)); }
+.closeButton:hover {
+  background: var(--btn-hover-fade, rgba(0, 0, 0, 0.04));
+}
 
-
-.headerLeft{
-    display: flex;
-    align-items: center;
+.headerLeft {
+  display: flex;
+  align-items: center;
 }
 /* main scrollable area between header and footer */
 .modalMain {
@@ -163,15 +164,20 @@
   margin-bottom: 12px;
 }
 .metricChip {
-  background: var(--token-surface-variant, rgba(0,0,0,0.02));
+  background: var(--token-surface-variant, rgba(0, 0, 0, 0.02));
   padding: 8px 12px;
   border-radius: 10px;
   display: flex;
   gap: 8px;
   align-items: baseline;
 }
-.metricLabel { font-size: 0.85rem; color: var(--token-text-muted); }
-.metricValue { font-weight: 700; }
+.metricLabel {
+  font-size: 0.85rem;
+  color: var(--token-text-muted);
+}
+.metricValue {
+  font-weight: 700;
+}
 
 /* milestones inline mini-timeline */
 .milestones {
@@ -183,9 +189,18 @@
   color: var(--token-text-muted);
   margin-bottom: 8px;
 }
-.milestone { display:flex; flex-direction:column; align-items:flex-start; }
-.milestoneName { font-weight:600; }
-.milestoneDate { font-size:0.85rem; color:var(--token-text-muted); }
+.milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.milestoneName {
+  font-weight: 600;
+}
+.milestoneDate {
+  font-size: 0.85rem;
+  color: var(--token-text-muted);
+}
 
 /* tabbed content area (inside scrollable region) */
 .modalBody {
@@ -205,21 +220,29 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  background: var(--token-surface, rgba(255,255,255,0.98));
-  border-top: 1px solid var(--token-border, rgba(0,0,0,0.06));
+  background: var(--token-surface, rgba(255, 255, 255, 0.98));
+  border-top: 1px solid var(--token-border, rgba(0, 0, 0, 0.06));
   box-sizing: border-box;
 }
 
 /* tab list + buttons */
-.tabsWrapper { margin-top: 8px; }
-.tabList { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+.tabsWrapper {
+  margin-top: 8px;
+}
+.tabList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
 .tabButton {
   background: transparent;
   color: var(--token-text, #222);
   border: none;
   padding: 8px 14px;
   border-radius: var(--btn-radius, 10px);
-  cursor:pointer;
+  cursor: pointer;
 }
 .tabButton[aria-selected="true"],
 .tabButton.tabActive {
@@ -269,7 +292,7 @@
 /* responsive: stack when very narrow */
 @media (max-width: 520px) {
   .header {
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
   }
   .titleBlock {
@@ -304,48 +327,67 @@
     --modal-header-height: 76px;
     --modal-footer-height: 64px;
   }
-  .titleBlock { max-width: 64%; }
-  .modalMain { padding: 1rem; }
-  .tabList { gap:6px; }
+  .titleBlock {
+    max-width: 64%;
+  }
+  .modalMain {
+    padding: 1rem;
+  }
+  .tabList {
+    gap: 6px;
+  }
 }
-
 
 .accordion {
   display: none; /* shown only on small screens via media query below */
 }
 .accordionItem {
-  border-top: 1px solid var(--token-border, rgba(0,0,0,0.06));
+  border-top: 1px solid var(--token-border, rgba(0, 0, 0, 0.06));
 }
 .accordionButton {
   width: 100%;
   text-align: left;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1.5rem;
   background: transparent;
+  font-size: 1rem;
   border: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 600;
+  font-weight: 400; /* normal when not expanded */
   cursor: pointer;
   color: var(--token-text, #111);
-  h4{
+  h4 {
     margin: 0.5rem 0 0.5rem 1.5rem;
     font-size: 1rem;
     font-weight: normal;
   }
-.accordionChevron {
-  margin: 0 1.5rem 0 0;
-  font-size: 1.5rem;
-  line-height: 1;
+  .accordionChevron {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
 }
+
+/* make expanded accordion header visually bolder */
+.accordionButton[aria-expanded="true"] {
+  font-weight: 700;
 }
+
 .accordionButton:hover {
   background: color-mix(in srgb, var(--btn-accent) 6%, transparent);
 }
 .accordionPanel {
-  padding: 0.75rem 2.5rem 1rem;
+  padding: 0 2.5rem 1rem;
   background: transparent;
   border-bottom: 1px solid transparent;
+
+  h5, h6 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: var(--color-primary-900);
+  }
 }
 
 /* By default show tabs and hide accordion on desktop */
@@ -354,9 +396,19 @@
   gap: 8px;
   align-items: center;
 }
+.tabPanel {
+  display: block;
 
-/* On small screens swap to accordion */
-@media (max-width: 1024px) {
+  h5, h6{
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: var(--color-primary-900);
+  }
+}
+
+/* On small screens (<=1024px) show accordion and hide tabs/panels */
+@media (max-width: 1023px) {
   .tabList {
     display: none !important;
   }
@@ -366,15 +418,21 @@
   .accordion {
     display: block;
   }
-  .modalMain{
+  .modalMain {
     padding: 0;
   }
 }
 
-/* On large screens ensure accordion hidden */
+/* On large screens (>=1025px) show tabs and hide accordion */
 @media (min-width: 1024px) {
   .accordion {
     display: none;
+  }
+  .tabList {
+    display: flex !important;
+  }
+  .tabPanel {
+    display: block !important;
   }
 }
 
@@ -388,9 +446,9 @@
 
 .tile {
   cursor: pointer;
-  pointer-events: auto;         // ensure clicks reach the tile
-  opacity: 1;                   // make sure not visually dimmed
-  z-index: 1;                   // keep above background overlays
+  pointer-events: auto; // ensure clicks reach the tile
+  opacity: 1; // make sure not visually dimmed
+  z-index: 1; // keep above background overlays
   transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
   border-radius: 8px;
   outline: none;
@@ -409,11 +467,10 @@
   pointer-events: none;
 }
 
-// ...existing code...
 .caseTileInner {
-  cursor: inherit;             // follow parent's pointer
+  cursor: inherit; // follow parent's pointer
   display: block;
-  pointer-events: auto;        // allow content to be interactive but don't stop propagation
+  pointer-events: auto; // allow content to be interactive but don't stop propagation
 }
 
 .caseTileInner img {
@@ -427,6 +484,43 @@
 .description {
   margin: 8px 0 0 0;
   color: var(--muted, #666);
-  pointer-events: none;        // clicks fall through to the parent .tile
+  pointer-events: none; // clicks fall through to the parent .tile
   user-select: none;
+}
+
+/* Tools rendered as tag pills (match Hero skill pills) */
+.toolsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.skill {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06); /* subtle pill background */
+  color: var(--color-text);
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: none;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+/* slightly stronger style for primary stack items (optional) */
+.skill.primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: rgba(0,0,0,0.06);
+}
+
+/* responsive adjust */
+@media (max-width: 520px) {
+  .skill {
+    font-size: 0.825rem;
+    padding: 0.22rem 0.6rem;
+  }
 }

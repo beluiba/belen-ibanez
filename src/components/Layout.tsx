@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       {/* header/nav */}
-      <main>{children}</main>
+      {children}
       {/* only render contact form outside /work */}
       {!isWorkPage && <Contact />}
     </>

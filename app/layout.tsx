@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Modal root sits outside main so modals overlay header and any stacking contexts */}
         <div id="modal-root" />
-        <main id="main-content">{children}</main>
+        {children}
 
         {/* ensure footer exists in layout (or page) */}
         {/* <Footer /> can live here or in app/page.tsx */}

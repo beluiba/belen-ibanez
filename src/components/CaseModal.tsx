@@ -16,6 +16,8 @@ type CaseData = {
   role?: string;
   logo?: string;
   overview?: string;
+  // new structured overview blocks (optional)
+  overviewBlocks?: { heading?: string; body?: string | string[] }[];
   process?: string;
   screens?: string;
   tools?: string[];
@@ -23,6 +25,9 @@ type CaseData = {
   timeline?: TimelineItem[];
   metrics?: Metric[];
   images?: string[];
+  subtitle?: string;
+  context?: string;
+  href?: string;
 };
 
 type ProjectListItem = { onClick?: () => void } | null;
@@ -89,14 +94,19 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
 
   // Adjust modal main height in accordion mode so all accordion headers remain visible.
   useEffect(() => {
-    if (!isAccordion || !modalRef.current || !mainRef.current || !accordionRef.current) {
+    // Capture current elements for use in this effect and its cleanup to avoid stale ref access.
+    const modalElCapture = modalRef.current;
+    const mainElCapture = mainRef.current;
+    const accordionElCapture = accordionRef.current;
+
+    if (!isAccordion || !modalElCapture || !mainElCapture || !accordionElCapture) {
       // clear any inline sizing when not in accordion
-      if (mainRef.current) {
-        mainRef.current.style.maxHeight = "";
-        mainRef.current.style.overflowY = "";
+      if (mainElCapture) {
+        mainElCapture.style.maxHeight = "";
+        mainElCapture.style.overflowY = "";
       }
       // also clear panel sizing
-      const panels = accordionRef.current?.querySelectorAll<HTMLElement>("[data-accordion-panel]");
+      const panels = accordionElCapture?.querySelectorAll<HTMLElement>("[data-accordion-panel]");
       panels?.forEach(p => {
         p.style.maxHeight = "";
         p.style.overflowY = "";
@@ -106,7 +116,7 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
 
     let raf = 0;
     const adjust = () => {
-      // Elements
+      // Elements (read latest values while running)
       const modalEl = modalRef.current!;
       const mainEl = mainRef.current!;
       const accordionEl = accordionRef.current!;
@@ -166,7 +176,7 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
     window.addEventListener("orientationchange", runAdjust);
 
     // watch images or fonts loading which may change layout
-    const imgs = accordionRef.current.querySelectorAll("img");
+    const imgs = accordionElCapture.querySelectorAll("img");
     const imgLoadHandler = () => runAdjust();
     imgs.forEach((im) => im.addEventListener("load", imgLoadHandler));
 
@@ -175,32 +185,61 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
       window.removeEventListener("resize", runAdjust);
       window.removeEventListener("orientationchange", runAdjust);
       imgs.forEach((im) => im.removeEventListener("load", imgLoadHandler));
-      // clear inline styles on unmount
-      if (mainRef.current) {
-        mainRef.current.style.maxHeight = "";
-        mainRef.current.style.overflowY = "";
+      // clear inline styles on unmount using captured elements
+      if (mainElCapture) {
+        mainElCapture.style.maxHeight = "";
+        mainElCapture.style.overflowY = "";
       }
-      const panels = accordionRef.current?.querySelectorAll<HTMLElement>("[data-accordion-panel]");
+      const panels = accordionElCapture?.querySelectorAll<HTMLElement>("[data-accordion-panel]");
       panels?.forEach(p => {
         p.style.maxHeight = "";
         p.style.overflowY = "";
       });
     };
-  }, [isAccordion, openIndex, portalRoot, styles.header, styles.footer]);
+  }, [isAccordion, openIndex, portalRoot]);
 
+  // helper to render the new overview blocks (falls back to overview string)
+  const renderOverviewBlocks = (): React.ReactNode => {
+    const blocks = Array.isArray(caseData.overviewBlocks) ? caseData.overviewBlocks : undefined;
+    if (!blocks || blocks.length === 0) {
+      return <p>{caseData.overview ?? "No overview available."}</p>;
+    }
+    return (
+      <div className={styles.overviewBlocks}>
+        {blocks.map((b, i) => (
+          <div key={i} className={styles.overviewBlock}>
+            {b.heading ? <h5 className={styles.overviewHeading}>{b.heading}</h5> : null}
+            {Array.isArray(b.body)
+              ? b.body.map((line, j) => <p key={j}>{line}</p>)
+              : <p>{b.body}</p>}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  // Updated tab renderer uses renderOverviewBlocks for the first combined tab
   const tabContentRenderers: Record<typeof TAB_TITLES[number], React.ReactNode> = {
     "Overview + Ideation & Tools": (
       <div className={styles.sectionBody}>
-        <section>
-          <p>{caseData.overview ?? "No overview available."}</p>
-        </section>
+        {renderOverviewBlocks()}
         <section>
           <h6 className={styles.subHeading}>Ideation & Process</h6>
           <p>{caseData.process ?? "No process information."}</p>
         </section>
         <section>
           <h6 className={styles.subHeading}>Tools</h6>
-          <p>{(caseData.tools ?? []).length > 0 ? (caseData.tools ?? []).join(", ") : "No tools listed."}</p>
+          {Array.isArray(caseData.tools) && caseData.tools.length > 0 ? (
+            <div className={styles.toolsList} role="list">
+              {caseData.tools.map((t, i) => (
+                <span key={i} role="listitem" className={styles.skill}>
+                  {t}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p>No tools listed.</p>
+          )}
         </section>
       </div>
     ),

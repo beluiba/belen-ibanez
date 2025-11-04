@@ -4,13 +4,86 @@ export const featured = [
     company: "Bank of America",
     role: "Senior UX Engineer - Contractor",
     date: "Sep 2024 - Present",
-    context: "Led UX for mission-critical internal tools—trading operations. I mapped and simplified complex flows, defined IA, and delivered high-fidelity UI, partnering with engineering to ship accessible, reusable components that made data-dense screens faster, clearer, and more reliable.",
-    challenge: "Complex domain, legacy constraints, strict compliance; visuals restricted.",
-    approach: "Mapped flows with SMEs; iterative React prototypes for exploration; partnered with Angular team to maintain parity.",
-    impact: "Faster comprehension of booking status; clearer entity selection; improved internal adoption.",
-    tools: ["Figma","React (prototype)","Angular (implementation)"],
+    // short summary (backwards-compatible)
+    overview:
+      "Good-to-Trade (GTT) portal that helps front-office and operations make fast, auditable go/no‑go trade decisions.",
+    // structured overview blocks (preferred by CaseModal if present)
+    overviewBlocks: [
+      {
+        heading: "Overview",
+        body: `The Good-to-Trade (GTT) portal enables front-office and operations to decide go/no-go on trades with confidence and auditability. The previous portal had a fragmented product taxonomy and page structure, forcing traders to dig through multiple screens to understand rule status, control ownership, and why a trade was NGTT. Time-to-decision lengthened, escalations increased, and handoffs were unclear.`
+      },
+      {
+        heading: "Context & Problem",
+        body: [
+          "Fragmented taxonomy: overlapping product categories and inconsistent naming spread signals across views; users couldn’t form a single mental model.",
+          "Opaque NGTT reasons: rules fired without a clear, hierarchical explanation of which control failed, where it lived, or who owned the fix.",
+          "Inefficient workflow: traders bounced between lists, rule detail pages, and emails to locate the right contact, slowing decisions and breaching SLAs."
+        ]
+      },
+      {
+        heading: "What changed (Our proposal)",
+        body: [
+          "Taxonomy redesign: simplified hierarchical model (portfolio → product → trade → control) to reduce duplication and make status roll-ups accurate.",
+          "Risk-at-a-glance: single overview showing GTT/NGTT with drill-down (rule, reason, evidence, timestamp/data lineage, next action).",
+          "Ownership & routing: failing controls show owner, resolver group, and contact path (assign/escalate).",
+          "Progressive disclosure: critical signals first; deeper rationale and audit trail one click away."
+        ]
+      },
+      {
+        heading: "My role",
+        body: [
+          "Led end-to-end: SME interviews (FO, Ops, Compliance), IA & taxonomy redesign, decision criteria definition.",
+          "Extended the bank’s design system and built accessible, data-driven UI prototypes."
+        ]
+      },
+      {
+        heading: "JTBD (decision lens)",
+        body: [
+          "When a trade is NGTT, show which control failed and who owns it so traders can route and resolve within minutes.",
+          "When product risk shifts, provide a single view of exposure + exceptions for confident, auditable decisions."
+        ]
+      },
+      {
+        heading: "Success targets",
+        body: [
+          "Reduce time-to-decision and escalations.",
+          "Increase SLA on-time resolution.",
+          "Improve consistency & delivery speed via reusable patterns across adjacent workflows."
+        ]
+      }
+    ],
+    // Tools list shown in the first tab
+    tools: [
+      "Figma / FigJam",
+      "Storybook",
+      "Design tokens",
+      "React (prototype)",
+      "Next.js",
+      "TypeScript",
+      "SCSS",
+      "Recharts / D3",
+      "Jest",
+      "React Testing Library",
+      "Playwright",
+      "GitHub / CI"
+    ],
+    // Screens (second tab) note + images (sample/redacted)
+    context:
+      "Risk at a glance: Exposure deltas, threshold status, and top exceptions in one view for quick go/no-go. Drill-down to trade: Alert → trade → controls with rationale, change history, and entitlement-aware actions. Change since yesterday: Trends and anomaly surfacing to speed triage. Exception workflow: Assign, comment, escalate—full audit trail. Threshold editor: Preview impact before save; guardrails prevent unsafe configs. Note: visuals use sample/redacted data.",
     images: ["/images/cases/bofa-1.png"],
-    restrictions: "No visuals — NDA",
+    impact:
+      "Time-to-decision and SLA improvements driven by clearer, entitlement-aware workflows and surfaced anomalies. Components were reused across adjacent workflows, improving consistency and delivery speed. “We make the call faster and escalate less—everything we need is in one place.” — Front-office user (anonymised)",
+    metrics: [
+      { label: "Time-to-decision", before: "≈12 min", after: "≈4 min" },
+      { label: "Time-to-decision Δ", before: "", after: "-67%" },
+      { label: "Escalations / 100 trades", before: "↑", after: "↓" }
+    ],
+    timeline: [
+      { date: "Q3 2024", label: "Discovery & SME interviews" },
+      { date: "Q4 2024", label: "Prototypes & design system extensions" },
+      { date: "Q1 2025", label: "Pilot & rollout to operations" }
+    ],
     logo: "/images/cases/bofa-icon.svg"
   },
   {
