@@ -1,5 +1,5 @@
 // styles/global.scss
-@use "./tokens/tokens.scss" as *;
+@use "./tokens/colours.scss" as *;
 
 
 /* minimal base reset */
@@ -205,4 +205,14 @@ html, body {
   padding: 0 1.5em;
 }
 
+}
+
+.work-page{
+  padding: 6rem 6rem 0;
+}
+
+@media (max-width: 1366px){
+.work-page{
+  padding: 6rem 1.5rem 0;
+}
 }

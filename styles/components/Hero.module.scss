@@ -86,7 +86,7 @@ h4{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-bottom: 2.5rem;
     flex-wrap: wrap;
     letter-spacing: -0.02rem;
@@ -231,7 +231,7 @@ h4{
   }
 
   /* responsive adjustments */
-  @media (max-width: 1366px) and (min-width: 601px) {
+  @media (max-width: 1280px) and (min-width: 601px) {
     .heroIcons {
       grid-template-columns: repeat(4, 1fr);
       gap: 1.4rem;
@@ -283,21 +283,21 @@ h4{
 
   /* specialty badges (light neutral) */
   .specialty {
-    background: var(--color-primary-lighter);
+    background: var(--color-primary-light-600);
     color: var(--token-skill-core-text, #fff);
     border: none;
   }
 
   /* focus areas (outlined / subtle) */ 
   .focus {
-    background: var(--color-primary-light, #0f172a);
+    background: var(--color-primary-light-700, #0f172a);
     color: var(--token-skill-core-text, #fff);
     border: none;
   }
 
   /* core stack (dark solid) */
   .core {
-    background: var(--color-primary, #0f172a);
+    background: var(--color-primary-light-800, #0f172a);
     color: var(--token-skill-core-text, #fff);
     border: none;
   }

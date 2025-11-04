@@ -3,14 +3,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "@/styles/components/CaseModal.module.scss";
 import navStyles from "@/styles/components/Nav.module.scss";
+import Image from "next/image";
 
 type TimelineItem = { date?: string; label?: string };
 type Metric = { label: string; before: string; after: string };
 type CaseData = {
-  company?: string;
-  role?: string;
+  date?: string;       // <- add singular "date" (matches src/data/cases.ts)
   dates?: string;
   duration?: string;
+  company?: string;
+  role?: string;
   logo?: string;
   overview?: string;
   process?: string;
@@ -129,22 +131,22 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
     <div className={styles.backdrop} role="dialog" aria-modal="true" aria-label={`${caseData.company ?? "Case"} details`}>
       <div className={styles.modalContent} ref={modalRef}>
         <header className={styles.header}>
-          <div className={styles.titleRow}>
+          <div className={styles.headerLeft}>
             {caseData.logo ? (
               <div className={styles.logoWrapper}>
-                <img src={caseData.logo} alt={`${caseData.company ?? "company"} logo`} className={styles.logoImage} width={40} height={40} />
+                <Image src={caseData.logo as string} alt={`${caseData.company ?? "company"} logo`} className={styles.logoImage} width={40} height={40} />
               </div>
             ) : null}
             <div className={styles.headerInfo}>
               <h3 className={styles.company}>{caseData.company ?? ""}</h3>
               <h4 className={styles.roleName}>{caseData.role ?? ""}</h4>
-              <div className={styles.duration}>{caseData.dates ?? caseData.duration ?? ""}</div>
-            </div>
-          </div>
-
-          <button className={styles.closeButton} onClick={onClose} aria-label="Close">
-            ×
-          </button>
+              <div className={styles.duration}>
+                {caseData.date ?? caseData.dates ?? caseData.duration ?? ""}
+              </div>
+            </div></div>
+            <button className={styles.closeButton} onClick={onClose} aria-label="Close">
+              ×
+            </button>
         </header>
 
         <main className={styles.modalMain}>

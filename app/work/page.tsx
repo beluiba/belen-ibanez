@@ -1,4 +1,6 @@
+import React from "react";
 import WorkGrid from "../../src/components/WorkGrid";
+import Footer from "@/src/components/Footer";
 
 export const metadata = {
   title: "Work — Belén Ibáñez",
@@ -7,9 +9,12 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="work-container" id="main-content">
+    <main id="main-content" className="work-page">
       <h2>Work</h2>
       <WorkGrid mode="full" />
+
+      {/* show footer on work page */}
+      <Footer />
     </main>
   );
 }

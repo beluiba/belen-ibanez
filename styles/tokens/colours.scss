@@ -1,4 +1,4 @@
-// styles/tokens.scss
+// styles/colours.scss
 
 // Font
 $font-primary: 'Inter', system-ui, sans-serif;
@@ -55,14 +55,40 @@ $black: #000;// Fluid type
   --shadow-card: #{$shadow-card};
   --focus-ring: 0 0 0 2px #a78bfa;
 
-  /* Primary color (requested) */
-  --color-primary: #071E2E;
-  --color-primary-dark: #061823;   /* existing darker variant */
-  --color-primary-darker: #041218; /* very dark for high-contrast UI elements */
+  /* Primary color (anchor) */
+  --color-primary-anchor: #071E2E; /* original primary */
 
-  /* lighter alternatives derived from the same hue */
-  --color-primary-light: #1C3140;  /* subtle lighter variant for borders / hover */
-  --color-primary-lighter: #314553;/* even lighter for backgrounds / accents */
+  /* Generated tint scale (lighter → 900 near primary) */
+  --color-primary-light-50:  #FAFBFB;
+  --color-primary-light-100: #F3F4F5;
+  --color-primary-light-200: #E6E9EA;
+  --color-primary-light-300: #CDD2D5;
+  --color-primary-light-400: #B5BCC0;
+  --color-primary-light-500: #8F9AA1;
+  --color-primary-light-600: #6A7882;
+  --color-primary-light-700: #455662;
+  --color-primary-light-800: #263A48;
+  --color-primary-light-900: var(--color-primary-anchor);
+
+  /* Generated shade scale (darker → 900 near primary) */
+  --color-primary-dark-50:  #000000;
+  --color-primary-dark-100: #000202;
+  --color-primary-dark-200: #010305;
+  --color-primary-dark-300: #010609;
+  --color-primary-dark-400: #02090E;
+  --color-primary-dark-500: #030E15;
+  --color-primary-dark-600: #04121C;
+  --color-primary-dark-700: #051622;
+  --color-primary-dark-800: #061A28;
+  --color-primary-dark-900: var(--color-primary-anchor);
+
+  /* convenient aliases (choose shades you prefer) */
+  --color-primary: var(--color-primary-light-900);
+  --color-primary-700: var(--color-primary-light-700);
+  --color-primary-500: var(--color-primary-light-500);
+  --color-primary-300: var(--color-primary-light-300);
+  --color-primary-dark: var(--color-primary-dark-600);
+  --color-primary-darker: var(--color-primary-dark-800);
 
   --color-primary-bg: #e9f2f6; /* subtle background tint if needed */
 
@@ -70,8 +96,9 @@ $black: #000;// Fluid type
   --token-primary: var(--color-primary);
   --token-primary-dark: var(--color-primary-dark);
   --token-primary-darker: var(--color-primary-darker);
-  --token-primary-light: var(--color-primary-light);
-  --token-primary-lighter: var(--color-primary-lighter);
+  --token-primary-light-900: var(--color-primary-light-900);
+  --token-primary-light-700: var(--color-primary-light-700);
+  --token-primary-light-500: var(--color-primary-light-500);
 
   --color-bg: #fff;
   --color-bg-alt: #{$gray-100};
@@ -90,7 +117,7 @@ $black: #000;// Fluid type
   --color-text: #{$gray-50};
   --color-text-muted: #{$gray-400};
 
-  /* keep a readable primary in dark mode */
+  /* keep a readable primary in dark mode (pick from generated scale) */
   --color-primary: #0b3040;
   --color-primary-dark: #092833;
 

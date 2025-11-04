@@ -74,5 +74,5 @@
 
 @media (max-width: 720px) {
   .featuredRow { flex-direction: column; gap: 0.75rem; }
-  .viewMoreRow { justify-content: flex-start; }
+  .viewMoreRow { justify-content: right; }
 }
