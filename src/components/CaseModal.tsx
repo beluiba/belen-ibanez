@@ -140,14 +140,6 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
 
   const images = Array.isArray(caseData.images) ? caseData.images : [];
 
-  // special-section component for stacked layout
-  const Section: React.FC<{ heading: string; children: React.ReactNode }> = ({ heading, children }) => (
-    <section className={styles.section}>
-      <h5 className={styles.sectionHeading}>{heading}</h5>
-      <div className={styles.sectionBody}>{children}</div>
-    </section>
-  );
-
   return createPortal(
     <div className={styles.backdrop} role="dialog" aria-modal="true" aria-label={`${caseData.company ?? "Case"} details`}>
       <div className={styles.modalContent} ref={modalRef}>
