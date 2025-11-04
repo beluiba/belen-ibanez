@@ -22,7 +22,6 @@ pnpm-debug.log*
 node_modules
 .next
 dist
-out
 
 # Env / system
 .env
