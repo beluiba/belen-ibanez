@@ -38,7 +38,7 @@ export default function Hero() {
   // Skills data (three categories)
   const specialtyBadges = [
     "B2B SaaS",
-    "Data-heavy Products",
+    "Data-Heavy Products",
     "Design Systems",
     "Decision Dashboards",
   ];
@@ -46,7 +46,6 @@ export default function Hero() {
     "Enterprise UX",
     "FinTech",
     "Cybersecurity (SecOps)",
-    "Design Systems",
     "Onboarding & Activation",
     "Data Visualization",
   ];
@@ -67,7 +66,7 @@ export default function Hero() {
         <h2>Product UX/UI Design Engineer</h2>
         <h3>15+ years shipping interfaces that move KPIs.</h3>
         <p>
-          <b>End-to-end designer.</b> I clarify requirements, design systems, and build accessible, data-driven interfaces. <br />With evidence, clear data visualisation, and AI-aware workflows, I ship and iterate closely with product and engineering.
+          <b>End-to-end Designer.</b> I clarify requirements, design systems, and build accessible, data-driven interfaces. <br />With evidence, clear data visualisation, and AI-aware workflows, I ship and iterate closely with product and engineering.
         </p>
       </div>
 
