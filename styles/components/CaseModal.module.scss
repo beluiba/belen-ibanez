@@ -17,6 +17,7 @@
   justify-content: center;
   background: white;
   -webkit-overflow-scrolling: touch;
+  overflow: hidden;
 }
 
 /* header fixed at top of viewport */
@@ -557,5 +558,6 @@
 
   img{
     width: 100%;
+    margin-bottom: 2rem;
   }
 }

@@ -11,19 +11,19 @@ export const featured = [
         heading: "Overview",
         body: `The Good-to-Trade (GTT) portal helps front-office and operations make clear, auditable go/no-go decisions in minutes. The previous portal made this hard: a tangled product taxonomy and scattered screens meant traders spent too long piecing together which rule failed, why a trade was NGTT, and who could fix it. That slowed decisions, drove escalations, and created unclear handoffs.`,
         wrapperClass: "case-block case-overview",
-        paragraphClass: "case-paragraph"
+        paragraphClass: "case-paragraph",
       },
       {
         heading: "Context & Problem",
         body: [
           "Confusing taxonomy: overlapping categories and inconsistent names made it hard to build a single mental model.",
           "Opaque NGTT reasons: users couldn’t easily see which control failed, where it lived, or who owned the fix.",
-          "Inefficient workflow: people jumped between lists, detail pages, and email to find the “right person,” pushing SLAs at risk."
+          "Inefficient workflow: people jumped between lists, detail pages, and email to find the “right person,” pushing SLAs at risk.",
         ],
         wrapperClass: "case-block case-context",
         paragraphClass: "case-paragraph",
         listClass: "case-bullets",
-        listItemClass: "case-bullet"
+        listItemClass: "case-bullet",
       },
       {
         heading: "What We Changed",
@@ -31,36 +31,36 @@ export const featured = [
           "Simplified taxonomy: a clear hierarchy aligned to how FO/Ops think (portfolio → product → trade → control) so roll-ups are accurate and predictable.",
           "Status at a glance: one view that shows GTT/NGTT, the failing rule, the rationale, evidence, timestamps/lineage, and the next best action.",
           "Ownership & routing: every failing control shows the accountable owner, resolver group, and a direct contact path (assign/escalate) to move work immediately.",
-          "Progressive disclosure: critical signals first; details one click away; audit trail and entitlements always visible."
+          "Progressive disclosure: critical signals first; details one click away; audit trail and entitlements always visible.",
         ],
         wrapperClass: "case-block case-changes",
         paragraphClass: "case-paragraph",
         listClass: "case-bullets",
-        listItemClass: "case-bullet"
+        listItemClass: "case-bullet",
       },
       {
         heading: "My Role",
         body: `End-to-end: clarified requirements with SMEs (FO, Ops, Compliance), redesigned the taxonomy and information architecture, defined status/ownership patterns, extended the bank’s design system, and built accessible, data-driven UI.`,
         wrapperClass: "case-block case-role",
-        paragraphClass: "case-paragraph"
+        paragraphClass: "case-paragraph",
       },
       {
         heading: "Decision Lens (JTBD)",
         body: [
           "When a trade is flagged NGTT, users need to see which control failed and who owns it so they can route and resolve within minutes.",
-          "When product risk shifts, users need a single view of exposure and exceptions to make a confident, auditable go/no-go call."
+          "When product risk shifts, users need a single view of exposure and exceptions to make a confident, auditable go/no-go call.",
         ],
         wrapperClass: "case-block case-jtbd",
         paragraphClass: "case-paragraph",
         listClass: "case-bullets",
-        listItemClass: "case-bullet"
+        listItemClass: "case-bullet",
       },
       {
         heading: "Success Targets",
         body: `Reduce time-to-decision, cut escalations, improve SLA-on-time resolution, and create reusable patterns that scale to adjacent workflows.`,
         wrapperClass: "case-block case-success",
-        paragraphClass: "case-paragraph"
-      }
+        paragraphClass: "case-paragraph",
+      },
     ],
     // Tools list shown in the first tab
     // tools moved into the "Process" screen (see screens[0].tools)
@@ -77,37 +77,30 @@ export const featured = [
           "Testing: Ran usability sessions with traders and ops; iterated copy, flows, and keyboard paths to reduce time-to-decision and clarify escalation routes.",
           "Design system (Helix): Implemented with Helix; extended tokens, states, and a set of components with usage notes and WCAG 2.2 guidance.",
           "System design: Embedded entitlements, audit trail, and change history; added safe-by-default controls with preview-before-save.",
-          "Delivery: Piloted with operations, captured metrics, and refined for scale; documented patterns for reuse across adjacent workflows."
+          "Delivery: Piloted with operations, captured metrics, and refined for scale; documented patterns for reuse across adjacent workflows.",
         ],
         // moved note from overview into process screen
         sideNote: "Note: visuals use sample/redacted data.",
-        tools: [
-          "Figma / FigJam",
-          "Design tokens",
-          "Horizon",
-          "Helix"
-        ],
+        tools: ["Figma / FigJam", "Design tokens", "Horizon", "Helix"],
         images: [],
         wrapperClass: "case-block case-screens",
         paragraphClass: "case-paragraph",
         listClass: "case-bullets",
-        listItemClass: "case-bullet"
+        listItemClass: "case-bullet",
       },
       {
         heading: "Concept",
         sideNote:
           "To demonstrate how the solution works, I created this concept interface. The production designs are the bank’s property and can’t be shared. Visuals use sample/redacted data",
         paragraph:
-          "A single GTT workspace that surfaces go/NGTT status, top exceptions, and next actions in one view. A rule-inspector panel explains which control fired, why, and who owns the fix, with assign/escalate built in. Progressive disclosure reveals evidence, lineage, and entitlements, preserving auditability without slowing triage.",
+          "A single GTT workspace that surfaces go/NGTT status, top exceptions, and next actions in one view. A rule-inspector panel explains which control fired, why, and who owns the fix, with assign/escalate built in. Progressive disclosure reveals evidence, lineage, and entitlements, preserving auditability without slowing triage. To demonstrate how the solution works, I created this concept interface. The production designs are the bank’s property and can’t be shared. Visuals use sample/redacted data.",
         bullets: [],
-        images: [
-          "/images/cases/bofa-1.png"
-        ],
+        images: ["/images/cases/bofa-1.png"],
         wrapperClass: "case-block case-concept",
         paragraphClass: "case-paragraph",
         listClass: "case-bullets",
-        listItemClass: "case-bullet"
-      }
+        listItemClass: "case-bullet",
+      },
     ],
     // Screens (second tab) note + images (sample/redacted)
     context:
@@ -119,90 +112,459 @@ export const featured = [
         heading: "Operational speed",
         body: "Go/NGTT time-to-decision dropped from ~12m → ~4m (-67%) by consolidating status, rationale, and next action in one view.",
         wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph"
+        paragraphClass: "case-paragraph",
       },
       {
         heading: "Quality & risk",
         body: "Clear NGTT explanations, evidence, and ownership reduced mis-routes and unnecessary escalations.",
         wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph"
+        paragraphClass: "case-paragraph",
       },
       {
         heading: "SLA reliability",
         body: "On-time resolution increased; fewer SLA-risk cases as triage paths became deterministic.",
         wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph"
+        paragraphClass: "case-paragraph",
       },
       {
         heading: "Adoption",
         body: "Traders and Ops adopted the unified workflow; components and patterns were reused in adjacent areas, reducing delivery time for new screens.",
         wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph"
+        paragraphClass: "case-paragraph",
       },
       {
         heading: "Design system impact",
         body: "Extended Helix with status chips, exception banners, and rule-inspector patterns (tokens, states, usage notes), raising system coverage for data-heavy B2B flows.",
         wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph"
+        paragraphClass: "case-paragraph",
       },
       {
         heading: "Compliance & accessibility",
         body: "WCAG-aligned interactions; entitlements and audit trail surfaced without slowing triage.",
         wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph"
-      }
+        paragraphClass: "case-paragraph",
+      },
     ],
     metrics: [
       { label: "Time-to-decision", before: "≈12 min", after: "≈4 min" },
       { label: "Time-to-decision Δ", before: "", after: "-67%" },
-      { label: "Escalations / 100 trades", before: "↑", after: "↓" }
+      { label: "Escalations / 100 trades", before: "↑", after: "↓" },
     ],
     timeline: [
       { date: "Q3 2024", label: "Discovery & SME interviews" },
       { date: "Q4 2024", label: "Prototypes & design system extensions" },
-      { date: "Q1 2025", label: "Pilot & rollout to operations" }
+      { date: "Q1 2025", label: "Pilot & rollout to operations" },
     ],
-    logo: "/images/cases/bofa-icon.svg"
+    logo: "/images/cases/bofa-icon.svg",
   },
   {
     id: "adarma",
     company: "Adarma",
     role: "Senior Product Designer",
-    date: "Aug 2023 - Sep 2024 ",
-    context: "I designed an executive dashboard that visualises security posture risk exposure, control coverage, and trends giving decision-makers an at a glance view to prioritise remediation, track progress, and justify investment with confidence.",
-    challenge: "Balance power-user efficiency with clarity; unify fragmented views.",
-    approach: "Svelte component exploration, heuristic reviews, design tokens, task-driven IA.",
-    impact: "Improved analyst workflows and visibility (MTTD/MTTR).",
-    tools: ["Figma","Svelte"],
+    date: "Aug 2023 - Sep 2024",
+    overview:
+      "Security-operations dashboards to help analysts and managers see posture, triage alerts, and track incident response in one place—built for speed, clarity, and repeatability.",
+    overviewBlocks: [
+      {
+        heading: "Overview",
+        body: `Security-operations dashboards to help analysts and managers see posture, triage alerts, and track incident response in one place—built for speed, clarity, and repeatability.`,
+        wrapperClass: "case-block case-overview",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Context & Problem",
+        body: [
+          "Fragmented views across SIEM, ticketing, and reporting made triage slow and inconsistent.",
+          "Alert floods hid true priority; ownership and next steps were unclear.",
+          "Leadership lacked a trustworthy “state of posture” view to steer action.",
+        ],
+        wrapperClass: "case-block case-context",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "What We Changed",
+        body: [
+          "Unified workspace: posture, alerts, cases, and trends in a single, role-aware view.",
+          "Clear priority model with progressive disclosure (signal → rationale → next action).",
+          "Ownership routing (who, by when) and lightweight playbook cues in-context.",
+          "Tokenised, reusable UI patterns for rapid iteration across modules.",
+        ],
+        wrapperClass: "case-block case-changes",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "My Role",
+        body: `End-to-end: clarified requirements with SOC analysts/managers, defined IA and interaction patterns, designed the dashboards, authored design tokens, and implemented core UI in Svelte.`,
+        wrapperClass: "case-block case-role",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Decision Lens (JTBD)",
+        body: [
+          "When an alert spikes, an analyst needs to see impact and likely root cause so they can triage and assign within minutes.",
+          "When posture drifts, a manager needs a single, trustworthy view of gaps and owners to plan remediation.",
+          "When an incident opens, the team needs status, evidence, and next actions in one place to reduce time to contain.",
+        ],
+        wrapperClass: "case-block case-jtbd",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "Success Targets",
+        body: `Reduce MTTA/MTTR, increase SLA-on-time closures, cut mis-routes/hand-offs, and improve posture visibility (fewer unknowns, clearer owners).`,
+        wrapperClass: "case-block case-success",
+        paragraphClass: "case-paragraph",
+      },
+    ],
+    // Process & Screens
+    screens: [
+      {
+        heading: "Process",
+        paragraph:
+          "Discovery, definition, exploration, systemisation, and validation focused on role-aware IA, priority model, and token-driven component patterns.",
+        bullets: [
+          "Discovery: SME interviews (SOC L1–L3, IR leads), tool/notification audit, and review of typical playbooks.",
+          "Definition: IA for role-aware views (Analyst, Lead, Manager) and a common priority model.",
+          "Exploration: Low-fi flows → interactive prototypes; killed concepts that added clicks or hid context.",
+          "Systemisation: Design tokens + component patterns (status chips, evidence panels, trend bands).",
+          "Validation: Task-based walkthroughs; refined copy, keyboard paths, and empty/error/loading states.",
+        ],
+        tools: ["Figma / FigJam", "Design tokens", "Svelte"],
+        images: [],
+        wrapperClass: "case-block case-screens",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "Concept",
+        paragraph:
+          "High-level proposal: posture overview with risk scores and owners; triage board with rationale and one-click assign/escalate; incident view with timeline and containment checklist; trends & anomalies with links to affected assets.",
+        bullets: [
+          "Posture overview: risk scores, control coverage, and drift with owners and due dates.",
+          "Triage board: alert queues with rationale, suggested action, and one-click assign/escalate.",
+          "Incident view: timeline, evidence, containment checklist, and stakeholder updates.",
+          "Trends & anomalies: recent deltas with “what changed” and links to affected assets.",
+          "Ownership routing: resolver group, SLA clock, and blockers surfaced inline.",
+        ],
+        images: [
+          "/images/cases/adarma-1.png",
+          "/images/cases/adarma-2.png",
+          "/images/cases/adarma-3.png",
+          "/images/cases/adarma-4.png",
+        ],
+        wrapperClass: "case-block case-concept",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+    ],
+    context:
+      "Built a unified, role-aware security operations workspace that reduces context-switching and supports repeatable triage and incident response.",
     images: [
       "/images/cases/adarma-1.png",
-      "/images/cases/adarma-2.svg",
-      "/images/cases/adarma-3.svg",
-      "/images/cases/adarma-4.svg",
-      "/images/cases/adarma-5.svg"
+      "/images/cases/adarma-2.png",
+      "/images/cases/adarma-3.png",
+      "/images/cases/adarma-4.png",
     ],
-    logo: "/images/cases/adarma-icon.png"
+    // Impact & Outcome structured blocks
+    impactBlocks: [
+      {
+        heading: "Operational speed",
+        body: "Faster triage by consolidating signal, rationale, and next action; reduced context-switching and duplicate investigation.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Quality & risk",
+        body: "Clearer prioritisation and evidence reduced mis-routes and improved containment decisions.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "SLA reliability",
+        body: "On-time closures increased as ownership, due dates, and blockers were visible in the triage view.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Adoption",
+        body: "Analysts and managers used the unified flows as the default workspace; patterns reused across additional modules.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Design system impact",
+        body: "Token-driven components (status chips, evidence panels, exception banners) accelerated new screen delivery and improved consistency.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Compliance & accessibility",
+        body: "WCAG-aligned interactions, readable deltas, and auditable timelines; role-based access respected entitlements.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+    ],
+    metrics: [
+      // metrics indicative — add real numbers if available
+      { label: "MTTA / MTTR", before: "—", after: "Improved" },
+    ],
+    timeline: [
+      { date: "Q1 2024", label: "Discovery & SME interviews" },
+      { date: "Q2 2024", label: "Prototypes & tokenisation" },
+      { date: "Q3 2024", label: "Pilot & rollout" },
+    ],
+    logo: "/images/cases/adarma-icon.png",
   },
   {
     id: "silico",
     company: "SilicoAI",
     role: "UX Engineer",
     date: "Dec 2020 - Jun 2023",
-    context: "I designed a decision intelligence dashboard that visualises scenarios, constraints, and projected outcomes, letting decision makers run what ifs, compare trade offs, and prioritise the highest impact actions. Collaborating with engineering in making complex simulations feel clear and actionable.",
-    challenge: "Make models approachable for non-data users while preserving power features.",
-    approach: "Built a design system; dashboards & inspector; clarified IA.",
-    impact: "Consistent UI, faster delivery, clearer model inspection.",
-    tools: ["Figma","React"],
+    overview:
+      "Decision-intelligence dashboards and workflows that let operators and leaders explore “what-if” scenarios, understand drivers, and choose the next best action with confidence.",
+    overviewBlocks: [
+      {
+        heading: "Overview",
+        body: `Decision-intelligence dashboards and workflows that let operators and leaders explore “what-if” scenarios, understand drivers, and choose the next best action with confidence.`,
+        wrapperClass: "case-block case-overview",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Context & Problem",
+        body: [
+          "Insights were split across models, spreadsheets, and BI views—making scenario planning slow and inconsistent.",
+          "Users struggled to see drivers vs outcomes and how a change in one lever flowed through the system.",
+          "Collaboration friction: results weren’t easy to share, compare, or explain to non-modelers.",
+        ],
+        wrapperClass: "case-block case-context",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "What We Changed",
+        body: [
+          "Unified workspace that brings models, scenarios, and KPIs together with a shared interaction pattern.",
+          "Driver trees + scenario controls with progressive disclosure (assumptions → impact → risk).",
+          "Clear comparison views (baseline vs scenario) and annotated “why” explanations.",
+          "Tokenised, reusable UI patterns for charts, deltas, sensitivities, and “next action” prompts.",
+        ],
+        wrapperClass: "case-block case-changes",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "My Role",
+        body: `End-to-end: clarified requirements with PMs/SMEs, defined IA and interaction patterns, designed the dashboards, authored design tokens, and implemented core UI in React/Next.js with data-viz components.`,
+        wrapperClass: "case-block case-role",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Decision Lens (JTBD)",
+        body: [
+          "When exploring options, a user needs to adjust drivers and instantly see KPI impact so they can pick the best scenario.",
+          "When sharing results, a user needs a clear explanation of what changed and why so stakeholders can align quickly.",
+          "When a metric moves, a user needs likely causes and recommended actions to decide whether to pivot or proceed.",
+        ],
+        wrapperClass: "case-block case-jtbd",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "Success Targets",
+        body: `Reduce time from question → scenario → decision, increase scenario adoption in planning cycles, and improve clarity of “why” behind KPI changes.`,
+        wrapperClass: "case-block case-success",
+        paragraphClass: "case-paragraph",
+      },
+    ],
+    screens: [
+      {
+        heading: "Process",
+        paragraph:
+          "Discovery, definition, exploration, systemisation, and validation focused on IA for models → drivers → scenarios → KPIs, plus reusable comparison and explanation patterns.",
+        bullets: [
+          "Discovery: Interviews with modelers, ops, and exec users; audit of current models/dashboards and hand-offs.",
+          "Definition: IA for models → drivers → scenarios → KPIs; standardised comparison and explanation patterns.",
+          "Exploration: Low-fi sketches → interactive prototypes; killed paths that hid assumptions or slowed iteration.",
+          "Systemisation: Design tokens + component patterns (driver controls, delta chips, sensitivity bands, compare panels).",
+          "Validation: Task-based reviews; tuned copy, empty/error/loading states, keyboard paths, and chart annotations.",
+        ],
+        tools: [
+          "Figma / FigJam",
+          "Design tokens",
+          "React / Next.js",
+          "TypeScript",
+          "SCSS",
+          "Storybook",
+          "Recharts / D3",
+        ],
+        images: [],
+        wrapperClass: "case-block case-screens",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+
+      // replaced single "Concept" block with three project showcases (each has text, bullets, 4 images)
+      {
+        heading: "Project — Scenario / Dashboard Workspace",
+        paragraph:
+          "Designed decision-intelligence dashboards that pair live scenarios with KPIs so leaders can forecast outcomes, compare options, and choose the next best action with confidence.",
+        bullets: [
+          "Scenario workspace: create, save, and switch scenarios; compare to baseline with KPI deltas.",
+          "Driver highlights: show which levers moved and their contribution to change.",
+          "Save & share: persist scenarios, add notes, and share links for review.",
+          "Quick filters: focus by time range, segment, or confidence band.",
+          "Readable at a glance: concise summaries with deeper detail on demand.",
+        ],
+        images: [
+          "/images/cases/silico-1.svg",
+          "/images/cases/silico-2.svg",
+          "/images/cases/silico-3.svg",
+          "/images/cases/silico-4.svg",
+          "/images/cases/silico-5.svg",
+          "/images/cases/silico-6.svg",
+          "/images/cases/silico-7.svg",
+        ],
+        wrapperClass: "case-block case-project",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "Project — New Inspector",
+        paragraph:
+          "Built an interactive inspector for model elements so users could review formulas, edit parameters, and understand downstream impact without leaving context.",
+        bullets: [
+          "Editable parameters: adjust ranges, step size, and defaults inline.",
+          "Formula view: reveal logic, assumptions, and constraints per element.",
+          "Impact preview: show affected KPIs and sensitivity before applying changes.",
+          "Provenance links: trace values back to sources and model inputs.",
+          "Guardrails: validation, error states, and safe-to-revert controls.",
+        ],
+        images: [
+          "/images/cases/silico-8.svg",
+          "/images/cases/silico-9.svg",
+          "/images/cases/silico-10.svg",
+          "/images/cases/silico-11.svg",
+          "/images/cases/silico-12.svg",
+        ],
+        wrapperClass: "case-block case-project",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "Project — Insights",
+        paragraph:
+          "Prototyped ‘quick simulations’ that let users tweak a single parameter and see immediate impact—paired with a minimal visual redesign for faster interpretation.",
+        bullets: [
+          "One-knob runs: change one input and get instant KPI feedback.",
+          "Context chips: show what changed, by how much, and confidence.",
+          "Minimal UI: reduced chrome, clearer hierarchy, accessible contrasts.",
+          "Inline rationale: explain why the metric moved (drivers, assumptions).",
+          "Export & share: snapshot results for async decision reviews.",
+        ],
+        images: [
+          "/images/cases/silico-13.svg",
+          "/images/cases/silico-14.svg",
+          "/images/cases/silico-15.svg",
+          "/images/cases/silico-16.svg",
+        ],
+        wrapperClass: "case-block case-project",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+      {
+        heading: "Project — Design System",
+        paragraph:
+          "Established Silico’s token-driven design system and core components to speed delivery and keep complex, data-heavy screens consistent and accessible.",
+        bullets: [
+          "Design tokens: color, spacing, typography, elevation, and data states.",
+          "Core components: driver controls, delta chips, compare panels, tabs.",
+          "Documentation: usage guidelines, do/don’t examples, and patterns.",
+          "Storybook integration: live props, states, and testable stories.",
+          "Accessibility: WCAG-aligned roles, focus, and keyboard behaviors.",
+        ],
+        images: [
+          "/images/cases/SilicoSystem-1.svg",
+          "/images/cases/SilicoSystem-2.svg",
+          "/images/cases/SilicoSystem-3.svg",
+          "/images/cases/SilicoSystem-4.svg",
+        ],
+        wrapperClass: "case-block case-project",
+        paragraphClass: "case-paragraph",
+        listClass: "case-bullets",
+        listItemClass: "case-bullet",
+      },
+    ],
+    context:
+      "I designed a decision intelligence dashboard that visualises scenarios, constraints, and projected outcomes, letting decision makers run what ifs, compare trade offs, and prioritise the highest impact actions.",
     images: [
       "/images/cases/silico-1.svg",
       "/images/cases/silico-2.svg",
       "/images/cases/silico-3.svg",
       "/images/cases/silico-4.svg",
-      "/images/cases/silico-5.svg"
+      "/images/cases/silico-5.svg",
     ],
-    logo: "/images/cases/silico-icon.svg"
+    impactBlocks: [
+      {
+        heading: "Operational speed",
+        body: "Shorter path from question → model run → decision by consolidating drivers, KPIs, and comparisons in one place.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Quality & risk",
+        body: "Clear assumptions and provenance reduced misinterpretation; sensitivity views highlighted brittle scenarios early.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "SLA reliability",
+        body: "Planning/decision checkpoints hit more consistently as scenarios became repeatable and sharable.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Adoption",
+        body: "Scenario workspace became the default for planning discussions; patterns reused across additional modules.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Design system impact",
+        body: "Token-driven components (driver controls, delta chips, compare panels) accelerated delivery and ensured visual consistency.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+      {
+        heading: "Compliance & accessibility",
+        body: "WCAG-aligned interactions and readable chart annotations; audit-friendly provenance for inputs, runs, and outputs.",
+        wrapperClass: "case-block case-impact",
+        paragraphClass: "case-paragraph",
+      },
+    ],
+    metrics: [
+      // indicative metrics can be added here if available
+    ],
+    timeline: [
+      { date: "Q4 2020", label: "Discovery & SME interviews" },
+      { date: "Q1 2021", label: "Prototypes & tokenisation" },
+      { date: "Q2 2021", label: "Pilot & rollout" },
+    ],
+    logo: "/images/cases/silico-icon.svg",
   },
-
 ];
 
 export const otherWorks = [
@@ -211,27 +573,33 @@ export const otherWorks = [
     company: "PSA Peugeot",
     role: "Senior Product UX UI Developer - Contractor",
     date: "Feb 2020 - Oct 2020",
-    context: "Placeholder context for PSA Peugeot — automotive experience and connected apps.",
-    challenge: "Placeholder challenge: diverse device targets and complex configuration flows.",
-    approach: "Placeholder approach: user research, prototyping, component library.",
+    context:
+      "Placeholder context for PSA Peugeot — automotive experience and connected apps.",
+    challenge:
+      "Placeholder challenge: diverse device targets and complex configuration flows.",
+    approach:
+      "Placeholder approach: user research, prototyping, component library.",
     impact: "Placeholder impact summary.",
     tools: ["Figma", "React"],
     images: ["/images/cases/psa-1.jpg", "/images/cases/psa-2.jpg"],
     logo: "/images/cases/psa-icon.svg",
-    restrictions: "Placeholder restrictions (if any)"
+    restrictions: "Placeholder restrictions (if any)",
   },
   {
     id: "highland",
     company: "Highland Easy Life",
     role: "Senior Product UX UI Developer - Contractor",
     date: "Aug 2019 - Oct 2020",
-    context: "Placeholder context for Highland Easy Life — insurance quoting and onboarding.",
-    challenge: "Placeholder challenge: align B2B and B2C flows, simplify quoting.",
-    approach: "Placeholder approach: journey mapping, iterative prototypes, usability testing.",
+    context:
+      "Placeholder context for Highland Easy Life — insurance quoting and onboarding.",
+    challenge:
+      "Placeholder challenge: align B2B and B2C flows, simplify quoting.",
+    approach:
+      "Placeholder approach: journey mapping, iterative prototypes, usability testing.",
     impact: "Placeholder impact summary.",
     tools: ["Figma", "Sketch"],
     images: ["/images/cases/highland-1.jpg", "/images/cases/highland-2.jpg"],
-    logo: "/images/cases/highland-icon.jpeg"
+    logo: "/images/cases/highland-icon.jpeg",
   },
   {
     id: "emerios",
@@ -240,18 +608,20 @@ export const otherWorks = [
     date: "Dec 2013 - Mar 2017",
     context: "Placeholder context for Emerios — sales and backoffice platform.",
     challenge: "Placeholder challenge: legacy workflows, high data density.",
-    approach: "Placeholder approach: design system, performance-minded UI components.",
+    approach:
+      "Placeholder approach: design system, performance-minded UI components.",
     impact: "Placeholder impact summary.",
     tools: ["Figma"],
     images: ["/images/cases/emerios-1.jpg"],
-    logo: "/images/cases/emerios-icon.svg"
+    logo: "/images/cases/emerios-icon.svg",
   },
   {
     id: "misc",
     company: "More Works",
     role: "Various Projects",
     date: "2010 - Present",
-    context: "Collection of smaller projects and experiments — gallery-style entry.",
+    context:
+      "Collection of smaller projects and experiments — gallery-style entry.",
     challenge: "Various.",
     approach: "Placeholder approach: short case summaries and visual showcase.",
     impact: "Placeholder impact summary.",
@@ -260,9 +630,9 @@ export const otherWorks = [
       "/images/cases/more-1.jpg",
       "/images/cases/more-2.jpg",
       "/images/cases/more-3.jpg",
-      "/images/cases/more-4.jpg"
-    ]
-  }
+      "/images/cases/more-4.jpg",
+    ],
+  },
 ];
 
 // ensure `otherWorks` is defined above (the array you created)
