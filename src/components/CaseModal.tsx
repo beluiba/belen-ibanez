@@ -6,6 +6,18 @@ import navStyles from "@/styles/components/Nav.module.scss";
 
 type TimelineItem = { date?: string; label?: string };
 type Metric = { label: string; before: string; after: string };
+
+// Structured screen block supporting both new and legacy shapes
+type ScreenBlock = {
+  heading?: string;
+  body?: string | string[];
+  images?: string[];
+  paragraph?: string;
+  bullets?: string[];
+  sideNote?: string;
+  tools?: string[]; // <-- added
+};
+
 type CaseData = {
   id?: string | number;
   date?: string;
@@ -19,10 +31,12 @@ type CaseData = {
   // new structured overview blocks (optional)
   overviewBlocks?: { heading?: string; body?: string | string[] }[];
   process?: string;
-  screens?: string;
+  // screens is now a structured array (heading/body/images) not a plain string
+  screens?: ScreenBlock[];
   tools?: string[];
   impact?: string;
-  timeline?: TimelineItem[];
+  impactBlocks?: { heading?: string; body?: string; wrapperClass?: string; paragraphClass?: string }[];
+  timeline?: TimelineItem[];    
   metrics?: Metric[];
   images?: string[];
   subtitle?: string;
@@ -40,8 +54,8 @@ type CaseModalProps = {
 };
 
 const TAB_TITLES = [
-  "Overview + Ideation & Tools",
-  "Screens (Key Moments)",
+  "Overview",
+  "Process & Screens",
   "Impact & Outcome",
 ] as const;
 
@@ -220,61 +234,181 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
 
   // Updated tab renderer uses renderOverviewBlocks for the first combined tab
   const tabContentRenderers: Record<typeof TAB_TITLES[number], React.ReactNode> = {
-    "Overview + Ideation & Tools": (
+    "Overview": (
       <div className={styles.sectionBody}>
         {renderOverviewBlocks()}
-        <section>
-          <h6 className={styles.subHeading}>Ideation & Process</h6>
-          <p>{caseData.process ?? "No process information."}</p>
-        </section>
-        <section>
-          <h6 className={styles.subHeading}>Tools</h6>
-          {Array.isArray(caseData.tools) && caseData.tools.length > 0 ? (
-            <div className={styles.toolsList} role="list">
+        {Array.isArray(caseData.tools) && caseData.tools.length > 0 ? (
+          <section className={styles.toolsSection}>
+            <div className={styles.toolsList} role="list" aria-label="Tools used">
               {caseData.tools.map((t, i) => (
                 <span key={i} role="listitem" className={styles.skill}>
                   {t}
                 </span>
               ))}
             </div>
-          ) : (
-            <p>No tools listed.</p>
-          )}
-        </section>
+          </section>
+        ) : null}
       </div>
     ),
-    "Screens (Key Moments)": (
+    "Process & Screens": (
       <div className={styles.sectionBody}>
-        <p>{caseData.screens ?? "Key screens and moments from this project."}</p>
-        <div className={styles.screensGrid}>
-          {(caseData.images ?? []).length > 0 ? (
-            (caseData.images ?? []).map((src, idx) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={idx} src={src} alt={`${caseData.company ?? "work"} screenshot ${idx + 1}`} className={styles.screenThumb} />
-            ))
-          ) : (
-            <p>No screens available.</p>
-          )}
-        </div>
+        {Array.isArray(caseData.screens) && caseData.screens.length > 0 ? (
+          (() => {
+            const screens = caseData.screens ?? [];
+            const [processScreen, ...otherScreens] = screens;
+
+            return (
+              <div className={styles.overviewBlocks}>
+                {/* Render Process (first screen) */}
+                {processScreen ? (
+                  <div className={styles.overviewBlock}>
+                    {processScreen.heading ? <h5 className={styles.overviewHeading}>{processScreen.heading}</h5> : null}
+
+                    {typeof processScreen.body === "string" ? (
+                      <p className={styles.caseParagraph}>{processScreen.body}</p>
+                    ) : null}
+
+                    {typeof processScreen.paragraph === "string" ? (
+                      <p className={styles.caseParagraph}>{processScreen.paragraph}</p>
+                    ) : null}
+
+                    {/* side notes removed */}
+
+                    {Array.isArray(processScreen.bullets) && processScreen.bullets.length > 0 ? (
+                      <ul className={styles.caseBullets}>
+                        {processScreen.bullets.map((line, li) => (
+                          <li key={li} className={styles.caseBullet}>
+                            {line}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : Array.isArray(processScreen.body) ? (
+                      <ul className={styles.caseBullets}>
+                        {processScreen.body.map((line, li) => (
+                          <li key={li} className={styles.caseBullet}>
+                            {typeof line === "string" ? line.replace(/^\*\s*/, "") : line}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                ) : null}
+
+                {/* Tools title & list inserted AFTER Process and BEFORE Concept/other screens */}
+                {processScreen && Array.isArray(processScreen.tools) && processScreen.tools.length > 0 ? (
+                  <section className={styles.overviewBlock}>
+                    <h6 className={styles.subHeading}>Tools</h6>
+                    <div className={styles.toolsList} role="list" aria-label="Tools used">
+                      {processScreen.tools.map((t, ti) => (
+                        <span key={ti} role="listitem" className={styles.skill}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </section>
+                ) : null}
+
+                {/* Render remaining screens (Concept, etc.) */}
+                {otherScreens.map((s, i) => (
+                  <div key={i} className={styles.overviewBlock}>
+                    {s.heading ? <h5 className={styles.overviewHeading}>{s.heading}</h5> : null}
+
+                    {typeof s.body === "string" ? (
+                      <p className={styles.caseParagraph}>{s.body}</p>
+                    ) : null}
+
+                    {typeof s.paragraph === "string" ? (
+                      <p className={styles.caseParagraph}>{s.paragraph}</p>
+                    ) : null}
+
+                    {/* side notes removed */}
+
+                    {Array.isArray(s.bullets) && s.bullets.length > 0 ? (
+                      <ul className={styles.caseBullets}>
+                        {s.bullets.map((line, li) => (
+                          <li key={li} className={styles.caseBullet}>
+                            {line}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : Array.isArray(s.body) ? (
+                      <ul className={styles.caseBullets}>
+                        {s.body.map((line, li) => (
+                          <li key={li} className={styles.caseBullet}>
+                            {typeof line === "string" ? line.replace(/^\*\s*/, "") : line}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+
+                    {Array.isArray(s.images) && s.images.length > 0 ? (
+                      <div className={styles.screensGrid}>
+                        {s.images.map((src, idx) => (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            key={idx}
+                            src={src}
+                            alt={`${caseData.company ?? "work"} screenshot ${idx + 1}`}
+                            className={styles.screenThumb}
+                          />
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            );
+          })()
+        ) : (
+          <>
+            <p>{Array.isArray(caseData.images) && caseData.images.length > 0 ? "Key screens and moments from this project." : "No screens available."}</p>
+            <div className={styles.screensGrid}>
+              {Array.isArray(caseData.images) && caseData.images.length > 0 ? (
+                caseData.images.map((src, idx) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={idx}
+                    src={src}
+                    alt={`${caseData.company ?? "work"} screenshot ${idx + 1}`}
+                    className={styles.screenThumb}
+                  />
+                ))
+              ) : null}
+            </div>
+          </>
+        )}
       </div>
     ),
     "Impact & Outcome": (
       <div className={styles.sectionBody}>
-        <p>{caseData.impact ?? "No impact information."}</p>
-        {caseData.timeline && caseData.timeline.length > 0 ? (
+        {Array.isArray(caseData.impactBlocks) && caseData.impactBlocks.length > 0 ? (
+          <div className={styles.overviewBlocks}>
+            {caseData.impactBlocks.map((b, i) => (
+              <div key={i} className={b.wrapperClass ?? styles.overviewBlock}>
+                {b.heading ? <h5 className={styles.overviewHeading}>{b.heading}</h5> : null}
+                <p className={b.paragraphClass ?? styles.caseParagraph}>{b.body}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          caseData.impact ? <p>{caseData.impact}</p> : null
+        )}
+
+        {caseData.timeline && caseData.timeline.length > 0 && (
           <ul className={styles.timeline}>
             {caseData.timeline.map((t, i) => (
               <li key={i}><strong>{t.date ?? ""}</strong> — {t.label ?? ""}</li>
             ))}
           </ul>
-        ) : null}
-        {caseData.metrics && caseData.metrics.length > 0 ? (
+        )}
+
+        {caseData.metrics && caseData.metrics.length > 0 && (
           <ul className={styles.metrics}>
             {caseData.metrics.map((m, i) => (
               <li key={i}>{m.label}: {m.before} → {m.after}</li>
             ))}
           </ul>
-        ) : null}
+        )}
       </div>
     ),
   };
@@ -427,9 +561,9 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
         </main>
 
         <footer className={styles.footer}>
-          <button type="button" className="btnToken--outline" onClick={callPrev} aria-label="Previous project" disabled={total <= 1}>← Prev</button>
+          <button type="button" className="btnToken--outline" onClick={callPrev} aria-label="Previous project" disabled={total <= 1}>← Previous Project</button>
           <div style={{ flex: 1 }} />
-          <button type="button" className="btnToken--outline" onClick={callNext} aria-label="Next project" disabled={total <= 1}>Next →</button>
+          <button type="button" className="btnToken--outline" onClick={callNext} aria-label="Next project" disabled={total <= 1}>Next Project →</button>
         </footer>
       </div>
     </div>,
