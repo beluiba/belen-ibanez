@@ -9,12 +9,12 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
-    <main id="main-content" className="work-page">
+    <div className="work-page">
       <h2>Work</h2>
       <WorkGrid mode="full" />
 
       {/* show footer on work page */}
       <Footer />
-    </main>
+    </div>
   );
 }

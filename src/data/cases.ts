@@ -333,8 +333,6 @@ export const featured = [
       {
         heading: "Overview",
         body: `Decision-intelligence dashboards and workflows that let operators and leaders explore “what-if” scenarios, understand drivers, and choose the next best action with confidence.`,
-        wrapperClass: "case-block case-overview",
-        paragraphClass: "case-paragraph",
       },
       {
         heading: "Context & Problem",
@@ -343,10 +341,6 @@ export const featured = [
           "Users struggled to see drivers vs outcomes and how a change in one lever flowed through the system.",
           "Collaboration friction: results weren’t easy to share, compare, or explain to non-modelers.",
         ],
-        wrapperClass: "case-block case-context",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
       {
         heading: "What We Changed",
@@ -356,16 +350,10 @@ export const featured = [
           "Clear comparison views (baseline vs scenario) and annotated “why” explanations.",
           "Tokenised, reusable UI patterns for charts, deltas, sensitivities, and “next action” prompts.",
         ],
-        wrapperClass: "case-block case-changes",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
       {
         heading: "My Role",
         body: `End-to-end: clarified requirements with PMs/SMEs, defined IA and interaction patterns, designed the dashboards, authored design tokens, and implemented core UI in React/Next.js with data-viz components.`,
-        wrapperClass: "case-block case-role",
-        paragraphClass: "case-paragraph",
       },
       {
         heading: "Decision Lens (JTBD)",
@@ -374,16 +362,10 @@ export const featured = [
           "When sharing results, a user needs a clear explanation of what changed and why so stakeholders can align quickly.",
           "When a metric moves, a user needs likely causes and recommended actions to decide whether to pivot or proceed.",
         ],
-        wrapperClass: "case-block case-jtbd",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
       {
         heading: "Success Targets",
         body: `Reduce time from question → scenario → decision, increase scenario adoption in planning cycles, and improve clarity of “why” behind KPI changes.`,
-        wrapperClass: "case-block case-success",
-        paragraphClass: "case-paragraph",
       },
     ],
     screens: [
@@ -408,10 +390,6 @@ export const featured = [
           "Recharts / D3",
         ],
         images: [],
-        wrapperClass: "case-block case-screens",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
 
       // replaced single "Concept" block with three project showcases (each has text, bullets, 4 images)
@@ -435,10 +413,6 @@ export const featured = [
           "/images/cases/silico-6.svg",
           "/images/cases/silico-7.svg",
         ],
-        wrapperClass: "case-block case-project",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
       {
         heading: "Project — New Inspector",
@@ -458,10 +432,6 @@ export const featured = [
           "/images/cases/silico-11.svg",
           "/images/cases/silico-12.svg",
         ],
-        wrapperClass: "case-block case-project",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
       {
         heading: "Project — Insights",
@@ -480,10 +450,6 @@ export const featured = [
           "/images/cases/silico-15.svg",
           "/images/cases/silico-16.svg",
         ],
-        wrapperClass: "case-block case-project",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
       {
         heading: "Project — Design System",
@@ -502,10 +468,6 @@ export const featured = [
           "/images/cases/SilicoSystem-3.svg",
           "/images/cases/SilicoSystem-4.svg",
         ],
-        wrapperClass: "case-block case-project",
-        paragraphClass: "case-paragraph",
-        listClass: "case-bullets",
-        listItemClass: "case-bullet",
       },
     ],
     context:
@@ -521,38 +483,26 @@ export const featured = [
       {
         heading: "Operational speed",
         body: "Shorter path from question → model run → decision by consolidating drivers, KPIs, and comparisons in one place.",
-        wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph",
       },
       {
         heading: "Quality & risk",
         body: "Clear assumptions and provenance reduced misinterpretation; sensitivity views highlighted brittle scenarios early.",
-        wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph",
       },
       {
         heading: "SLA reliability",
         body: "Planning/decision checkpoints hit more consistently as scenarios became repeatable and sharable.",
-        wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph",
       },
       {
         heading: "Adoption",
         body: "Scenario workspace became the default for planning discussions; patterns reused across additional modules.",
-        wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph",
       },
       {
         heading: "Design system impact",
         body: "Token-driven components (driver controls, delta chips, compare panels) accelerated delivery and ensured visual consistency.",
-        wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph",
       },
       {
         heading: "Compliance & accessibility",
         body: "WCAG-aligned interactions and readable chart annotations; audit-friendly provenance for inputs, runs, and outputs.",
-        wrapperClass: "case-block case-impact",
-        paragraphClass: "case-paragraph",
       },
     ],
     metrics: [
@@ -569,21 +519,135 @@ export const featured = [
 
 export const otherWorks = [
   {
-    id: "psa",
-    company: "PSA Peugeot",
-    role: "Senior Product UX UI Developer - Contractor",
-    date: "Feb 2020 - Oct 2020",
+    id: "psa-peugeot",
+    company: "PSA / Peugeot",
+    role: "Product Designer",
+    overview:
+      "Two connected e-commerce experiences for PSA: AFS (book an at‑home mechanic) and Peugeot Online Purchase (configure and buy a vehicle). Both flows reduce friction from discovery to confirmation with clear steps, validation, and audit‑friendly summaries.",
+    overviewBlocks: [
+      {
+        heading: "Overview",
+        body: `Two connected e-commerce experiences for PSA:
+1. AFS — book an at-home mechanic by location, vehicle, and required work.
+2. Peugeot Online Purchase — configure and buy a vehicle end-to-end (version, packages, financing).
+Both flows reduce friction from discovery to confirmation with clear steps, validation, and audit-friendly summaries.`,
+      },
+      {
+        heading: "Context & Problem",
+        body: [
+          "AFS — Service booking required multiple phone/email handoffs; users struggled to find a nearby technician and match services to their vehicle. Address/ZIP and geolocation errors stalled bookings.",
+          "Peugeot Online Purchase — Vehicle purchase journeys were fragmented across brochures, dealers, and calculators; users couldn’t compare versions, packages, and payments in one flow.",
+        ],
+      },
+      {
+        heading: "What We Changed",
+        body: [
+          "AFS: a guided funnel: find location → identify vehicle (VIN/model) → choose services → pick time → pay → confirm, with instant validation for ZIP/address/geolocation and clear error recovery.",
+          "Peugeot: a unified configurator with version, features/packages, color, payment (cash/lease/loan), live totals, and scenario presets for comparison.",
+        ],
+      },
+      {
+        heading: "My Role",
+        body: `End-to-end designer: mapped requirements, defined IA and step logic, designed flows and UI, authored tokens/components, and built core screens (Svelte) with accessible patterns.`,
+      },
+      {
+        heading: "Decision Lens (JTBD)",
+        body: [
+          "When I need my car serviced, I want a nearby mechanic, accurate pricing, and a clear slot so I can book in minutes without calling around.",
+          "When I’m configuring a Peugeot, I want to compare versions/packages and payment options in one place so I can buy confidently online.",
+        ],
+      },
+      {
+        heading: "Success Targets",
+        body: `Increase completed bookings and online purchases; reduce drop-offs on location/vehicle steps; cut errors and misroutes; shorten time to service slot or checkout.`,
+      },
+    ],
+    screens: [
+      {
+        heading: "Process",
+        paragraph:
+          "Discovery, definition, exploration, systemisation, and validation focused on stepwise funnels, instant validation, and reusable components for both AFS and Peugeot purchase flows.",
+        bullets: [
+          "Discovery: reviewed current pages and failure points (ZIP/address, geolocation, VIN lookup, year/make/model pickers; step errors and recovery).",
+          "Definition: stepwise IA with progressive disclosure; price/feature clarity and “what’s next” cues for both funnels.",
+          "Exploration: low-fi to interactive prototypes; killed paths that created dead-ends (e.g., unhandled VIN failures, unclear package add-ons).",
+          "Systemisation: tokenised components (status chips, option tiles, calendars, price rows) reused across both projects.",
+          "Validation: task-based reviews; tuned copy, empty/error/loading states, and keyboard flows.",
+        ],
+        tools: ["Sketch", "Personas", "React"],
+        images: [],
+      },
+      {
+        heading: "Project — AFS (service booking)",
+        paragraph:
+          "AFS flow: find a nearby service, identify vehicle, choose services, pick a timeslot, pay, and confirm with a human‑readable summary and robust error recovery.",
+        bullets: [
+          "Find service via ZIP / My address / My location with clear error and retry patterns.",
+          "Identify vehicle by VIN or Make → Year → Model → Engine; handle VIN failures gracefully.",
+          "Choose services with itemised pricing and select time from a calendar grid; confirm with tech name, date/time, and address.",
+        ],
+        images: [
+          "/images/cases/AFS-1.jpg",
+          "/images/cases/AFS-2.jpg",
+          "/images/cases/AFS-3.jpg",
+          "/images/cases/AFS-4.jpg",
+          "/images/cases/AFS-5.jpg",
+        ],
+      },
+      {
+        heading: "Project — Peugeot Configurator",
+        paragraph:
+          "Peugeot flow: unified configurator for version, packages, color, and payment with live totals, scenario presets, and clear feature/group breakdowns.",
+        bullets: [
+          "Select Version → Add Features/Packages → Choose Color → Payment with live totals and cash/lease/loan options.",
+          "Feature groups and tech packs show inclusions and price deltas to aid comparison.",
+          "Scenario presets let users compare equipment and payment outcomes side-by-side.",
+        ],
+        images: [
+          "/images/cases/PSA-1.jpg",
+          "/images/cases/PSA-2.jpg",
+          "/images/cases/PSA-3.jpg",
+          "/images/cases/PSA-4.jpg",
+          "/images/cases/PSA-5.jpg",
+        ],
+      },
+    ],
     context:
-      "Placeholder context for PSA Peugeot — automotive experience and connected apps.",
-    challenge:
-      "Placeholder challenge: diverse device targets and complex configuration flows.",
-    approach:
-      "Placeholder approach: user research, prototyping, component library.",
-    impact: "Placeholder impact summary.",
-    tools: ["Figma", "React"],
-    images: ["/images/cases/psa-1.jpg", "/images/cases/psa-2.jpg"],
+      "Built connected service booking and vehicle commerce experiences that reduce friction across discovery, validation, and confirmation.",
+    images: ["/images/cases/AFS-1.jpg", "/images/cases/PSA-1.jpg"],
+    impactBlocks: [
+      {
+        heading: "Operational speed",
+        body: "Users complete bookings and configurations faster thanks to guided steps, instant validation, and clear next actions.",
+      },
+      {
+        heading: "Quality & risk",
+        body: "Fewer misroutes and abandoned sessions by surfacing address/VIN errors early and explaining feature/package impacts before checkout.",
+      },
+      {
+        heading: "SLA reliability",
+        body: "More on-time service appointments as the flow locks location, services, and timeslot with a clear confirmation summary (tech/contact, date/time, address).",
+      },
+      {
+        heading: "Adoption",
+        body: "Configurator becomes a single source of truth for versions/packages and payments; AFS becomes the default path to book a mobile mechanic.",
+      },
+      {
+        heading: "Design system impact",
+        body: "Consistent, token-driven components (option tiles, calendars, price rows, summary panels) used across service and commerce surfaces, accelerating new screens.",
+      },
+      {
+        heading: "Compliance & accessibility",
+        body: "WCAG-aligned contrast, labels, focus order, and keyboard support; transparent pricing and confirmations improve auditability and user trust.",
+      },
+      {
+        heading: "Note",
+        body: "Metrics are indicative for portfolio use; screenshots use sample/redacted data.",
+      },
+    ],
+    metrics: [],
+    timeline: [],
     logo: "/images/cases/psa-icon.svg",
-    restrictions: "Placeholder restrictions (if any)",
   },
   {
     id: "highland",
