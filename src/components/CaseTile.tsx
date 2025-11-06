@@ -10,8 +10,9 @@ interface CaseData {
   company?: string;
   title?: string;
   role?: string;
-  context?: string;
-  images?: string[]; // only first image used
+  context?: string; // ensure context exists on the type
+  overview?: string;
+  images?: string[];
   logo?: string;
   logoSize?: number;
 }
@@ -107,13 +108,20 @@ export default function CaseTile({
 
             <div className={styles.titleMeta}>
               <h3 className={styles.company}>{caseData.company ?? caseData.title}</h3>
-              {caseData.role ? <div className={styles.role}>{caseData.role}</div> : null}
+              {/* role removed from back — showing context instead */}
             </div>
           </div>
 
-          {typeof caseData.context === "string" && caseData.context ? (
-            <p className={styles.description}>{caseData.context}</p>
-          ) : null}
+          {(() => {
+            const text = caseData.context ?? caseData.overview ?? "";
+            return (
+              <div
+                className={styles.backContent}
+              >
+                {text ? <p className={styles.description}>{text}</p> : null}
+              </div>
+            );
+          })()}
 
           <div className={styles.backFooter}>
             <button

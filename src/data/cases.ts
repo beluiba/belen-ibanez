@@ -613,7 +613,7 @@ Both flows reduce friction from discovery to confirmation with clear steps, vali
       },
     ],
     context:
-      "Built connected service booking and vehicle commerce experiences that reduce friction across discovery, validation, and confirmation.",
+      "I led end-to-end UX for PSA’s AFS service booking and Peugeot’s online purchase flows—defining IA, designing token-driven UI, and building core screens to make booking and configuring a car fast, clear, and reliable.",
     images: ["/images/cases/AFS-1.jpg", "/images/cases/PSA-1.jpg"],
     impactBlocks: [
       {

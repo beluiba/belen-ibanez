@@ -69,7 +69,8 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
             title: data.title,
             subtitle: data.subtitle,
             role: data.role,
-            context: data.subtitle || data.role || data.title,
+            // prefer explicit context or overview from the source item, fallback to subtitle/role/title
+            context: raw?.context ?? raw?.overview ?? data.subtitle ?? data.role ?? data.title,
             logo: data.logo,
             images: imagesForTile,
             href: data.href,
