@@ -463,10 +463,10 @@ export const featured = [
           "Accessibility: WCAG-aligned roles, focus, and keyboard behaviors.",
         ],
         images: [
-          "/images/cases/SilicoSystem-1.svg",
-          "/images/cases/SilicoSystem-2.svg",
-          "/images/cases/SilicoSystem-3.svg",
-          "/images/cases/SilicoSystem-4.svg",
+          "/images/cases/silicosystem-1.svg",
+          "/images/cases/silicosystem-2.svg",
+          "/images/cases/silicosystem-3.svg",
+          "/images/cases/silicosystem-4.svg",
         ],
       },
     ],
@@ -607,17 +607,17 @@ export const otherWorks = [
           "Scenario presets let users compare equipment and payment outcomes side-by-side.",
         ],
         images: [
-          "/images/cases/PSA-1.jpg",
-          "/images/cases/PSA-2.jpg",
-          "/images/cases/PSA-3.jpg",
-          "/images/cases/PSA-4.jpg",
-          "/images/cases/PSA-5.jpg",
+          "/images/cases/psa-1.jpg",
+          "/images/cases/psa-2.jpg",
+          "/images/cases/psa-3.jpg",
+          "/images/cases/psa-4.jpg",
+          "/images/cases/psa-5.jpg",
         ],
       },
     ],
     context:
       "I led end-to-end UX for PSA’s AFS service booking and Peugeot’s online purchase flows—defining IA, designing token-driven UI, and building core screens to make booking and configuring a car fast, clear, and reliable.",
-    images: ["/images/cases/AFS-1.jpg", "/images/cases/PSA-1.jpg"],
+    images: ["/images/cases/AFS-1.jpg", "/images/cases/psa-1.jpg"],
     impactBlocks: [
       {
         heading: "Operational speed",
