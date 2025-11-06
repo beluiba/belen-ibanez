@@ -877,7 +877,8 @@ export const otherWorks = [
           "/images/cases/emerios-1.jpg",
           "/images/cases/emerios-2.jpg",
           "/images/cases/emerios-3.jpg",
-          "/images/cases/emerios-4.jpg"
+          "/images/cases/emerios-4.jpg",
+          "/images/cases/emerios-5.jpg"
         ]
       },
       {
@@ -890,10 +891,10 @@ export const otherWorks = [
           "Concept: required-proof checklist tied to case type; page carousel with quick classify, validate, and submit/reject with reasons; status chips for ready/pending/needs-correction."
         ],
         images: [
-          "/images/cases/emerios-5.jpg",
           "/images/cases/emerios-6.jpg",
           "/images/cases/emerios-7.jpg",
-          "/images/cases/emerios-8.jpg"
+          "/images/cases/emerios-8.jpg",
+          "/images/cases/emerios-9.jpg"
         ]
       },
       {
@@ -906,10 +907,10 @@ export const otherWorks = [
           "Concept: documentation status step with channel options, upload queue showing filenames/progress/validation results, pending verification badges, deadlines, and next-step CTAs."
         ],
         images: [
-          "/images/cases/emerios-9.jpg",
           "/images/cases/emerios-10.jpg",
           "/images/cases/emerios-11.jpg",
-          "/images/cases/emerios-12.jpg"
+          "/images/cases/emerios-12.jpg",
+          "/images/cases/emerios-13.jpg"
         ]
       }
     ],
@@ -957,17 +958,72 @@ export const otherWorks = [
     company: "More Works",
     role: "Various Projects",
     date: "2010 - Present",
-    context:
+    overview:
       "Collection of smaller projects and experiments — gallery-style entry.",
-    challenge: "Various.",
-    approach: "Placeholder approach: short case summaries and visual showcase.",
-    impact: "Placeholder impact summary.",
-    tools: ["Figma"],
+    overviewBlocks: [
+      {
+        heading: "Overview",
+        body: [
+          "Collection of smaller projects and experiments — gallery-style entry."
+        ]
+      }
+    ],
+    // Process & Screens: four short project showcases
+    screens: [
+      {
+        heading: "Project — Arc10 / Careerlist (Perform Search)",
+        paragraph:
+          "Built a candidate-to-leader matching experience where people choose leaders/teams they admire and book screenings—shifting focus from “apply to a company” to “work with the right leader.”",
+        bullets: [
+          "Designed multi-step onboarding (culture, skills, compensation), leader/team selection, and interview scheduling.",
+          "Implemented Angular + Bootstrap UI from Adobe XD prototypes."
+        ],
+        images: ["/images/cases/arc10-1.jpg"]
+      },
+      {
+        heading: "Project — OpenStack (Summits)",
+        paragraph:
+          "Designer/developer for summit sites and internal pages: public landing, session catalogs, speaker highlights, sponsors, and attendee logistics.",
+        bullets: [
+          "Created modular layouts/components for schedules, speaker cards, and sponsor sections.",
+          "Refined IA (\"What to expect\", \"Who attends\", \"Schedule\") to speed discovery and registration."
+        ],
+        images: ["/images/cases/openstack-1.jpg"]
+      },
+      {
+        heading: "Project — Waggl (Employee Voice)",
+        paragraph:
+          "Designed a filtering/reporting interface for real-time employee feedback so results could be explored by team, region, and demographics.",
+        bullets: [
+          "Prototyped filters and summaries (positivity %, respondents, time window) and drill-downs from org-wide scores to segment views.",
+          "Enabled quick slice-and-dice so leaders move from summary to actionable themes without exporting."
+        ],
+        images: ["/images/cases/waggl-1.jpg"]
+      },
+      {
+        heading: "Project — Conaroy (Music + Events concept)",
+        paragraph:
+          "Concept for sharing music around live events: a hashtag-driven playlist where attendees queue tracks, see “now playing,” and vote what plays next.",
+        bullets: [
+          "Wireframed queueing, voting, lyrics/metadata, and sponsor tiles; explored moderation and simple creator tools for hosts.",
+          "Produced a minimal social playlist flow to boost event engagement and give hosts a lightweight interactive music channel."
+        ],
+        images: ["/images/cases/conaroy-1.jpg"]
+      }
+    ],
+    context:
+      "Collection of shorter client projects and experiments: product concepts, event sites, and interaction prototypes focused on rapid outcomes and reusable UI patterns.",
     images: [
       "/images/cases/more-1.jpg",
       "/images/cases/more-2.jpg",
-      "/images/cases/more-3.jpg",
-      "/images/cases/more-4.jpg",
+      "/images/cases/more-3.jpg"
+    ],
+    impactBlocks: [
+      {
+        heading: "Outcome",
+        body:
+          "Each project delivered focused outcomes: clearer onboarding and matching (Arc10), faster content updates and registration flows (OpenStack), actionable employee insight slices (Waggl), and higher event engagement via lightweight social music interactions (Conaroy)."
+      }
     ],
   },
 ];

@@ -477,21 +477,43 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
         <main ref={mainRef} className={styles.modalMain}>
           {isMoreWorks ? (
             <div className={styles.moreWorksLayout}>
-              <div className={styles.moreWorksImages}>
-                {images.length > 0 ? (
-                  images.map((src, i) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img key={i} src={src} alt={`${caseData.company ?? "work"} screenshot ${i + 1}`} className={styles.screenImage} />
+              {/* Render only the individual project blocks (each project shows its own images) */}
+              <div className={styles.moreWorksScreensOnly}>
+                {Array.isArray(caseData.screens) && caseData.screens.length > 0 ? (
+                  caseData.screens.map((s, si) => (
+                    <section key={si} className={styles.moreWorksScreen}>
+                      {s.heading ? <h3 className={styles.screenHeading}>{s.heading}</h3> : null}
+
+                      {typeof s.paragraph === "string" ? <p className={styles.screenParagraph}>{s.paragraph}</p> : null}
+                      {typeof s.body === "string" ? <p className={styles.screenParagraph}>{s.body}</p> : null}
+                      {Array.isArray(s.body) ? s.body.map((line, li) => <p key={li} className={styles.screenParagraph}>{line}</p>) : null}
+
+                      {Array.isArray(s.bullets) && s.bullets.length > 0 ? (
+                        <ul className={styles.screenBullets}>
+                          {s.bullets.map((b, bi) => <li key={bi}>{b}</li>)}
+                        </ul>
+                      ) : null}
+
+                      {/* images specific to this project block */}
+                      {Array.isArray(s.images) && s.images.length > 0 ? (
+                        <div className={styles.screensGrid}>
+                          {s.images.map((src, idx) => (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              key={idx}
+                              src={src}
+                              alt={`${s.heading ?? caseData.company ?? "work"} screenshot ${idx + 1}`}
+                              className={styles.screenThumb}
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                    </section>
                   ))
                 ) : (
-                  <div className={styles.emptyMessage}>No screens available</div>
+                  <p className={styles.moreWorksDescription}>No projects available.</p>
                 )}
               </div>
-
-              <aside className={styles.moreWorksAside}>
-                <h4 className={styles.moreWorksTitle}>{caseData.title ?? caseData.company ?? "More works"}</h4>
-                <p className={styles.moreWorksDescription}>{caseData.overview ?? caseData.process ?? "See more projects on the work page."}</p>
-              </aside>
             </div>
           ) : isAccordion ? (
             <div className={styles.accordion} role="presentation" ref={accordionRef}>

@@ -149,6 +149,12 @@
   box-sizing: border-box;
   z-index: calc(var(--token-z-modal, 99999) + 1);
   background: transparent;
+
+  section{
+    img{
+      width: 100%
+    }
+  }
 }
 
 /* optional metric/milestones container at top of scroll area.
