@@ -450,8 +450,6 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
   const hasScreens = Array.isArray(caseData.images) && caseData.images.length > 0;
   const isMoreWorks = isExplicitMore || (isLastProject && hasScreens);
 
-  const images = Array.isArray(caseData.images) ? caseData.images : [];
-
   return createPortal(
     <div className={styles.backdrop} role="dialog" aria-modal="true" aria-label={`${caseData.company ?? "Case"} details`}>
       <div className={styles.modalContent} ref={modalRef}>

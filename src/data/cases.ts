@@ -713,7 +713,7 @@ export const otherWorks = [
           "Prototype & validate: Low-fi → interactive; test tasks, refine copy, states, keyboard paths, and focus order.",
           "Pilot & scale: Ship to a subset, track first-pass approvals/time-to-review/drop-offs, then roll patterns across products."
         ],
-        tools: ["Figma / FigJam", "Design tokens"],
+        tools: ["Adobe XD", "React", "Material UI"],
         images: [],
       },
       {
@@ -857,12 +857,7 @@ export const otherWorks = [
           "Prototype & validate: Low-fi → interactive; test tasks, refine copy, states, keyboard paths, and focus order.",
           "Pilot & scale: Ship to a subset, track first-pass approvals/time-to-review/drop-offs, then roll patterns across products."
         ],
-      },
-      {
-        heading: "Tools (shared)",
-        paragraph:
-          "Figma / FigJam • Design tokens (color, spacing, typography, status) • Reusable table, chip, and panel components",
-        images: []
+        tools: ["Adobe Illustrator/Photoshop", "Angular", "Bootstrap", "Ionic"],
       },
       {
         heading: "Project — Agent Vault Tool",
