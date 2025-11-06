@@ -527,60 +527,63 @@ export const otherWorks = [
     overviewBlocks: [
       {
         heading: "Overview",
-        body: `Two connected e-commerce experiences for PSA:
-1. AFS — book an at-home mechanic by location, vehicle, and required work.
-2. Peugeot Online Purchase — configure and buy a vehicle end-to-end (version, packages, financing).
-Both flows reduce friction from discovery to confirmation with clear steps, validation, and audit-friendly summaries.`,
+        body: [
+          "Two connected e-commerce experiences for PSA:",
+          "1. AFS: Book an at-home mechanic by location, vehicle, and required work.",
+          "2. Peugeot Online Purchase: Configure and buy a vehicle end-to-end (version, packages, financing).",
+          "Both flows reduce friction from discovery to confirmation with clear steps, validation, and audit-friendly summaries."
+        ]
       },
       {
         heading: "Context & Problem",
         body: [
-          "AFS — Service booking required multiple phone/email handoffs; users struggled to find a nearby technician and match services to their vehicle. Address/ZIP and geolocation errors stalled bookings.",
-          "Peugeot Online Purchase — Vehicle purchase journeys were fragmented across brochures, dealers, and calculators; users couldn’t compare versions, packages, and payments in one flow.",
+          "AFS: Service booking required multiple phone/email handoffs; users struggled to find a nearby technician and match services to their vehicle. Address/ZIP and geolocation errors stalled bookings.",
+          "Peugeot Online Purchase: Vehicle purchase journeys were fragmented across brochures, dealers, and calculators; users couldn’t compare versions, packages, and payments in one flow.",
         ],
       },
       {
         heading: "What We Changed",
         body: [
-          "AFS: a guided funnel: find location → identify vehicle (VIN/model) → choose services → pick time → pay → confirm, with instant validation for ZIP/address/geolocation and clear error recovery.",
-          "Peugeot: a unified configurator with version, features/packages, color, payment (cash/lease/loan), live totals, and scenario presets for comparison.",
+          "AFS: A guided funnel -   find location → identify vehicle (VIN/model) → choose services → pick time → pay → confirm, with instant validation for ZIP/address/geolocation and clear error recovery.",
+          "Peugeot Online Purchase: A unified configurator with version, features/packages, color, payment (cash/lease/loan), live totals, and scenario presets for comparison.",
         ],
       },
       {
         heading: "My Role",
-        body: `End-to-end designer: mapped requirements, defined IA and step logic, designed flows and UI, authored tokens/components, and built core screens (Svelte) with accessible patterns.`,
+        body: "End-to-end designer: Mapped requirements, defined IA and step logic, designed flows and UI, authored tokens/components, and built core screens (Svelte) with accessible patterns.",
       },
       {
         heading: "Decision Lens (JTBD)",
         body: [
-          "When I need my car serviced, I want a nearby mechanic, accurate pricing, and a clear slot so I can book in minutes without calling around.",
-          "When I’m configuring a Peugeot, I want to compare versions/packages and payment options in one place so I can buy confidently online.",
+          "AFS: When I need my car serviced, I want a nearby mechanic, accurate pricing, and a clear slot so I can book in minutes without calling around.",
+          "Peugeot Online Purchase: When I’m configuring a Peugeot, I want to compare versions/packages and payment options in one place so I can buy confidently online.",
         ],
       },
       {
         heading: "Success Targets",
-        body: `Increase completed bookings and online purchases; reduce drop-offs on location/vehicle steps; cut errors and misroutes; shorten time to service slot or checkout.`,
+        body: "Increase completed bookings and online purchases; reduce drop-offs on location/vehicle steps; cut errors and misroutes; shorten time to service slot or checkout.",
       },
     ],
     screens: [
       {
         heading: "Process",
         paragraph:
-          "Discovery, definition, exploration, systemisation, and validation focused on stepwise funnels, instant validation, and reusable components for both AFS and Peugeot purchase flows.",
+          "End-to-end workflow to unify agent, back-office, and consumer experiences—reducing handoffs, improving proof quality, and making approvals auditable.",
         bullets: [
-          "Discovery: reviewed current pages and failure points (ZIP/address, geolocation, VIN lookup, year/make/model pickers; step errors and recovery).",
-          "Definition: stepwise IA with progressive disclosure; price/feature clarity and “what’s next” cues for both funnels.",
-          "Exploration: low-fi to interactive prototypes; killed paths that created dead-ends (e.g., unhandled VIN failures, unclear package add-ons).",
-          "Systemisation: tokenised components (status chips, option tiles, calendars, price rows) reused across both projects.",
-          "Validation: task-based reviews; tuned copy, empty/error/loading states, and keyboard flows.",
+          "Discovery & alignment: SME interviews (agents, reviewers, ops) → goals, constraints, compliance needs.",
+          "Workflow mapping: Current → future flows across capture → classify → approve; identify failure modes and handoff gaps.",
+          "IA & taxonomy: Standardise proof types, statuses, and document metadata for consistent handling.",
+          "Design system: Tokenise color/spacing/typography/status; establish reusable tables, chips, checklists, and panels.",
+          "Prototype & validate: Low-fi → interactive; test tasks, refine copy, states, keyboard paths, and focus order.",
+          "Pilot & scale: Ship to a subset, track first-pass approvals/time-to-review/drop-offs, then roll patterns across products."
         ],
-        tools: ["Sketch", "Personas", "React"],
+        tools: ["Figma / FigJam", "Design tokens"],
         images: [],
       },
       {
         heading: "Project — AFS (service booking)",
         paragraph:
-          "AFS flow: find a nearby service, identify vehicle, choose services, pick a timeslot, pay, and confirm with a human‑readable summary and robust error recovery.",
+          "AFS: Find a nearby service, identify vehicle, choose services, pick a timeslot, pay, and confirm with a human‑readable summary and robust error recovery.",
         bullets: [
           "Find service via ZIP / My address / My location with clear error and retry patterns.",
           "Identify vehicle by VIN or Make → Year → Model → Engine; handle VIN failures gracefully.",
@@ -597,7 +600,7 @@ Both flows reduce friction from discovery to confirmation with clear steps, vali
       {
         heading: "Project — Peugeot Configurator",
         paragraph:
-          "Peugeot flow: unified configurator for version, packages, color, and payment with live totals, scenario presets, and clear feature/group breakdowns.",
+          "Peugeot: unified configurator for version, packages, color, and payment with live totals, scenario presets, and clear feature/group breakdowns.",
         bullets: [
           "Select Version → Add Features/Packages → Choose Color → Payment with live totals and cash/lease/loan options.",
           "Feature groups and tech packs show inclusions and price deltas to aid comparison.",
@@ -654,29 +657,299 @@ Both flows reduce friction from discovery to confirmation with clear steps, vali
     company: "Highland Easy Life",
     role: "Senior Product UX UI Developer - Contractor",
     date: "Aug 2019 - Oct 2020",
+    overview:
+      "EasyLife (ELA) is a multi-carrier life-insurance quote tool with a companion broker dashboard for managing inbound leads and quote requests. Consumers get a quick estimate, refine answers, and compare carriers; brokers see leads, status, and next actions in a single workspace.",
+    overviewBlocks: [
+      {
+        heading: "Overview",
+        body: [
+          "EasyLife (ELA) is a multi-carrier life-insurance quote tool with a companion broker dashboard for managing inbound leads and quote requests.",
+          "Consumers get a quick estimate, refine answers, and compare carriers; brokers see leads, status, and next actions in a single workspace."
+        ]
+      },
+      {
+        heading: "Context & Problem",
+        body: [
+          "Consumers bounced between forms and carrier pages; quotes weren’t comparable or easy to refine.",
+          "Brokers lacked a unified view of lead details, health class, premium, term, and status, slowing follow-up."
+        ]
+      },
+      {
+        heading: "What We Changed",
+        body: [
+          "A guided Learn → Refine → Review quote flow with live ranges and clear monthly premium comparisons.",
+          "Broker ELA Dashboard with sortable leads, confidence signals, and quick actions (Quote & Apply)."
+        ]
+      },
+      {
+        heading: "My Role",
+        body:
+          "End-to-end: UX for quote + broker flows, UI implementation (token-driven components), accessibility states, and annotated hand-off for engineering."
+      },
+      {
+        heading: "Decision Lens (JTBD)",
+        body: [
+          "When I’m shopping for life insurance, I need comparable quotes I can refine quickly so I can pick a carrier with confidence.",
+          "When I receive a new lead, I need health class, premium, and contact context in one view so I can prioritise outreach."
+        ]
+      },
+      {
+        heading: "Success Targets",
+        body:
+          "Increase completed quote → apply starts, reduce abandon during refine, shorten broker time-to-first-contact, and improve lead routing clarity."
+      }
+    ],
+    // Process & Screens
+    screens: [
+      {
+        heading: "Process",
+        paragraph:
+          "End-to-end workflow to unify agent, back-office, and consumer experiences—reducing handoffs, improving proof quality, and making approvals auditable.",
+        bullets: [
+          "Discovery & alignment: SME interviews (agents, reviewers, ops) → goals, constraints, compliance needs.",
+          "Workflow mapping: Current → future flows across capture → classify → approve; identify failure modes and handoff gaps.",
+          "IA & taxonomy: Standardise proof types, statuses, and document metadata for consistent handling.",
+          "Design system: Tokenise color/spacing/typography/status; establish reusable tables, chips, checklists, and panels.",
+          "Prototype & validate: Low-fi → interactive; test tasks, refine copy, states, keyboard paths, and focus order.",
+          "Pilot & scale: Ship to a subset, track first-pass approvals/time-to-review/drop-offs, then roll patterns across products."
+        ],
+        tools: ["Figma / FigJam", "Design tokens"],
+        images: [],
+      },
+      {
+        heading: "Project — Consumer QuickQuote",
+        paragraph:
+          "Consumer QuickQuote: sliders for term and amount, premium range, and location context with a switch to detailed quoting to refine.",
+        bullets: [
+          "Sliders for term and amount with live premium ranges and location context.",
+          "Carrier compare table with product name and monthly premium for side-by-side selection.",
+          "Refine forms: health/family/driving sections with left summary panel showing coverage split and progress."
+        ],
+        images: [
+          "/images/cases/easylife-1.png",
+          "/images/cases/easylife-2.png",
+          "/images/cases/easylife-3.png",
+          "/images/cases/easylife-4.png",
+          "/images/cases/easylife-5.png"
+        ]
+      },
+      {
+        heading: "Project — Broker ELA Dashboard",
+        paragraph:
+          "Broker dashboard: paginated, sortable leads list with submitted date, coverage, carrier, term, premium, age, status, and quick Quote & Apply actions.",
+        bullets: [
+          "Sortable leads table with confidence signals and quick actions (Quote & Apply).",
+          "Lead detail panel surfaces health class, premium, term, contact context, and suggested next actions.",
+          "Pagination and filters to prioritise outreach by age, premium, or confidence."
+        ],
+        images: [
+          "/images/cases/highland-6.jpg",
+          "/images/cases/highland-7.jpg",
+          "/images/cases/highland-8.jpg",
+          "/images/cases/highland-9.jpg",
+          "/images/cases/highland-10.jpg"
+        ]
+      }
+    ],
     context:
-      "Placeholder context for Highland Easy Life — insurance quoting and onboarding.",
-    challenge:
-      "Placeholder challenge: align B2B and B2C flows, simplify quoting.",
-    approach:
-      "Placeholder approach: journey mapping, iterative prototypes, usability testing.",
-    impact: "Placeholder impact summary.",
-    tools: ["Figma", "Sketch"],
-    images: ["/images/cases/highland-1.jpg", "/images/cases/highland-2.jpg"],
-    logo: "/images/cases/highland-icon.jpeg",
+      "I led UX and UI implementation for EasyLife’s consumer quick-quote experience and the broker ELA dashboard — standardising IA, tokenising components, and improving the end-to-end flow to reduce abandon and speed broker contact.",
+    images: [
+      "/images/cases/highland-1.jpg",
+      "/images/cases/highland-5.jpg"
+    ],
+    impactBlocks: [
+      {
+        heading: "Operational speed",
+        body:
+          "Consumers move from estimate to carrier selection faster; brokers see all lead context without system-hopping."
+      },
+      {
+        heading: "Quality & risk",
+        body:
+          "Structured refine questions reduce bad inputs; broker view lowers mis-prioritised outreach."
+      },
+      {
+        heading: "SLA reliability",
+        body:
+          "Clear status and next actions help brokers respond within internal SLAs; consumer flow reduces abandon during refine."
+      },
+      {
+        heading: "Adoption",
+        body:
+          "Broker dashboard becomes the default lead screen; QuickQuote becomes the entry to deeper quoting."
+      },
+      {
+        heading: "Design system impact",
+        body:
+          "Tokenised tables, chips, and summary panels reused across consumer and broker surfaces, speeding new screen delivery."
+      },
+      {
+        heading: "Compliance & accessibility",
+        body:
+          "WCAG-aligned labels, contrast, and keyboard paths; transparent pricing tables and human-readable summaries support auditability."
+      }
+    ],
+    metrics: [],
+    timeline: [],
+    logo: "/images/cases/highland-icon.jpeg"
   },
   {
     id: "emerios",
     company: "Emerios",
     role: "Senior Product UX/UI Developer",
     date: "Dec 2013 - Mar 2017",
-    context: "Placeholder context for Emerios — sales and backoffice platform.",
-    challenge: "Placeholder challenge: legacy workflows, high data density.",
-    approach:
-      "Placeholder approach: design system, performance-minded UI components.",
-    impact: "Placeholder impact summary.",
-    tools: ["Figma"],
+    overview:
+      "Built and refined core experiences across Emerios’s ecosystem: a secure Agent Vault for documents, a Back-Office console for verification, and a SafeLink Enrollment flow with multi-channel proof submission. The goal across all three was the same: reduce handoffs, make evidence audit-ready, and move cases forward faster.",
+    overviewBlocks: [
+      {
+        heading: "Overview",
+        body: [
+          "Built and refined core experiences across Emerios’s ecosystem: a secure Agent Vault for documents, a Back-Office console for verification, and a SafeLink Enrollment flow with multi-channel proof submission.",
+          "The goal across all three was the same: reduce handoffs, make evidence audit-ready, and move cases forward faster."
+        ]
+      },
+      {
+        heading: "Context & Problem",
+        body: [
+          "Sensitive proofs scattered across email/folders slowed retrieval and increased compliance risk.",
+          "Back-office reviewers had to jump between pages to classify proofs and resolve errors.",
+          "Applicants struggled to submit acceptable documentation from the devices/channels they actually had."
+        ]
+      },
+      {
+        heading: "What We Changed",
+        body: [
+          "Centralised, searchable Vault with structured metadata, versioning, and quick actions.",
+          "Single-screen document processing with required-proof checklist, page carousel, and standardised reasons.",
+          "Multi-channel enrollment step (upload, email, text, fax, mail) with clear guidance, validation, and status."
+        ]
+      },
+      {
+        heading: "My Role",
+        body:
+          "End-to-end UX across the three streams: requirements, IA, flows, and UI; authored token-driven patterns; implemented key screens and states; wrote usage and accessibility guidance."
+      },
+      {
+        heading: "Decision Lens (JTBD)",
+        body: [
+          "When I capture a customer document, I need to store and retrieve it quickly with the right tags so I can finish enrollment and pass audit.",
+          "When I review a case, I need to classify proofs accurately on one screen so the file can advance without rework.",
+          "When I apply, I need a simple way to submit proofs from whatever I have so my enrollment isn’t blocked."
+        ]
+      },
+      {
+        heading: "Success Targets",
+        body:
+          "Faster document retrieval and review; fewer misclassified/invalid proofs; higher first-pass approvals; reduced drop-offs in documentation steps; clearer audit trail."
+      }
+    ],
+    // Process & Screens
+    screens: [
+      {
+        heading: "Process",
+        paragraph:
+          "End-to-end workflow to unify agent, back-office, and consumer experiences—reducing handoffs, improving proof quality, and making approvals auditable.",
+        bullets: [
+          "Discovery & alignment: SME interviews (agents, reviewers, ops) → goals, constraints, compliance needs.",
+          "Workflow mapping: Current → future flows across capture → classify → approve; identify failure modes and handoff gaps.",
+          "IA & taxonomy: Standardise proof types, statuses, and document metadata for consistent handling.",
+          "Design system: Tokenise color/spacing/typography/status; establish reusable tables, chips, checklists, and panels.",
+          "Prototype & validate: Low-fi → interactive; test tasks, refine copy, states, keyboard paths, and focus order.",
+          "Pilot & scale: Ship to a subset, track first-pass approvals/time-to-review/drop-offs, then roll patterns across products."
+        ],
+      },
+      {
+        heading: "Tools (shared)",
+        paragraph:
+          "Figma / FigJam • Design tokens (color, spacing, typography, status) • Reusable table, chip, and panel components",
+        images: []
+      },
+      {
+        heading: "Project — Agent Vault Tool",
+        paragraph:
+          "Agent Vault: centralised storage, search, and quick actions to manage proofs and their provenance.",
+        bullets: [
+          "Mapped agent tasks (capture → upload → tag → find/share); designed bulk upload, search, and retention cues.",
+          "Defined metadata, versioning, and share/revoke flows; added clear processing/verified states.",
+          "Concept: card/table toggle with filters and tags; preview + activity history on each file; quick actions (upload, tag, share, revoke)."
+        ],
+        images: [
+          "/images/cases/emerios-1.jpg",
+          "/images/cases/emerios-2.jpg",
+          "/images/cases/emerios-3.jpg",
+          "/images/cases/emerios-4.jpg"
+        ]
+      },
+      {
+        heading: "Project — Back-Office Document Processing",
+        paragraph:
+          "Single-screen document processor to classify, validate, and advance cases without hopping between pages.",
+        bullets: [
+          "Audited current review path; consolidated steps into a single screen; standardised proof taxonomy and error handling.",
+          "Added “next step” cues and guardrails to prevent partial submissions.",
+          "Concept: required-proof checklist tied to case type; page carousel with quick classify, validate, and submit/reject with reasons; status chips for ready/pending/needs-correction."
+        ],
+        images: [
+          "/images/cases/emerios-5.jpg",
+          "/images/cases/emerios-6.jpg",
+          "/images/cases/emerios-7.jpg",
+          "/images/cases/emerios-8.jpg"
+        ]
+      },
+      {
+        heading: "Project — SafeLink Enrollment (Multi-Channel Proof)",
+        paragraph:
+          "Multi-channel proof submission step so applicants can provide documents by upload, email, text, fax, or mail with clear validation and status.",
+        bullets: [
+          "Catalogued all submission channels; wrote channel-specific guidance; added file limits/format validation and enrollment-ID anchoring.",
+          "Designed reminders and “what’s missing” messages to reduce back-and-forth and improve first-pass success.",
+          "Concept: documentation status step with channel options, upload queue showing filenames/progress/validation results, pending verification badges, deadlines, and next-step CTAs."
+        ],
+        images: [
+          "/images/cases/emerios-9.jpg",
+          "/images/cases/emerios-10.jpg",
+          "/images/cases/emerios-11.jpg",
+          "/images/cases/emerios-12.jpg"
+        ]
+      }
+    ],
+    context:
+      "I led end-to-end UX across Agent Vault, Back-Office processing, and SafeLink Enrollment — centralising proofs, standardising taxonomy, and building resilient multi-channel submission flows so cases move forward faster and audits are simpler.",
     images: ["/images/cases/emerios-1.jpg"],
+    impactBlocks: [
+      {
+        heading: "Operational speed",
+        body:
+          "Agents and reviewers complete document tasks faster (centralised search, one-screen classification, clear next actions)."
+      },
+      {
+        heading: "Quality & risk",
+        body:
+          "Consistent metadata, proof taxonomy, and validation reduce misfiles, misclassification, and compliance exposure."
+      },
+      {
+        heading: "SLA reliability",
+        body:
+          "Clear statuses and reasons minimise ping-pong; more cases meet internal SLAs for review and approval."
+      },
+      {
+        heading: "Adoption",
+        body:
+          "Vault becomes the default doc workspace; back-office console the primary review screen; multi-channel step reduces abandonment."
+      },
+      {
+        heading: "Design system impact",
+        body:
+          "Token-driven tables, chips, checklists, and panels reused across products, accelerating new screens and keeping visuals consistent."
+      },
+      {
+        heading: "Compliance & accessibility",
+        body:
+          "WCAG-aligned labels, contrast, focus order, and keyboard paths; auditable histories and human-readable summaries for every action."
+      }
+    ],
+    metrics: [],
+    timeline: [],
     logo: "/images/cases/emerios-icon.svg",
   },
   {

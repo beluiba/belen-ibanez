@@ -47,6 +47,14 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
     };
   };
 
+  // picks the first non-empty string from the given values
+  const pickString = (...values: unknown[]): string => {
+    for (const v of values) {
+      if (typeof v === "string" && v.trim() !== "") return v;
+    }
+    return "";
+  };
+
   return (
     <section className={styles.otherWorks} aria-label="Other works">
       <h4>Other Works</h4>
@@ -61,7 +69,7 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
                 : (data.images.length > 0
                     ? Array.from({ length: 4 }, (_, i) => data.images[i % data.images.length])
                     : []))
-            : (data.images.length > 0 ? [data.images[0]] : []);
+            : data.images;
 
           const caseData = {
             id: data.id,
@@ -70,7 +78,7 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
             subtitle: data.subtitle,
             role: data.role,
             // prefer explicit context or overview from the source item, fallback to subtitle/role/title
-            context: raw?.context ?? raw?.overview ?? data.subtitle ?? data.role ?? data.title,
+            context: pickString(raw?.context, raw?.overview, data.subtitle, data.role, data.title),
             logo: data.logo,
             images: imagesForTile,
             href: data.href,
