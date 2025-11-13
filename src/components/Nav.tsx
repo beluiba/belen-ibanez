@@ -111,7 +111,7 @@ export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
         >
           <li role="none">
             <Link role="menuitem" href="/work" className={isWork ? styles.active : undefined} onClick={() => setMobileOpen(false)} aria-current={isWork ? "page" : undefined}>
-              Work
+              Works
             </Link>
           </li>
 

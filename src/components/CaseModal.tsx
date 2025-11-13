@@ -346,7 +346,8 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
 
                     {Array.isArray(s.images) && s.images.length > 0 ? (
                       s.images.length > 1 ? (
-                        <Carousel images={s.images.map((img) => (typeof img === "string" ? img : img.src))} caption={s.paragraph ?? ""} />
+                        // pass the original image entries (string | { src, caption }) so Carousel can render captions
+                        <Carousel images={s.images} />
                       ) : (
                         <div className={styles.screensGrid}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}

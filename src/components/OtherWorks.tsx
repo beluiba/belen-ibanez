@@ -14,7 +14,9 @@ type WorkItem = {
   imageSrc?: string;
   imageAlt?: string;
   logo?: string;
-  images?: string[]; // optional images array
+  images?: (string | { src: string; caption?: string })[]; // optional images array now supports objects
+  context?: string;
+  overview?: string;
   [key: string]: unknown;
 };
 
@@ -25,15 +27,34 @@ type Props = {
 };
 
 export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props) {
-  const source: WorkItem[] = Array.isArray(items) && items.length > 0 ? items : (Array.isArray(secondaryCases) ? secondaryCases.slice(0, 4) : []);
+  const source: WorkItem[] =
+    Array.isArray(items) && items.length > 0
+      ? items
+      : Array.isArray(secondaryCases)
+      ? (secondaryCases.slice(0, 4) as WorkItem[])
+      : [];
 
-  if (!Array.isArray(source) || source.length === 0) {
-    return <div className={styles.emptyMessage}>No other works available.</div>;
+  interface NormalizedWork {
+    id: string;
+    title: string;
+    subtitle: string;
+    company: string;
+    role: string;
+    logo: string;
+    images: string[];
+    href: string;
+    raw: WorkItem;
   }
 
-  const normalize = (raw: WorkItem, idx: number) => {
+  const normalize = (raw: WorkItem, idx: number): NormalizedWork => {
     const id = raw?.id ?? idx;
-    const images = Array.isArray(raw?.images) ? raw.images : raw?.imageSrc ? [raw.imageSrc] : [];
+    const images = Array.isArray(raw?.images)
+      ? (raw.images as (string | { src: string; caption?: string })[])
+          .map((img) => (typeof img === "string" ? img : img.src))
+          .filter((s) => s.trim() !== "")
+      : raw?.imageSrc
+      ? [raw.imageSrc]
+      : [];
     return {
       id: String(id),
       title: raw?.title ?? raw?.company ?? `Work ${idx + 1}`,
@@ -76,7 +97,6 @@ export default function OtherWorks({ items, featuredOffset = 0, onOpen }: Props)
             company: data.company,
             title: data.title,
             subtitle: data.subtitle,
-            role: data.role,
             // prefer explicit context or overview from the source item, fallback to subtitle/role/title
             context: pickString(raw?.context, raw?.overview, data.subtitle, data.role, data.title),
             logo: data.logo,

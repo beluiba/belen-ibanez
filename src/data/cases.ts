@@ -243,6 +243,12 @@ export const featured = [
       },
       {
         heading: "Concept",
+        images: [
+          { src: "/images/cases/adarma-1.png", caption: "Dashboard overview showing posture and top priority alerts." },
+          { src: "/images/cases/adarma-2.png", caption: "Triage board with alert queue, suggested actions, and context." },
+          { src: "/images/cases/adarma-3.png", caption: "Incident detail view with timeline, evidence, and containment steps." },
+          { src: "/images/cases/adarma-4.png", caption: "Trends panel visualising recent deltas and anomaly context." }
+        ],
         paragraph:
           "High-level proposal: posture overview with risk scores and owners; triage board with rationale and one-click assign/escalate; incident view with timeline and containment checklist; trends & anomalies with links to affected assets.",
         bullets: [
@@ -252,26 +258,21 @@ export const featured = [
           "Trends & anomalies: recent deltas with “what changed” and links to affected assets.",
           "Ownership routing: resolver group, SLA clock, and blockers surfaced inline.",
         ],
-        images: [
-          "/images/cases/adarma-1.png",
-          "/images/cases/adarma-2.png",
-          "/images/cases/adarma-3.png",
-          "/images/cases/adarma-4.png",
-        ],
         wrapperClass: "case-block case-concept",
         paragraphClass: "case-paragraph",
         listClass: "case-bullets",
         listItemClass: "case-bullet",
       },
     ],
-    context:
-      "Built a unified, role-aware security operations workspace that reduces context-switching and supports repeatable triage and incident response.",
+    // TOP-LEVEL images must remain string[] for tiles (use the first src)
     images: [
       "/images/cases/adarma-1.png",
       "/images/cases/adarma-2.png",
       "/images/cases/adarma-3.png",
-      "/images/cases/adarma-4.png",
+      "/images/cases/adarma-4.png"
     ],
+    context:
+      "Built a unified, role-aware security operations workspace that reduces context-switching and supports repeatable triage and incident response.",
     // Impact & Outcome structured blocks
     impactBlocks: [
       {
@@ -377,7 +378,7 @@ export const featured = [
           "Discovery: Interviews with modelers, ops, and exec users; audit of current models/dashboards and hand-offs.",
           "Definition: IA for models → drivers → scenarios → KPIs; standardised comparison and explanation patterns.",
           "Exploration: Low-fi sketches → interactive prototypes; killed paths that hid assumptions or slowed iteration.",
-          "Systemisation: Design tokens + component patterns (driver controls, delta chips, sensitivity bands, compare panels).",
+          "Systemisation: Design tokens + component patterns (driver controls, delta chips, compare panels, tabs).",
           "Validation: Task-based reviews; tuned copy, empty/error/loading states, keyboard paths, and chart annotations.",
         ],
         tools: [
@@ -391,8 +392,6 @@ export const featured = [
         ],
         images: [],
       },
-
-      // replaced single "Concept" block with three project showcases (each has text, bullets, 4 images)
       {
         heading: "Project — Scenario / Dashboard Workspace",
         paragraph:
@@ -405,13 +404,13 @@ export const featured = [
           "Readable at a glance: concise summaries with deeper detail on demand.",
         ],
         images: [
-          "/images/cases/silico-1.svg",
-          "/images/cases/silico-2.svg",
-          "/images/cases/silico-3.svg",
-          "/images/cases/silico-4.svg",
-          "/images/cases/silico-5.svg",
-          "/images/cases/silico-6.svg",
-          "/images/cases/silico-7.svg",
+          { src: "/images/cases/silico-1.svg", caption: "Scenario workspace: create and compare scenarios with KPI deltas." },
+          { src: "/images/cases/silico-2.svg", caption: "Comparison view: baseline vs variant with annotated deltas." },
+          { src: "/images/cases/silico-3.svg", caption: "Driver highlights panel showing contribution to KPI changes." },
+          { src: "/images/cases/silico-4.svg", caption: "Save & share UI with notes and shareable links." },
+          { src: "/images/cases/silico-5.svg", caption: "Quick filters and compact summaries for rapid review." },
+          { src: "/images/cases/silico-6.svg", caption: "Readable at-a-glance summaries with detail-on-demand." },
+          { src: "/images/cases/silico-7.svg", caption: "Export snapshot UI for asynchronous reviews." },
         ],
       },
       {
@@ -426,11 +425,11 @@ export const featured = [
           "Guardrails: validation, error states, and safe-to-revert controls.",
         ],
         images: [
-          "/images/cases/silico-8.svg",
-          "/images/cases/silico-9.svg",
-          "/images/cases/silico-10.svg",
-          "/images/cases/silico-11.svg",
-          "/images/cases/silico-12.svg",
+          { src: "/images/cases/silico-8.svg", caption: "Inspector: parameter editor and live preview." },
+          { src: "/images/cases/silico-9.svg", caption: "Formula view showing assumptions and logic." },
+          { src: "/images/cases/silico-10.svg", caption: "Impact preview for changes before committing." },
+          { src: "/images/cases/silico-11.svg", caption: "Provenance links to source inputs." },
+          { src: "/images/cases/silico-12.svg", caption: "Guardrails and revert controls for safety." },
         ],
       },
       {
@@ -445,10 +444,10 @@ export const featured = [
           "Export & share: snapshot results for async decision reviews.",
         ],
         images: [
-          "/images/cases/silico-13.svg",
-          "/images/cases/silico-14.svg",
-          "/images/cases/silico-15.svg",
-          "/images/cases/silico-16.svg",
+          { src: "/images/cases/silico-13.svg", caption: "One‑knob runs with instant KPI feedback." },
+          { src: "/images/cases/silico-14.svg", caption: "Context chips showing what changed and confidence." },
+          { src: "/images/cases/silico-15.svg", caption: "Minimal UI for fast interpretation." },
+          { src: "/images/cases/silico-16.svg", caption: "Inline rationale and export controls." },
         ],
       },
       {
@@ -463,22 +462,23 @@ export const featured = [
           "Accessibility: WCAG-aligned roles, focus, and keyboard behaviors.",
         ],
         images: [
-          "/images/cases/silicosystem-1.svg",
-          "/images/cases/silicosystem-2.svg",
-          "/images/cases/silicosystem-3.svg",
-          "/images/cases/silicosystem-4.svg",
+          { src: "/images/cases/silicosystem-1.svg", caption: "Design tokens and color system overview." },
+          { src: "/images/cases/silicosystem-2.svg", caption: "Core components: driver controls and compare panels." },
+          { src: "/images/cases/silicosystem-3.svg", caption: "Storybook docs and usage guidelines." },
+          { src: "/images/cases/silicosystem-4.svg", caption: "Accessibility and keyboard flows." },
         ],
       },
     ],
-    context:
-      "I designed a decision intelligence dashboard that visualises scenarios, constraints, and projected outcomes, letting decision makers run what ifs, compare trade offs, and prioritise the highest impact actions.",
+    // TOP-LEVEL images for tiles as strings
     images: [
       "/images/cases/silico-1.svg",
       "/images/cases/silico-2.svg",
       "/images/cases/silico-3.svg",
       "/images/cases/silico-4.svg",
-      "/images/cases/silico-5.svg",
+      "/images/cases/silico-5.svg"
     ],
+    context:
+      "I designed a decision intelligence dashboard that visualises scenarios, constraints, and projected outcomes, letting decision makers run what ifs, compare trade offs, and prioritise the highest impact actions.",
     impactBlocks: [
       {
         heading: "Operational speed",
@@ -582,6 +582,13 @@ export const otherWorks = [
       },
       {
         heading: "Project — AFS (service booking)",
+        images: [
+          { src: "/images/cases/AFS-1.jpg", caption: "Service selection and location flow with retry patterns." },
+          { src: "/images/cases/AFS-2.jpg", caption: "Vehicle identification UI with VIN fallback." },
+          { src: "/images/cases/AFS-3.jpg", caption: "Service itemisation and pricing rows." },
+          { src: "/images/cases/AFS-4.jpg", caption: "Calendar grid for time-slot selection." },
+          { src: "/images/cases/AFS-5.jpg", caption: "Confirmation summary with tech and address." }
+        ],
         paragraph:
           "AFS: Find a nearby service, identify vehicle, choose services, pick a timeslot, pay, and confirm with a human‑readable summary and robust error recovery.",
         bullets: [
@@ -589,16 +596,16 @@ export const otherWorks = [
           "Identify vehicle by VIN or Make → Year → Model → Engine; handle VIN failures gracefully.",
           "Choose services with itemised pricing and select time from a calendar grid; confirm with tech name, date/time, and address.",
         ],
-        images: [
-          "/images/cases/AFS-1.jpg",
-          "/images/cases/AFS-2.jpg",
-          "/images/cases/AFS-3.jpg",
-          "/images/cases/AFS-4.jpg",
-          "/images/cases/AFS-5.jpg",
-        ],
       },
       {
         heading: "Project — Peugeot Configurator",
+        images: [
+          { src: "/images/cases/psa-1.jpg", caption: "Version selection and package overview." },
+          { src: "/images/cases/psa-2.jpg", caption: "Add features and view price deltas." },
+          { src: "/images/cases/psa-3.jpg", caption: "Color preview and visual options." },
+          { src: "/images/cases/psa-4.jpg", caption: "Payment scenarios and live totals." },
+          { src: "/images/cases/psa-5.jpg", caption: "Scenario presets for quick comparison." }
+        ],
         paragraph:
           "Peugeot: unified configurator for version, packages, color, and payment with live totals, scenario presets, and clear feature/group breakdowns.",
         bullets: [
@@ -606,18 +613,15 @@ export const otherWorks = [
           "Feature groups and tech packs show inclusions and price deltas to aid comparison.",
           "Scenario presets let users compare equipment and payment outcomes side-by-side.",
         ],
-        images: [
-          "/images/cases/psa-1.jpg",
-          "/images/cases/psa-2.jpg",
-          "/images/cases/psa-3.jpg",
-          "/images/cases/psa-4.jpg",
-          "/images/cases/psa-5.jpg",
-        ],
       },
+    ],
+    // TOP-LEVEL images must remain string[] for tiles (use the first src)
+    images: [
+      "/images/cases/AFS-1.jpg",
+      "/images/cases/psa-1.jpg"
     ],
     context:
       "I led end-to-end UX for PSA’s AFS service booking and Peugeot’s online purchase flows—defining IA, designing token-driven UI, and building core screens to make booking and configuring a car fast, clear, and reliable.",
-    images: ["/images/cases/AFS-1.jpg", "/images/cases/psa-1.jpg"],
     impactBlocks: [
       {
         heading: "Operational speed",
@@ -718,6 +722,13 @@ export const otherWorks = [
       },
       {
         heading: "Project — Consumer QuickQuote",
+        images: [
+          { src: "/images/cases/easylife-1.png", caption: "QuickQuote sliders for term and amount." },
+          { src: "/images/cases/easylife-2.png", caption: "Live premium ranges with location context." },
+          { src: "/images/cases/easylife-3.png", caption: "Carrier compare table for side-by-side selection." },
+          { src: "/images/cases/easylife-4.png", caption: "Refine flow with left summary panel." },
+          { src: "/images/cases/easylife-5.png", caption: "Human-readable quote and progress summary." }
+        ],
         paragraph:
           "Consumer QuickQuote: sliders for term and amount, premium range, and location context with a switch to detailed quoting to refine.",
         bullets: [
@@ -725,16 +736,16 @@ export const otherWorks = [
           "Carrier compare table with product name and monthly premium for side-by-side selection.",
           "Refine forms: health/family/driving sections with left summary panel showing coverage split and progress."
         ],
-        images: [
-          "/images/cases/easylife-1.png",
-          "/images/cases/easylife-2.png",
-          "/images/cases/easylife-3.png",
-          "/images/cases/easylife-4.png",
-          "/images/cases/easylife-5.png"
-        ]
       },
       {
         heading: "Project — Broker ELA Dashboard",
+        images: [
+          { src: "/images/cases/highland-6.jpg", caption: "Sortable leads table with quick actions." },
+          { src: "/images/cases/highland-7.jpg", caption: "Lead detail panel with confidence signals." },
+          { src: "/images/cases/highland-8.jpg", caption: "Filters and pagination for prioritisation." },
+          { src: "/images/cases/highland-9.jpg", caption: "Quick Quote & Apply workflows." },
+          { src: "/images/cases/highland-10.jpg", caption: "Lead routing and status chips." }
+        ],
         paragraph:
           "Broker dashboard: paginated, sortable leads list with submitted date, coverage, carrier, term, premium, age, status, and quick Quote & Apply actions.",
         bullets: [
@@ -742,21 +753,15 @@ export const otherWorks = [
           "Lead detail panel surfaces health class, premium, term, contact context, and suggested next actions.",
           "Pagination and filters to prioritise outreach by age, premium, or confidence."
         ],
-        images: [
-          "/images/cases/highland-6.jpg",
-          "/images/cases/highland-7.jpg",
-          "/images/cases/highland-8.jpg",
-          "/images/cases/highland-9.jpg",
-          "/images/cases/highland-10.jpg"
-        ]
       }
     ],
-    context:
-      "I led UX and UI implementation for EasyLife’s consumer quick-quote experience and the broker ELA dashboard — standardising IA, tokenising components, and improving the end-to-end flow to reduce abandon and speed broker contact.",
+    // TOP-LEVEL images must remain string[] for tiles (use the first src)
     images: [
       "/images/cases/highland-1.jpg",
       "/images/cases/highland-5.jpg"
     ],
+    context:
+      "I led UX and UI implementation for EasyLife’s consumer quick-quote experience and the broker ELA dashboard — standardising IA, tokenising components, and improving the end-to-end flow to reduce abandon and speed broker contact.",
     impactBlocks: [
       {
         heading: "Operational speed",
@@ -861,6 +866,13 @@ export const otherWorks = [
       },
       {
         heading: "Project — Agent Vault Tool",
+        images: [
+          { src: "/images/cases/emerios-1.jpg", caption: "Vault card view with metadata and quick actions." },
+          { src: "/images/cases/emerios-2.jpg", caption: "Table view with search and filters." },
+          { src: "/images/cases/emerios-3.jpg", caption: "Preview panel and activity history." },
+          { src: "/images/cases/emerios-4.jpg", caption: "Bulk upload and tagging flows." },
+          { src: "/images/cases/emerios-5.jpg", caption: "Share/revoke provenance surfaced inline." }
+        ],
         paragraph:
           "Agent Vault: centralised storage, search, and quick actions to manage proofs and their provenance.",
         bullets: [
@@ -868,16 +880,15 @@ export const otherWorks = [
           "Defined metadata, versioning, and share/revoke flows; added clear processing/verified states.",
           "Concept: card/table toggle with filters and tags; preview + activity history on each file; quick actions (upload, tag, share, revoke)."
         ],
-        images: [
-          "/images/cases/emerios-1.jpg",
-          "/images/cases/emerios-2.jpg",
-          "/images/cases/emerios-3.jpg",
-          "/images/cases/emerios-4.jpg",
-          "/images/cases/emerios-5.jpg"
-        ]
       },
       {
         heading: "Project — Back-Office Document Processing",
+        images: [
+          { src: "/images/cases/emerios-6.jpg", caption: "Single-screen processor with required-proof checklist." },
+          { src: "/images/cases/emerios-7.jpg", caption: "Page carousel and quick classify controls." },
+          { src: "/images/cases/emerios-8.jpg", caption: "Validate/submit/reject flows with reasons." },
+          { src: "/images/cases/emerios-9.jpg", caption: "Status chips and guardrails." }
+        ],
         paragraph:
           "Single-screen document processor to classify, validate, and advance cases without hopping between pages.",
         bullets: [
@@ -885,15 +896,15 @@ export const otherWorks = [
           "Added “next step” cues and guardrails to prevent partial submissions.",
           "Concept: required-proof checklist tied to case type; page carousel with quick classify, validate, and submit/reject with reasons; status chips for ready/pending/needs-correction."
         ],
-        images: [
-          "/images/cases/emerios-6.jpg",
-          "/images/cases/emerios-7.jpg",
-          "/images/cases/emerios-8.jpg",
-          "/images/cases/emerios-9.jpg"
-        ]
       },
       {
         heading: "Project — SafeLink Enrollment (Multi-Channel Proof)",
+        images: [
+          { src: "/images/cases/emerios-10.jpg", caption: "Multi-channel enrollment: upload guidance and email options." },
+          { src: "/images/cases/emerios-11.jpg", caption: "Upload queue showing progress and validation." },
+          { src: "/images/cases/emerios-12.jpg", caption: "Pending verification badges and deadlines." },
+          { src: "/images/cases/emerios-13.jpg", caption: "What's missing messages and next-step CTAs." }
+        ],
         paragraph:
           "Multi-channel proof submission step so applicants can provide documents by upload, email, text, fax, or mail with clear validation and status.",
         bullets: [
@@ -901,17 +912,14 @@ export const otherWorks = [
           "Designed reminders and “what’s missing” messages to reduce back-and-forth and improve first-pass success.",
           "Concept: documentation status step with channel options, upload queue showing filenames/progress/validation results, pending verification badges, deadlines, and next-step CTAs."
         ],
-        images: [
-          "/images/cases/emerios-10.jpg",
-          "/images/cases/emerios-11.jpg",
-          "/images/cases/emerios-12.jpg",
-          "/images/cases/emerios-13.jpg"
-        ]
       }
+    ],
+    // TOP-LEVEL images for tiles as strings
+    images: [
+      "/images/cases/emerios-1.jpg"
     ],
     context:
       "I led end-to-end UX across Agent Vault, Back-Office processing, and SafeLink Enrollment — centralising proofs, standardising taxonomy, and building resilient multi-channel submission flows so cases move forward faster and audits are simpler.",
-    images: ["/images/cases/emerios-1.jpg"],
     impactBlocks: [
       {
         heading: "Operational speed",
@@ -967,13 +975,7 @@ export const otherWorks = [
     screens: [
       {
         heading: "Project — Arc10 / Careerlist (Perform Search)",
-        paragraph:
-          "Built a candidate-to-leader matching experience where people choose leaders/teams they admire and book screenings—shifting focus from “apply to a company” to “work with the right leader.”",
-        bullets: [
-          "Designed multi-step onboarding (culture, skills, compensation), leader/team selection, and interview scheduling.",
-          "Implemented Angular + Bootstrap UI from Adobe XD prototypes."
-        ],
-        images: ["/images/cases/arc10-1.jpg"]
+        images: [{ src: "/images/cases/arc10-1.jpg", caption: "Candidate-to-leader matching: leader cards and booking flow." }]
       },
       {
         heading: "Project — OpenStack (Summits)",
@@ -983,7 +985,7 @@ export const otherWorks = [
           "Created modular layouts/components for schedules, speaker cards, and sponsor sections.",
           "Refined IA (\"What to expect\", \"Who attends\", \"Schedule\") to speed discovery and registration."
         ],
-        images: ["/images/cases/openstack-1.jpg"]
+        images: [{ src: "/images/cases/openstack-1.jpg", caption: "Summit site: landing and session catalog components." }]
       },
       {
         heading: "Project — Waggl (Employee Voice)",
@@ -993,7 +995,7 @@ export const otherWorks = [
           "Prototyped filters and summaries (positivity %, respondents, time window) and drill-downs from org-wide scores to segment views.",
           "Enabled quick slice-and-dice so leaders move from summary to actionable themes without exporting."
         ],
-        images: ["/images/cases/waggl-1.jpg"]
+        images: [{ src: "/images/cases/waggl-1.jpg", caption: "Filtering and reporting interface for employee feedback." }]
       },
       {
         heading: "Project — Conaroy (Music + Events concept)",
@@ -1003,16 +1005,16 @@ export const otherWorks = [
           "Wireframed queueing, voting, lyrics/metadata, and sponsor tiles; explored moderation and simple creator tools for hosts.",
           "Produced a minimal social playlist flow to boost event engagement and give hosts a lightweight interactive music channel."
         ],
-        images: ["/images/cases/conaroy-1.jpg"]
+        images: [{ src: "/images/cases/conaroy-1.jpg", caption: "Hashtag-driven playlist concept and now-playing view." }]
       }
     ],
-    context:
-      "Collection of shorter client projects and experiments: product concepts, event sites, and interaction prototypes focused on rapid outcomes and reusable UI patterns.",
     images: [
       "/images/cases/more-1.jpg",
       "/images/cases/more-2.jpg",
       "/images/cases/more-3.jpg"
     ],
+    context:
+      "Collection of shorter client projects and experiments: product concepts, event sites, and interaction prototypes focused on rapid outcomes and reusable UI patterns.",
     impactBlocks: [
       {
         heading: "Outcome",

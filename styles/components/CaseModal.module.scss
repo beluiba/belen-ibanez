@@ -425,7 +425,7 @@
   h5, h6{
     font-size: 1.25rem;
     margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     color: var(--color-primary-900);
   }
 }
@@ -552,9 +552,6 @@
     p{
         margin: 0.25rem 0;
     }
-    div{
-        margin-bottom: 1.5rem;
-    }
 
 .sideNote {
   font-size: 0.8rem;
@@ -564,7 +561,6 @@
 
   img{
     width: 100%;
-    margin-bottom: 2rem;
   }
 }
 
@@ -583,6 +579,42 @@
   margin-bottom: 0.5rem;
 }
 
+/* caption shown under main image */
+.mainImageCaptionBelow {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--token-text, #222);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  background: transparent;
+  padding: 0 0.25rem;
+  z-index: 2;
+  /* avoid being clipped: ensure parent does not hide overflow for this area */
+}
+
+/* if caption still hidden, add a temporary debug border */
+.mainImageCaptionBelow.debug-visible {
+  border: 1px dashed rgba(255,0,0,0.5);
+  background: rgba(255,255,255,0.02);
+}
+
+/* optional overlay caption (if you prefer caption over image) */
+.mainImageCaptionOverlay {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+/* ensure main image wrapper provides space for captions */
+.emblaMainWrap { position: relative; }
+
 /* main wrapper (prev / viewport / next) */
 .emblaMainWrap {
   display: flex;
@@ -596,16 +628,17 @@
 .carouselNavNext {
   background: transparent;
   border: 0;
-  font-size: 1.6rem;
-  line-height: 1;
-  width: 44px;
-  height: 44px;
+  font-size: 4rem;
+  line-height: 2rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 8px;
   cursor: pointer;
   color: var(--token-on-surface, #111);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0.75rem 0 1rem 0;
 }
 .carouselNavPrev:hover,
 .carouselNavNext:hover {
@@ -628,6 +661,12 @@
   min-width: 100%;
   padding: 8px;
   box-sizing: border-box;
+  img{
+    max-width: 100%;
+    max-height: 55vh;
+    width: auto !important;
+    margin: 0 auto;
+  }
 }
 
 /* main image styling */
@@ -673,7 +712,7 @@
 /* thumbnail image */
 .thumbImg {
   width: 96px;
-  height: 64px;
+  height: auto;
   object-fit: cover;
   display: block;
   border-radius: 4px;
@@ -692,3 +731,4 @@
     height: 48px;
   }
 }
+
