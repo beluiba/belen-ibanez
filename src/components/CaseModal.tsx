@@ -3,15 +3,18 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "@/styles/components/CaseModal.module.scss";
 import navStyles from "@/styles/components/Nav.module.scss";
+import Carousel from "../components/Carousel";
 
 type TimelineItem = { date?: string; label?: string };
 type Metric = { label: string; before: string; after: string };
 
 // Structured screen block supporting both new and legacy shapes
+type ScreenImage = string | { src: string; caption?: string; alt?: string };
+
 type ScreenBlock = {
   heading?: string;
   body?: string | string[];
-  images?: string[];
+  images?: ScreenImage[];
   paragraph?: string;
   bullets?: string[];
   sideNote?: string;
@@ -342,17 +345,22 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
                     ) : null}
 
                     {Array.isArray(s.images) && s.images.length > 0 ? (
-                      <div className={styles.screensGrid}>
-                        {s.images.map((src, idx) => (
-                          // eslint-disable-next-line @next/next/no-img-element
+                      s.images.length > 1 ? (
+                        <Carousel images={s.images.map((img) => (typeof img === "string" ? img : img.src))} caption={s.paragraph ?? ""} />
+                      ) : (
+                        <div className={styles.screensGrid}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            key={idx}
-                            src={src}
-                            alt={`${caseData.company ?? "work"} screenshot ${idx + 1}`}
+                            src={typeof s.images[0] === "string" ? s.images[0] : s.images[0].src}
+                            alt={
+                              typeof s.images[0] === "string"
+                                ? s.heading ?? caseData.company ?? "screenshot"
+                                : s.images[0].alt ?? s.images[0].caption ?? s.heading ?? caseData.company ?? "screenshot"
+                            }
                             className={styles.screenThumb}
                           />
-                        ))}
-                      </div>
+                        </div>
+                      )
                     ) : null}
                   </div>
                 ))}
@@ -483,24 +491,18 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseData, onClose, projectList = 
                       {s.heading ? <h3 className={styles.screenHeading}>{s.heading}</h3> : null}
 
                       {typeof s.paragraph === "string" ? <p className={styles.screenParagraph}>{s.paragraph}</p> : null}
-                      {typeof s.body === "string" ? <p className={styles.screenParagraph}>{s.body}</p> : null}
-                      {Array.isArray(s.body) ? s.body.map((line, li) => <p key={li} className={styles.screenParagraph}>{line}</p>) : null}
-
-                      {Array.isArray(s.bullets) && s.bullets.length > 0 ? (
-                        <ul className={styles.screenBullets}>
-                          {s.bullets.map((b, bi) => <li key={bi}>{b}</li>)}
-                        </ul>
-                      ) : null}
-
-                      {/* images specific to this project block */}
                       {Array.isArray(s.images) && s.images.length > 0 ? (
                         <div className={styles.screensGrid}>
-                          {s.images.map((src, idx) => (
+                          {s.images.map((im, idx) => (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
                               key={idx}
-                              src={src}
-                              alt={`${s.heading ?? caseData.company ?? "work"} screenshot ${idx + 1}`}
+                              src={typeof im === "string" ? im : im.src}
+                              alt={
+                                typeof im === "string"
+                                  ? `${s.heading ?? caseData.company ?? "work"} screenshot ${idx + 1}`
+                                  : im.alt ?? im.caption ?? `${s.heading ?? caseData.company ?? "work"} screenshot ${idx + 1}`
+                              }
                               className={styles.screenThumb}
                             />
                           ))}

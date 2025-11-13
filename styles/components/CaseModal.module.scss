@@ -567,3 +567,128 @@
     margin-bottom: 2rem;
   }
 }
+
+/* Embla / Carousel styles moved from inline to scss */
+
+/* container for embla carousel */
+.emblaContainer {
+  margin-top: 0.75rem;
+  display: block;
+}
+
+/* caption shown above main image */
+.mainImageCaption {
+  font-size: 0.95rem;
+  color: var(--token-text-muted, #666);
+  margin-bottom: 0.5rem;
+}
+
+/* main wrapper (prev / viewport / next) */
+.emblaMainWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* nav buttons */
+.carouselNavPrev,
+.carouselNavNext {
+  background: transparent;
+  border: 0;
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--token-on-surface, #111);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.carouselNavPrev:hover,
+.carouselNavNext:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+/* viewport and track */
+.emblaViewport {
+  overflow: hidden;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.emblaTrack {
+  display: flex;
+  will-change: transform;
+}
+
+/* each slide occupies full width of viewport */
+.emblaSlide {
+  min-width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* main image styling */
+.mainImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: zoom-in;
+}
+
+/* thumbnail row */
+.thumbList {
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+.thumbRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* thumbnail button */
+.thumb {
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 0;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.thumb:hover {
+  transform: translateY(-2px);
+}
+.thumbSelected {
+  border: 2px solid rgba(0,0,0,0.8);
+}
+
+/* thumbnail image */
+.thumbImg {
+  width: 96px;
+  height: 64px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+/* responsive tweaks */
+@media (max-width: 520px) {
+  .carouselNavPrev,
+  .carouselNavNext {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+  .thumbImg {
+    width: 72px;
+    height: 48px;
+  }
+}
