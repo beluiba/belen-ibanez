@@ -244,10 +244,10 @@ export const featured = [
       {
         heading: "Concept",
         images: [
-          { src: "/images/cases/adarma-1.png", caption: "Dashboard overview showing posture and top priority alerts." },
-          { src: "/images/cases/adarma-2.png", caption: "Triage board with alert queue, suggested actions, and context." },
-          { src: "/images/cases/adarma-3.png", caption: "Incident detail view with timeline, evidence, and containment steps." },
-          { src: "/images/cases/adarma-4.png", caption: "Trends panel visualising recent deltas and anomaly context." }
+          { src: "/images/cases/adarma-1.png", caption: "Dashboard overview showing posture for the different threats and how they can improve their posture." },
+          { src: "/images/cases/adarma-2.png", caption: "List of assets integrated in their security posture." },
+          { src: "/images/cases/adarma-3.png", caption: "Risk Landscape to understand the different threats and how they are standing." },
+          { src: "/images/cases/adarma-4.png", caption: "Business Model is where users create their profile" }
         ],
         paragraph:
           "High-level proposal: posture overview with risk scores and owners; triage board with rationale and one-click assign/escalate; incident view with timeline and containment checklist; trends & anomalies with links to affected assets.",
@@ -405,12 +405,12 @@ export const featured = [
         ],
         images: [
           { src: "/images/cases/silico-1.svg", caption: "Scenario workspace: create and compare scenarios with KPI deltas." },
-          { src: "/images/cases/silico-2.svg", caption: "Comparison view: baseline vs variant with annotated deltas." },
-          { src: "/images/cases/silico-3.svg", caption: "Driver highlights panel showing contribution to KPI changes." },
-          { src: "/images/cases/silico-4.svg", caption: "Save & share UI with notes and shareable links." },
-          { src: "/images/cases/silico-5.svg", caption: "Quick filters and compact summaries for rapid review." },
-          { src: "/images/cases/silico-6.svg", caption: "Readable at-a-glance summaries with detail-on-demand." },
-          { src: "/images/cases/silico-7.svg", caption: "Export snapshot UI for asynchronous reviews." },
+          { src: "/images/cases/silico-2.svg", caption: "Scenario comparison: baseline vs variant with annotated deltas." },
+          { src: "/images/cases/silico-3.svg", caption: "Waterfall Widget & Inspector" },
+          { src: "/images/cases/silico-4.svg", caption: "Targets" },
+          { src: "/images/cases/silico-5.svg", caption: "Chart Widget" },
+          { src: "/images/cases/silico-6.svg", caption: "Chrt Widget exploration" },
+          { src: "/images/cases/silico-7.svg", caption: "Table Widget" },
         ],
       },
       {
@@ -427,9 +427,9 @@ export const featured = [
         images: [
           { src: "/images/cases/silico-8.svg", caption: "Inspector: parameter editor and live preview." },
           { src: "/images/cases/silico-9.svg", caption: "Formula view showing assumptions and logic." },
-          { src: "/images/cases/silico-10.svg", caption: "Impact preview for changes before committing." },
-          { src: "/images/cases/silico-11.svg", caption: "Provenance links to source inputs." },
-          { src: "/images/cases/silico-12.svg", caption: "Guardrails and revert controls for safety." },
+          { src: "/images/cases/silico-10.svg", caption: "Autocomplete with formula suggestions." },
+          { src: "/images/cases/silico-11.svg", caption: "Visualisation of the impact preview" },
+          { src: "/images/cases/silico-12.svg", caption: "Edition of the element" },
         ],
       },
       {
@@ -462,10 +462,10 @@ export const featured = [
           "Accessibility: WCAG-aligned roles, focus, and keyboard behaviors.",
         ],
         images: [
-          { src: "/images/cases/silicosystem-1.svg", caption: "Design tokens and color system overview." },
-          { src: "/images/cases/silicosystem-2.svg", caption: "Core components: driver controls and compare panels." },
-          { src: "/images/cases/silicosystem-3.svg", caption: "Storybook docs and usage guidelines." },
-          { src: "/images/cases/silicosystem-4.svg", caption: "Accessibility and keyboard flows." },
+          { src: "/images/cases/silicosystem-1.svg", caption: "Buttons" },
+          { src: "/images/cases/silicosystem-2.svg", caption: "Form Elements" },
+          { src: "/images/cases/silicosystem-3.svg", caption: "Nav Items" },
+          { src: "/images/cases/silicosystem-4.svg", caption: "Table Elements" },
         ],
       },
     ],
@@ -583,11 +583,11 @@ export const otherWorks = [
       {
         heading: "Project — AFS (service booking)",
         images: [
-          { src: "/images/cases/AFS-1.jpg", caption: "Service selection and location flow with retry patterns." },
-          { src: "/images/cases/AFS-2.jpg", caption: "Vehicle identification UI with VIN fallback." },
-          { src: "/images/cases/AFS-3.jpg", caption: "Service itemisation and pricing rows." },
-          { src: "/images/cases/AFS-4.jpg", caption: "Calendar grid for time-slot selection." },
-          { src: "/images/cases/AFS-5.jpg", caption: "Confirmation summary with tech and address." }
+          { src: "/images/cases/AFS-1.jpg", caption: "Find a service near you landing" },
+          { src: "/images/cases/AFS-2.jpg", caption: "Find your car via VIN or make/model/year" },
+          { src: "/images/cases/AFS-3.jpg", caption: "Make/Model/Year selection" },
+          { src: "/images/cases/AFS-4.jpg", caption: "Model Selection" },
+          { src: "/images/cases/AFS-5.jpg", caption: "Services you want to book" }
         ],
         paragraph:
           "AFS: Find a nearby service, identify vehicle, choose services, pick a timeslot, pay, and confirm with a human‑readable summary and robust error recovery.",
@@ -723,10 +723,10 @@ export const otherWorks = [
       {
         heading: "Project — Consumer QuickQuote",
         images: [
-          { src: "/images/cases/easylife-1.png", caption: "QuickQuote sliders for term and amount." },
-          { src: "/images/cases/easylife-2.png", caption: "Live premium ranges with location context." },
+          { src: "/images/cases/easylife-1.png", caption: "Refine flow with left summary panel." },
+          { src: "/images/cases/easylife-2.png", caption: "Live premium ranges with context." },
           { src: "/images/cases/easylife-3.png", caption: "Carrier compare table for side-by-side selection." },
-          { src: "/images/cases/easylife-4.png", caption: "Refine flow with left summary panel." },
+          { src: "/images/cases/easylife-4.png", caption: "QuickQuote sliders for term and amount." },
           { src: "/images/cases/easylife-5.png", caption: "Human-readable quote and progress summary." }
         ],
         paragraph:
@@ -742,9 +742,9 @@ export const otherWorks = [
         images: [
           { src: "/images/cases/highland-6.jpg", caption: "Sortable leads table with quick actions." },
           { src: "/images/cases/highland-7.jpg", caption: "Lead detail panel with confidence signals." },
-          { src: "/images/cases/highland-8.jpg", caption: "Filters and pagination for prioritisation." },
-          { src: "/images/cases/highland-9.jpg", caption: "Quick Quote & Apply workflows." },
-          { src: "/images/cases/highland-10.jpg", caption: "Lead routing and status chips." }
+          { src: "/images/cases/highland-8.jpg", caption: "Basic information of the lead" },
+          { src: "/images/cases/highland-9.jpg", caption: "Wireframe of the Lead's details panel." },
+          { src: "/images/cases/highland-10.jpg", caption: "ireframe of the Lead's details panel." }
         ],
         paragraph:
           "Broker dashboard: paginated, sortable leads list with submitted date, coverage, carrier, term, premium, age, status, and quick Quote & Apply actions.",
@@ -867,11 +867,11 @@ export const otherWorks = [
       {
         heading: "Project — Agent Vault Tool",
         images: [
-          { src: "/images/cases/emerios-1.jpg", caption: "Vault card view with metadata and quick actions." },
-          { src: "/images/cases/emerios-2.jpg", caption: "Table view with search and filters." },
-          { src: "/images/cases/emerios-3.jpg", caption: "Preview panel and activity history." },
-          { src: "/images/cases/emerios-4.jpg", caption: "Bulk upload and tagging flows." },
-          { src: "/images/cases/emerios-5.jpg", caption: "Share/revoke provenance surfaced inline." }
+          { src: "/images/cases/emerios-1.jpg", caption: "Mapping Agents" },
+          { src: "/images/cases/emerios-2.jpg", caption: "Dashboard view of metrics" },
+          { src: "/images/cases/emerios-3.jpg", caption: "List of Applications" },
+          { src: "/images/cases/emerios-4.jpg", caption: "List of Conversions" },
+          { src: "/images/cases/emerios-5.jpg", caption: "Agent Metrics" }
         ],
         paragraph:
           "Agent Vault: centralised storage, search, and quick actions to manage proofs and their provenance.",
@@ -884,10 +884,10 @@ export const otherWorks = [
       {
         heading: "Project — Back-Office Document Processing",
         images: [
-          { src: "/images/cases/emerios-6.jpg", caption: "Single-screen processor with required-proof checklist." },
-          { src: "/images/cases/emerios-7.jpg", caption: "Page carousel and quick classify controls." },
-          { src: "/images/cases/emerios-8.jpg", caption: "Validate/submit/reject flows with reasons." },
-          { src: "/images/cases/emerios-9.jpg", caption: "Status chips and guardrails." }
+          { src: "/images/cases/emerios-6.jpg", caption: "Document Upload Flow" },
+          { src: "/images/cases/emerios-7.jpg", caption: "Document Upload Flow" },
+          { src: "/images/cases/emerios-8.jpg", caption: "Validate/submit/reject document with reasons." },
+          { src: "/images/cases/emerios-9.jpg", caption: "Selecting proof types and statuses." }
         ],
         paragraph:
           "Single-screen document processor to classify, validate, and advance cases without hopping between pages.",
