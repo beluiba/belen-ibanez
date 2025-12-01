@@ -2,12 +2,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import CaseTile from "./CaseTile";
 import CaseModal from "./CaseModal";
-import OtherWorks from "./OtherWorks";
 import { featured, otherWorks } from "../data/cases";
 import styles from "@/styles/components/WorkGrid.module.scss";
 
 type WorkGridProps = {
-  mode?: "landing" | "full";
   onOpen?: (globalIndex: number, origin?: HTMLElement | null) => void;
 };
 
@@ -17,7 +15,7 @@ type CaseData = CaseModalProps["caseData"];
 // locally extend CaseData with optional id for stable keys and normalization
 type CaseItem = CaseData & { id?: string | number };
 
-export default function WorkGrid({ mode = "full", onOpen }: WorkGridProps) {
+export default function WorkGrid({ onOpen }: WorkGridProps) {
   const normalize = (raw: unknown): CaseItem => {
     const r = (raw as Record<string, unknown>) || {};
     const id = typeof r.id === "string" || typeof r.id === "number" ? r.id : undefined;
@@ -87,6 +85,7 @@ export default function WorkGrid({ mode = "full", onOpen }: WorkGridProps) {
 
   return (
     <div className={styles.workgrid}>
+      <h2>Works</h2>
       <h4>Featured Works</h4>
 
       <div className={styles["use-cases"]}>
@@ -128,25 +127,47 @@ export default function WorkGrid({ mode = "full", onOpen }: WorkGridProps) {
         )}
       </div>
 
-      {mode === "full" && (
-        <div className={styles.otherWorks}>
-          {otherList.length === 0 ? (
-            <div className={styles.emptyMessage}>No other works</div>
-          ) : (
-            <OtherWorks
-              items={otherList}
-              featuredOffset={featuredList.length}
-              onOpen={(globalIndex: number) => {
-                if (typeof onOpen === "function") {
-                  onOpen(globalIndex, null);
-                  return;
-                }
-                openModalAt(globalIndex, null);
-              }}
-            />
-          )}
-        </div>
-      )}
+      <div className={styles.otherWorks}>
+        <h4>Other works</h4>
+        {otherList.length === 0 ? (
+          <div className={styles.emptyMessage}>No other works</div>
+        ) : (
+          <div className={styles["use-cases"]}>
+            {otherList.map((c, i) => {
+              const globalIndex = featuredList.length + i;
+              return (
+                <div
+                  key={`${String(c.id ?? c.company ?? "other")}-${i}`}
+                  className={styles.caseWrapper}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Open ${c.company ?? ""}`}
+                  data-global-index={globalIndex}
+                  onClick={(e) => {
+                    if (typeof onOpen === "function") {
+                      onOpen(globalIndex, e.currentTarget as HTMLElement);
+                      return;
+                    }
+                    openModalAt(globalIndex, e.currentTarget as HTMLElement);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      if (typeof onOpen === "function") {
+                        onOpen(globalIndex, e.currentTarget as HTMLElement);
+                        return;
+                      }
+                      openModalAt(globalIndex, e.currentTarget as HTMLElement);
+                    }
+                  }}
+                >
+                  <CaseTile caseData={c} />
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
       {typeof onOpen !== "function" && activeCase !== null && activeIndex !== null && (
         <CaseModal

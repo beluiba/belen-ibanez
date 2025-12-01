@@ -1,18 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import Hero from "@/src/components/Hero";
 import WorkGrid from "@/src/components/WorkGrid";
 import CaseModal from "@/src/components/CaseModal";
 import Contact from "@/src/components/Contact";
 import Footer from "@/src/components/Footer";
-import ArrowIcon from "@/src/components/ArrowIcon";
 import { featured, otherWorks } from "@/src/data/cases";
 import styles from "@/styles/pages/Home.module.scss";
 
-// widen WorkGrid props locally to include optional onOpen
+// widen WorkGrid props locally to include optional onOpen and mode
 type WorkGridWithOpenProps = React.ComponentProps<typeof WorkGrid> & {
   onOpen?: (index: number) => void;
+  mode?: string;
 };
 const WorkGridWithOpen = WorkGrid as React.ComponentType<WorkGridWithOpenProps>;
 
@@ -41,16 +40,9 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="featured">
+      <section id="work" className="featured">
         <div className={styles.featuredRow}>
           <WorkGridWithOpen mode="landing" onOpen={open} />
-        </div>
-
-        <div className={styles.viewMoreRow}>
-          <Link href="/work" className={styles.viewMore}>
-            <span className={styles.viewText}>View more</span>
-            <ArrowIcon className={styles.arrowLeft} />
-          </Link>
         </div>
       </section>
 

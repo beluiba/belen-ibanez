@@ -1,5 +1,8 @@
 .workgrid {
   margin: 1.5rem 0;
+  h2{
+    margin-top: 5rem;
+  }
 
   h4{
     margin-bottom: 1rem;
@@ -20,6 +23,7 @@
   width: 100%;
   gap: 2rem;
   align-items: stretch;
+  margin-bottom: 2rem;
 }
 
 /* ensure direct children behave as blocks by default */

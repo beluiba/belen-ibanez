@@ -621,7 +621,7 @@ export const otherWorks = [
       "/images/cases/psa-1.jpg"
     ],
     context:
-      "I led end-to-end UX for PSA’s AFS service booking and Peugeot’s online purchase flows—defining IA, designing token-driven UI, and building core screens to make booking and configuring a car fast, clear, and reliable.",
+      "Led end-to-end UX for PSA AFS service booking and Peugeot’s online purchase flows, from IA and token-driven UI to core screens that made car booking fast and clear.",
     impactBlocks: [
       {
         heading: "Operational speed",
@@ -761,7 +761,7 @@ export const otherWorks = [
       "/images/cases/highland-5.jpg"
     ],
     context:
-      "I led UX and UI implementation for EasyLife’s consumer quick-quote experience and the broker ELA dashboard — standardising IA, tokenising components, and improving the end-to-end flow to reduce abandon and speed broker contact.",
+      "Led UX and UI for EasyLife’s quick-quote flow and broker ELA dashboard, standardising IA and components to cut abandon and speed broker contact.",
     impactBlocks: [
       {
         heading: "Operational speed",
@@ -919,7 +919,7 @@ export const otherWorks = [
       "/images/cases/emerios-1.jpg"
     ],
     context:
-      "I led end-to-end UX across Agent Vault, Back-Office processing, and SafeLink Enrollment — centralising proofs, standardising taxonomy, and building resilient multi-channel submission flows so cases move forward faster and audits are simpler.",
+      "Led end-to-end UX for Agent Vault, Back-Office, and SafeLink Enrollment, centralising proofs and flows so cases move faster and audits are simpler.",
     impactBlocks: [
       {
         heading: "Operational speed",

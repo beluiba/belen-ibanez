@@ -9,8 +9,10 @@ import styles from "@/styles/components/Nav.module.scss";
 export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [contactActive, setContactActive] = useState(false);
+  const [workActive, setWorkActive] = useState(false); // replaced workAtTop with workActive
   const [mobileOpen, setMobileOpen] = useState(false);
   const obsRef = useRef<IntersectionObserver | null>(null);
+  const workObsRef = useRef<IntersectionObserver | null>(null);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const pathname = usePathname() ?? "/";
   const router = useRouter();
@@ -22,6 +24,7 @@ export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // contact intersection observer (replaced with visibility rules that ensure only one active)
   useEffect(() => {
     obsRef.current?.disconnect();
     obsRef.current = null;
@@ -31,11 +34,68 @@ export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
       setContactActive(false);
       return;
     }
-    const obs = new IntersectionObserver(entries => {
-      setContactActive(Boolean(entries[0]?.isIntersecting));
-    }, { threshold: 0.2 });
+
+    const headerEl = document.querySelector("header");
+    const headerHeight = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+    const TOL = 6;
+
+    const checkActive = (entry: IntersectionObserverEntry) => {
+      const rect = (entry.target as HTMLElement).getBoundingClientRect();
+      const fullyVisible = rect.top >= headerHeight - TOL && rect.bottom <= window.innerHeight + TOL;
+      const mostlyVisible = entry.intersectionRatio >= 0.9;
+      const shouldBeActive = fullyVisible || mostlyVisible;
+      if (shouldBeActive) {
+        setContactActive(true);
+        setWorkActive(false); // never allow both active
+      } else {
+        setContactActive(false);
+      }
+    };
+
+    const obs = new IntersectionObserver((entries) => {
+      // take the first entry (single observed element)
+      checkActive(entries[0]);
+    }, { threshold: [0, 0.5, 0.9, 1] });
+
     obs.observe(el);
     obsRef.current = obs;
+    return () => obs.disconnect();
+  }, [pathname]);
+
+  // work intersection observer — mirror contact behaviour
+  useEffect(() => {
+    workObsRef.current?.disconnect();
+    workObsRef.current = null;
+    if (typeof window === "undefined") return;
+    const el = document.getElementById("work");
+    if (!el || pathname !== "/") {
+      setWorkActive(false);
+      return;
+    }
+
+    const headerEl = document.querySelector("header");
+    const headerHeight = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+    const TOL = 6;
+
+    const checkActive = (entry: IntersectionObserverEntry) => {
+      const rect = (entry.target as HTMLElement).getBoundingClientRect();
+      const fullyVisible = rect.top >= headerHeight - TOL && rect.bottom <= window.innerHeight + TOL;
+      const mostlyVisible = entry.intersectionRatio >= 0.9;
+      const shouldBeActive = fullyVisible || mostlyVisible;
+      if (shouldBeActive) {
+        setWorkActive(true);
+        setContactActive(false); // never allow both active
+      } else {
+        setWorkActive(false);
+      }
+    };
+
+    const obs = new IntersectionObserver((entries) => {
+      checkActive(entries[0]);
+    }, { threshold: [0, 0.5, 0.9, 1] });
+
+    obs.observe(el);
+    workObsRef.current = obs;
     return () => obs.disconnect();
   }, [pathname]);
 
@@ -84,8 +144,90 @@ export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
     setMobileOpen(false);
   };
 
-  const isHome = pathname === "/" && !contactActive;
-  const isWork = pathname === "/work" || pathname.startsWith("/work/");
+  // helper: scroll so the section top sits directly below the header
+  const scrollToElementTop = (el: HTMLElement | null) => {
+    if (!el || typeof window === "undefined") return;
+    const headerEl = document.querySelector("header");
+    const headerHeight = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : 0;
+    const top = window.scrollY + el.getBoundingClientRect().top - headerHeight;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  // handler for Works — use Link but intercept navigation when already on home
+  const handleWorkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // allow modifier-clicks / new-tab
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+    // always prevent default so we control the behavior
+    e.preventDefault();
+
+    const doScrollTo = (el: HTMLElement) => {
+      scrollToElementTop(el);
+      setWorkActive(true);
+      try {
+        history.replaceState(null, "", "/#work");
+      } catch {
+        /* ignore */
+      }
+      setMobileOpen(false);
+    };
+
+    if (pathname === "/") {
+      // try immediately
+      const el = document.getElementById("work");
+      if (el) {
+        doScrollTo(el);
+        return;
+      }
+
+      // element might be rendered client-side; poll briefly
+      let attempts = 0;
+      const maxAttempts = 20; // 20 * 50ms = 1s
+      const iv = window.setInterval(() => {
+        const el2 = document.getElementById("work");
+        if (el2) {
+          clearInterval(iv);
+          doScrollTo(el2);
+          return;
+        }
+        attempts += 1;
+        if (attempts >= maxAttempts) {
+          clearInterval(iv);
+          // fallback: update hash so navigation to /#work will land when page re-renders
+          try {
+            history.replaceState(null, "", "/#work");
+          } catch {}
+          setMobileOpen(false);
+        }
+      }, 50);
+
+      return;
+    }
+
+    // from another route: navigate to home with hash
+    router.push("/#work");
+    setMobileOpen(false);
+  };
+
+  // logo click: if already on homepage, scroll to top; otherwise let Link navigate
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (pathname === "/") {
+      e.preventDefault();
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      // clear section active states so logo becomes active
+      setContactActive(false);
+      setWorkActive(false);
+      setMobileOpen(false);
+    }
+    // when not on home, allow Link to navigate to "/"
+  };
+
+  // home active when on root and neither contact nor work are active
+  const isHome = pathname === "/" && !contactActive && !workActive;
+  const isWork = workActive;
   const isContactRoute = pathname === "/contact" || pathname.startsWith("/contact");
   const contactIsActive = isContactRoute || contactActive;
 
@@ -97,7 +239,7 @@ export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
           className={`${styles.siteTitle} ${isHome ? styles.active : ""}`}
           aria-label="Home"
           aria-current={isHome ? "page" : undefined}
-          onClick={() => setMobileOpen(false)}
+          onClick={handleLogoClick}
         >
           <Image src="/images/logo.svg" alt="logo" width={40} height={40} />
         </Link>
@@ -110,7 +252,16 @@ export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
           role="menubar"
         >
           <li role="none">
-            <Link role="menuitem" href="/work" className={isWork ? styles.active : undefined} onClick={() => setMobileOpen(false)} aria-current={isWork ? "page" : undefined}>
+            <Link
+              id="nav-works"
+              role="menuitem"
+              href="/#work"
+              scroll={false}
+              prefetch={false}
+              className={isWork ? styles.active : undefined}
+              onClick={handleWorkClick}
+              aria-current={isWork ? "page" : undefined}
+            >
               Works
             </Link>
           </li>
@@ -132,7 +283,7 @@ export default function Nav({ onOpenContact }: { onOpenContact?: () => void }) {
           </li>
         </ul>
 
-        {/* mobile toggle: keep present on server & client; suppress hydration warning to avoid mismatch */}
+        {/* mobile toggle */}
         <button
           className={styles.mobileToggle}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
